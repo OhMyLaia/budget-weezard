@@ -1,10 +1,10 @@
 [
     {
-        "Custom-pages": "Pages",
-        "number": 0
+        "customElement": "Pages",
+        "quantity": 0
     },
     {
-        "Custom-pages": "Languages",
-        "number": 0
+        "customElement": "Languages",
+        "quantity": 0
     }
 ]
