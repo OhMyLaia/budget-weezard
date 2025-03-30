@@ -1,7 +1,7 @@
 import './App.css';
 import { Navbar } from "./layouts/Navbar-component.tsx";
 import { AppRoutes } from "./routes/Router.tsx";
-import "tailwindcss/tailwind.css";
+// import "./tailwindcss/tailwind.css";
 
 
 
@@ -17,3 +17,6 @@ function App() {
 }
 
 export default App;
+
+//npm install react-router-dom
+//npm install tailwind
