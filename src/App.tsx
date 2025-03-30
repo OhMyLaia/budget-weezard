@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import { Navbar } from "./layouts/Navbar-component.tsx";
 import { AppRoutes } from "./routes/Router.tsx";
@@ -10,8 +11,9 @@ function App() {
   return (
     <div>
       <Navbar />
+      <BrowserRouter>
       <AppRoutes />
-
+      </BrowserRouter>
     </div>
   )
 }

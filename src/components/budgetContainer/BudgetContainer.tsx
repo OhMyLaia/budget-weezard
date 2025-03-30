@@ -12,8 +12,9 @@ export function BudgetContainer() {
         <div>
             {dataCard.map((item: { title: string; description: string; price: number; custom: boolean }) => (
                 <CardBudget
-                    key={idGenerator()}
-                    dataCard={item}
+                    key={idGenerator()
+                        
+                    }
                 />
             ))}
         </div>

@@ -1,12 +1,16 @@
 
 
 
-export function QuantityButton( quantityOperator : string ) {
+export function QuantityButton({onClick, quantityOperator} : {onClick: () => void; quantityOperator: string} ) {
     return (
         <button
-        // onClick={quantityOperator === "+" ? increaseQuantity : decreaseQuantity}
-        className="bg-gray-200 p-2 rounded-full hover:bg-purple-200 focus:outline-2 focus:outline-violet-500">
-            {quantityOperator}
+        className="bg-gray-200 p-2
+        rounded-full
+        hover:bg-purple-200
+        focus:outline-2
+        focus:outline-violet-500"
+        onClick={onClick}>
+        {quantityOperator}
         </button>
     )
 }
