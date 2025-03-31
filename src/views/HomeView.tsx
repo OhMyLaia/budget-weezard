@@ -1,7 +1,8 @@
+import { BudgetContainer } from "../components/budgetContainer/BudgetContainer";
 
 
 export function HomeView() {
     return (
-        <div>Home-view</div>
+        <div>In HomeView </div>
     )
 }
