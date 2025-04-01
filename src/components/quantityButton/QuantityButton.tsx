@@ -6,9 +6,9 @@ export function QuantityButton({onClick, quantityOperator} : {onClick: () => voi
         <div className="">
         <button
         className=" bg-gray-300
-        p-2
+        flex items-center justify-center
+        w-8 h-8
         rounded-full
-        inline-flex
         hover:bg-purple-400
         focus:outline-2
         focus:outline-violet-500"
