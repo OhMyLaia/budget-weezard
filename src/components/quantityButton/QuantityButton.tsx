@@ -3,24 +3,23 @@
 
 export function QuantityButton({onClick, quantityOperator} : {onClick: () => void; quantityOperator: string} ) {
     return (
+        <div className="">
         <button
-        className="bg-gray-200 p-2
+        className=" bg-gray-300
+        p-2
         rounded-full
-        hover:bg-purple-200
+        inline-flex
+        hover:bg-purple-400
         focus:outline-2
         focus:outline-violet-500"
         onClick={onClick}>
         {quantityOperator}
         </button>
+        </div>
     )
 }
 
-// hacer una funcion que sea para sumar o restar una cantidad
-// para eso necesito saber si sumar o restar
-// de que objeto 
-
-// export function changeQuantity(item: object, actionType: QuantityButtonProps)  {
-// if (item.actionType === "+") item.quantity++;
-// if (item.actionType === "-") item.quantity--;
-
-// }
+// <button type="button" class="text-white bg-blue-700 hover:bg-blue-800
+// focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full
+// text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600
+// dark:hover:bg-blue-700 dark:focus:ring-blue-800">

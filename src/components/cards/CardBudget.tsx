@@ -1,38 +1,51 @@
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
+import { useState } from "react";
+
+
+
+interface CardBudgetProps {
+    title: string;
+    description: string;
+    price: number;
+    custom: boolean;
+    quantity: number;
+    increaseQuantity: () => void;
+    decreaseQuantity: () => void;
+}
 
 export function CardBudget({
     title,
     description,
     price,
     custom,
-    onClick,
-    isActive,
     quantity,
     increaseQuantity,
     decreaseQuantity
-} : {
-    title: string;
-    description: string;
-    price: number;
-    custom: boolean;
-    onClick: () => void;
-    isActive: boolean;
-    quantity: number;
-    increaseQuantity: () => void;
-    decreaseQuantity: () => void;
 
-}) {
+} : CardBudgetProps) {
+
+    // listening if cards are selected or not -> handle click
+    const [isActiveCard, setIsActiveCard] = useState<boolean>(false);
+
+    const toggleCardState = () => {
+        setIsActiveCard(prevState => !prevState)
+    }
 
     return (
         <div>
             <div
-                onClick={onClick}
-                className={`w-1/2 ${custom === true ? "h-40" : "h-20"} bg-purple-100 rounded-lg p-4 flex flex-row gap-3 hover:bg-purple-200 focus:outline-2  focus:outline-violet-500`}>
+                onClick={toggleCardState}
+                style={{ borderColor: isActiveCard ? "border-green-300" : "border-violet-600" }}
+                className={`w-full ${custom === true ? "h-20" : "h-20"}
+                bg-purple-100 rounded-lg p-2 flex flex-row gap-1 m-5
+                hover:bg-purple-200 focus:outline-2
+                focus:outline-violet-500
+                text-zinc-800`}>
                 <div className="flex-col mr-20 justify-items-start">
                     <h3 className="text-lg font-bold">{title}</h3>
-                    <p className="text-sm text-gray-600">{description}</p>
+                    <p className="w-60 text-xs text-gray-600 text-start">{description}</p>
                 </div>
-                <div className="w-2/3 flex items-center align-middle justify-end gap-10">
+                <div className="flex items-center justify-end gap-1">
                     <h2 className="text-lg font-bold">{price}€</h2>
                     <div className="flex items-center align-middle gap-2">
                         <input className="dataCardInput" type="checkbox" name="addItemChx" />
@@ -40,12 +53,15 @@ export function CardBudget({
                     </div>
                 </div>
                 {custom === true &&
-                    isActive && (
+                    isActiveCard && (
+                        <div className="flex-col align-bottom justify-end mt-2">
                     <QuantitySelector
                         quantity={quantity}
                         onIncrease={increaseQuantity}
                         onDecrease={decreaseQuantity}
-                    />)}
+                        />
+                        </div>
+                    )}
             </div>
         </div>
     )
