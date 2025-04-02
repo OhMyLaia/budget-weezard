@@ -2,8 +2,6 @@ import { QuantitySelector } from "../quantitySelector/QuantitySelector";
 import  dataCustomQuantity from "../../services/Data-custom-quantity-service.json";
 import { useState } from "react";
 
-
-
 interface CardBudgetProps {
     title: string;
     description: string;
@@ -11,14 +9,21 @@ interface CardBudgetProps {
     custom: boolean;
 }
 
-export function CardBudget({
+interface CustomDataProps {
+    customElement: string;
+}
+
+export function CardBudget(
+    {
     title,
     description,
     price,
     custom,
-} : CardBudgetProps) {
+} : CardBudgetProps
 
-    const dataCustom: object[] = [...dataCustomQuantity];
+) {
+
+    const dataCustom: CustomDataProps[] = [...dataCustomQuantity];
 
 
     // listening if cards are selected or not -> handle click
@@ -91,7 +96,7 @@ export function CardBudget({
                                 {dataCustom.map((data, index) => (
                                     <QuantitySelector
                                     key={`${data.customElement}-${index}`}
-                                    element={data.customElement}
+                                    customElement={data.customElement}
                                     quantity={quantity}
                                     increaseQuantity={increaseQuantity}
                                     decreaseQuantity={decreaseQuantity}

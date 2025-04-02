@@ -1,11 +1,8 @@
 import ogDataCard from "../../services/Data-card-service.json";
 import { CardBudget } from "../cards/CardBudget";
-import { useState } from "react";
 import { CardData } from "../../types/CardData";
 
 const selectedCards: object[] = [];
-
-
 
 export function BudgetContainer() {
 

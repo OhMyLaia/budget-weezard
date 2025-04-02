@@ -7,7 +7,12 @@ interface QuantitySelectorProps {
     decreaseQuantity: () => void;
 }
 
-export function QuantitySelector( {customElement, quantity, increaseQuantity, decreaseQuantity}: QuantitySelectorProps ) {
+export function QuantitySelector(
+    {customElement, 
+    quantity,
+    increaseQuantity,
+    decreaseQuantity} :
+    QuantitySelectorProps ) {
 
     return (
         <>
