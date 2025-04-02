@@ -13,7 +13,7 @@ export function QuantityButton({onClick, quantityOperator} : {onClick: () => voi
         focus:outline-2
         focus:outline-violet-500"
         onClick={onClick}>
-        {quantityOperator}
+        <span className="pb-0.5">{quantityOperator}</span>
         </button>
         </div>
     )

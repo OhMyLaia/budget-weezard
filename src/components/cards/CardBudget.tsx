@@ -1,4 +1,5 @@
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
+import  dataCustomQuantity from "../../services/Data-custom-quantity-service.json";
 import { useState } from "react";
 
 
@@ -17,11 +18,25 @@ export function CardBudget({
     custom,
 } : CardBudgetProps) {
 
+    const dataCustom: object[] = [...dataCustomQuantity];
+
+
     // listening if cards are selected or not -> handle click
     const [isActiveCard, setIsActiveCard] = useState<boolean>(false);
 
     const toggleCardState = () => {
         setIsActiveCard(() => true)
+    }
+
+    // listening if card.quantitySelector is changing quantity
+    const [quantity, setQuantity] = useState<number>(0);
+
+    const increaseQuantity = () => {
+        setQuantity(prevQuantity => prevQuantity + 1)
+    }
+
+    const decreaseQuantity = () => {
+        setQuantity(prevQuantity => Math.max(0, prevQuantity - 1))
     }
 
     return (
@@ -38,47 +53,55 @@ export function CardBudget({
 
                     <div className="flex flex-row">
 
-                <div className="flex flex-col
-                mr-20
-                justify-items-start">
+                        <div className="flex flex-col
+                        mr-20
+                        justify-items-start">
 
-                    <h3 className="text-lg
-                    font-bold
-                    text-blue-950">{title}</h3>
+                            <h3 className="text-lg
+                            font-bold
+                            text-blue-950">{title}</h3>
 
-                    <p className="w-60
-                    text-xs
-                    text-gray-600
-                    text-start">{description}</p>
+                            <p className="w-60
+                            text-xs
+                            text-gray-600
+                            text-start">{description}</p>
 
-                </div>
+                    </div>
                 {/* Flex row for price and checkbox */}
-                <div className="flex items-center justify-end gap-3">
+                    <div className="flex items-center justify-end gap-3">
 
-                    <h2 className="text-lg font-bold text-blue-950">{price}€</h2>
+                        <h2 className="text-lg font-bold text-blue-950">{price}€</h2>
 
-                    <div className="flex items-center align-middle gap-2">
+                        <div className="flex items-center align-middle gap-2">
 
-                        <input className="dataCardInput" type="checkbox" name="addItemChx" />
-                        <label className="text-xs text-gray-600">add</label>
+                            <input className="dataCardInput" type="checkbox" name="addItemChx" />
+                            <label className="text-xs text-gray-600">add</label>
 
-                    </div>
-
-                </div>
-
-                    </div>
-                {/* QuantitySelectors and QuantityButtons */}
-                <div className="flex flex-col w-full">
-                {custom === true &&
-                    isActiveCard && (
-
-                        <div className="">
-                    <QuantitySelector
-                        />
                         </div>
 
-                    )}
-                </div>
+                    </div>
+
+                        </div>
+                    {/* QuantitySelectors and QuantityButtons */}
+                    <div className="flex flex-col w-full">
+                    {custom === true &&
+                        isActiveCard && (
+
+                            <div className="">
+                                {dataCustom.map((data, index) => (
+                                    <QuantitySelector
+                                    key={`${data.customElement}-${index}`}
+                                    element={data.customElement}
+                                    quantity={quantity}
+                                    increaseQuantity={increaseQuantity}
+                                    decreaseQuantity={decreaseQuantity}
+                                    />
+
+                                ))}
+                            </div>
+
+                        )}
+                    </div>
             </div>
         </div>
     )
