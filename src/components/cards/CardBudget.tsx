@@ -40,12 +40,17 @@ export function CardBudget(
             {/* Flex row for title and description */}
             <div
                 onClick={toggleCardState}
-                className={`w-full
-                bg-purple-100 rounded-lg p-2 flex flex-col gap-1 m-5
+                className={
+                `w-auto
+                flex flex-col gap-1 mb-2 mt-2
+                bg-purple-100 rounded-lg p-2
                 hover:bg-purple-200 focus:outline-2
                 focus:outline-violet-500
                 text-zinc-800
-                ${isChecked ? "border-10-green-200" : "border-10-violet-600"}`}>
+                ${isChecked ?
+                    "border-4 border-green-200" :
+                    "border-4 border-violet-600"}`
+                    }>
                     <div className="flex flex-row">
                         <div className="flex flex-col
                         mr-20
@@ -59,7 +64,7 @@ export function CardBudget(
                             text-start">{description}</p>
                     </div>
                 {/* Flex row for price and checkbox */}
-                    <div className="flex items-center justify-end gap-3">
+                    <div className="flex items-center justify-between gap-3">
                         <h2 className="text-lg font-bold text-blue-950">{price}€</h2>
                         <div className="flex items-center align-middle gap-2">
                             <input className="dataCardInput"
