@@ -1,18 +1,19 @@
 import { QuantityButton } from "../quantityButton/QuantityButton";
+import { useState } from "react";
+import { CustomDataProps } from "../cards/CardBudget";
 
-interface QuantitySelectorProps {
-    customElement: string;
-    quantity: number;
-    increaseQuantity: () => void;
-    decreaseQuantity: () => void;
-}
+export function QuantitySelector (customElement : CustomDataProps) {
 
-export function QuantitySelector(
-    {customElement, 
-    quantity,
-    increaseQuantity,
-    decreaseQuantity} :
-    QuantitySelectorProps ) {
+    // listening if card.quantitySelector is changing quantity
+    const [quantity, setQuantity] = useState<number>(0);
+
+    const increaseQuantity = () => {
+        setQuantity(prevQuantity => prevQuantity + 1)
+    }
+
+    const decreaseQuantity = () => {
+        setQuantity(prevQuantity => Math.max(0, prevQuantity - 1))
+    }
 
     return (
         <>
@@ -20,7 +21,7 @@ export function QuantitySelector(
             align-middle
             text-justify
             m-1 p-0 "
-            key={customElement}>
+            key={`${customElement}`}>
                 <div className="
                 flex w-full
                 bg-transparent
@@ -29,7 +30,7 @@ export function QuantitySelector(
                     mt-2
                     text-xs
                     data-service
-                    ">{customElement}</span>
+                    ">{`${customElement}`}</span>
                     <QuantityButton
                     key={`decrease-${customElement}`}
                     onClick={decreaseQuantity}

@@ -9,7 +9,7 @@ interface CardBudgetProps {
     custom: boolean;
 }
 
-interface CustomDataProps {
+export interface CustomDataProps {
     customElement: string;
 }
 
@@ -25,23 +25,11 @@ export function CardBudget(
 
     const dataCustom: CustomDataProps[] = [...dataCustomQuantity];
 
-
     // listening if cards are selected or not -> handle click
     const [isActiveCard, setIsActiveCard] = useState<boolean>(false);
 
     const toggleCardState = () => {
         setIsActiveCard(() => true)
-    }
-
-    // listening if card.quantitySelector is changing quantity
-    const [quantity, setQuantity] = useState<number>(0);
-
-    const increaseQuantity = () => {
-        setQuantity(prevQuantity => prevQuantity + 1)
-    }
-
-    const decreaseQuantity = () => {
-        setQuantity(prevQuantity => Math.max(0, prevQuantity - 1))
     }
 
     return (
@@ -97,11 +85,7 @@ export function CardBudget(
                                     <QuantitySelector
                                     key={`${data.customElement}-${index}`}
                                     customElement={data.customElement}
-                                    quantity={quantity}
-                                    increaseQuantity={increaseQuantity}
-                                    decreaseQuantity={decreaseQuantity}
                                     />
-
                                 ))}
                             </div>
 

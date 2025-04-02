@@ -3,7 +3,7 @@
 
 export function QuantityButton({onClick, quantityOperator} : {onClick: () => void; quantityOperator: string} ) {
     return (
-        <div className="">
+        <div>
         <button
         className=" bg-gray-300
         flex items-center justify-center
