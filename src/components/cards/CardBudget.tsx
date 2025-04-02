@@ -36,24 +36,24 @@ export function CardBudget(
     }
 
     return (
-        <div className="flex">
+        <div className="flex w-full max-w-md bg-gray-700">
             {/* Flex row for title and description */}
             <div
                 onClick={toggleCardState}
                 className={
-                `w-auto
+                `w-full
                 flex flex-col gap-1 mb-2 mt-2
                 bg-purple-100 rounded-lg p-2
                 hover:bg-purple-200 focus:outline-2
                 focus:outline-violet-500
                 text-zinc-800
                 ${isChecked ?
-                    "border-4 border-green-200" :
-                    "border-4 border-violet-600"}`
+                    "border-2 border-green-600" :
+                    "border-2 border-violet-600"}`
                     }>
-                    <div className="flex flex-row">
+                    <div className="flex w-full flex-row">
                         <div className="flex flex-col
-                        mr-20
+                        mr-6
                         justify-items-start">
                             <h3 className="text-lg
                             font-bold
@@ -64,16 +64,16 @@ export function CardBudget(
                             text-start">{description}</p>
                     </div>
                 {/* Flex row for price and checkbox */}
-                    <div className="flex items-center justify-between gap-3">
-                        <h2 className="text-lg font-bold text-blue-950">{price}€</h2>
-                        <div className="flex items-center align-middle gap-2">
+                    <div className=" w-full flex items-center justify-between gap-1 pt-9 p-3">
+                        <h2 className="text-lg font-bold text-blue-950 ">{price}€</h2>
+                        <div className="flex items-center align-middle gap-1">
                             <input className="dataCardInput"
                             type="checkbox"
                             name="addItemChx"
                             checked={isChecked}
                             onChange={handleCheckboxChange}
                             />
-                            <label className="text-xs text-gray-600">{isChecked ? "added!" : "add"}</label>
+                            <label className="text-xs text-gray-600 max-w-xs">{isChecked ? "added!" : "add"}</label>
                         </div>
                     </div>
                         </div>
