@@ -21,7 +21,7 @@ export function QuantitySelector (customElement : CustomDataProps) {
             align-middle
             text-justify
             m-1 p-0 "
-            key={`${customElement}`}>
+            key={customElement.customElement}>
                 <div className="
                 flex w-full
                 bg-transparent
@@ -30,7 +30,7 @@ export function QuantitySelector (customElement : CustomDataProps) {
                     mt-2
                     text-xs
                     data-service
-                    ">{`${customElement}`}</span>
+                    ">{customElement.customElement}</span>
                     <QuantityButton
                     key={`decrease-${customElement}`}
                     onClick={decreaseQuantity}

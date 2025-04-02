@@ -95,16 +95,3 @@ export function CardBudget(
         </div>
     )
 }
-
-// import React from 'react';
-
-// let copyData = [...dataCard]
-
-// function CardBudget(props) {
-    
-//   return (
-//     <p>{props.title}</p>
-//   )
-// }
-
-// export default CardBudget
