@@ -7,7 +7,6 @@ export function QuantitySelector (customElement : CustomDataProps) {
 
     const {quantity, decreaseQuantity, increaseQuantity} = QuantityHook();
 
-
     return (
         <>
             <div className="flex items-center
