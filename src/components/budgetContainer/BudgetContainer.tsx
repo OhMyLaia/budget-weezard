@@ -16,9 +16,9 @@ export function BudgetContainer() {
     // const [selectedItems, setSelectedItems] = useState<Array<object>>(selectedCards);
 
     return (
-        <div className="flex basis-full justify-center items-center min-h-screen bg-gray-700">
-            <div className="basis-full flex flex-col justify-center items-center place-content-between
-            bg-gray-700">
+
+        <div className="w-full min-h-screen bg-slate-50">
+            <div className="w-full flex flex-col items-center">
                 {dataCard.map((item, index) => (
                     <CardBudget
                         key={index}

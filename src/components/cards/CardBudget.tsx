@@ -33,42 +33,70 @@ export function CardBudget(
     }
 
     return (
-        <div className="flex">
+
+        <div className="flex w-[90%] md:w-[70%] lg:w-[70%]">
             {/* Flex row for title and description */}
             <div
                 onClick={toggleCardState}
-                className={`w-full
-                bg-purple-100 rounded-lg p-2 flex flex-col gap-1 m-5
-                hover:bg-purple-200 focus:outline-2
+                className={
+                `w-full
+                rounded-4xl
+                flex flex-col gap-1 mb-2 mt-4
+                bg-purple-100 p-2
+                hover:bg-violet-200 focus:outline-2
                 focus:outline-violet-500
                 text-zinc-800
-                ${isActiveCard === true ? "border-10-green-200" : "border-10-violet-600"}`}>
-
-                    <div className="flex flex-row">
-
+                shadow-blue-900
+                border-fuchsia-900
+                shadow-[7px_7px_0px_0px_blue-900]
+                drop-shadow-lg
+                border-3
+                ${isChecked ?
+                    "border-3 bg-violet-200" :
+                    ""}`
+                    }>
+                    <div className="flex w-full flex-row">
                         <div className="flex flex-col
                         mr-20
                         justify-items-start">
 
                             <h3 className="text-lg
+                            ms-2
+                            mt-2
                             font-bold
                             text-blue-950">{title}</h3>
 
-                            <p className="w-60
+                            <p className="w-50
+                            ms-2
+                            mt-2
                             text-xs
                             text-gray-600
                             text-start">{description}</p>
 
                     </div>
                 {/* Flex row for price and checkbox */}
-                    <div className="flex items-center justify-end gap-3">
 
-                        <h2 className="text-lg font-bold text-blue-950">{price}€</h2>
-
-                        <div className="flex items-center align-middle gap-2">
-
-                            <input className="dataCardInput" type="checkbox" name="addItemChx" />
-                            <label className="text-xs text-gray-600">add</label>
+                    <div className=" w-full
+                    flex
+                    items-center
+                    justify-center
+                    gap-1 pt-15
+                    -translate-x-5
+                    lg:w-[20%]
+                    lg:translate-x-71
+                    lg:gap-10
+                    md:w-[17%]
+                    md:translate-x-42
+                    md:items-end">
+                        <h2 className="text-lg font-bold text-blue-950 md:translate-y-1">{price}€</h2>
+                        <div className="flex items-center align-middle gap-1">
+                            <input className="dataCardInput"
+                            type="checkbox"
+                            name="addItemChx"
+                            checked={isChecked}
+                            onChange={handleCheckboxChange}
+                            />
+                            <label className="text-xs text-gray-600 max-w-xs">{isChecked ? "added!" : "add"}</label>
 
                         </div>
 

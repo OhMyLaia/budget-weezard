@@ -9,9 +9,9 @@ export function QuantityButton({onClick, quantityOperator} : {onClick: () => voi
         flex items-center justify-center
         w-8 h-8
         rounded-full
-        hover:bg-purple-400
-        focus:outline-2
-        focus:outline-violet-500"
+        hover:bg-blue-300
+                        shadow-blue-900
+                shadow-[1px_1px_0px_0px_blue-900]"
         onClick={onClick}>
         <span className="pb-0.5">{quantityOperator}</span>
         </button>
