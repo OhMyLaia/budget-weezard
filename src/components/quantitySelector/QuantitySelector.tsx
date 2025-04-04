@@ -1,19 +1,12 @@
 import { QuantityButton } from "../quantityButton/QuantityButton";
-import { useState } from "react";
+// import { useState } from "react";
 import { CustomDataProps } from "../cards/CardBudget";
+import { QuantityHook } from "../../hooks/quantity-hook";
 
 export function QuantitySelector (customElement : CustomDataProps) {
 
-    // listening if card.quantitySelector is changing quantity
-    const [quantity, setQuantity] = useState<number>(0);
+    const {quantity, decreaseQuantity, increaseQuantity} = QuantityHook();
 
-    const increaseQuantity = () => {
-        setQuantity(prevQuantity => prevQuantity + 1)
-    }
-
-    const decreaseQuantity = () => {
-        setQuantity(prevQuantity => Math.max(0, prevQuantity - 1))
-    }
 
     return (
         <>

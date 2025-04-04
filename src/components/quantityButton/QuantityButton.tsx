@@ -2,6 +2,7 @@
 
 
 export function QuantityButton({onClick, quantityOperator} : {onClick: () => void; quantityOperator: string} ) {
+
     return (
         <div>
         <button

@@ -24,17 +24,20 @@ export function CardBudget(
 ) {
 
     const dataCustom: CustomDataProps[] = [...dataCustomQuantity];
-
-    // listening if cards are selected or not -> handle click
     const [isActiveCard, setIsActiveCard] = useState<boolean>(false);
-
     const toggleCardState = () => {
         setIsActiveCard(() => true)
     }
 
-    return (
+    // listening if checkbox is checked
+    const [isChecked, setIsChecked] = useState(false);
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        setIsChecked(event.target.checked);
+    }
 
+    return (
         <div className="flex w-[90%] md:w-[70%] lg:w-[70%]">
+
             {/* Flex row for title and description */}
             <div
                 onClick={toggleCardState}
@@ -57,9 +60,8 @@ export function CardBudget(
                     }>
                     <div className="flex w-full flex-row">
                         <div className="flex flex-col
-                        mr-20
+                        mr-6
                         justify-items-start">
-
                             <h3 className="text-lg
                             ms-2
                             mt-2
@@ -72,10 +74,8 @@ export function CardBudget(
                             text-xs
                             text-gray-600
                             text-start">{description}</p>
-
                     </div>
                 {/* Flex row for price and checkbox */}
-
                     <div className=" w-full
                     flex
                     items-center
@@ -97,17 +97,13 @@ export function CardBudget(
                             onChange={handleCheckboxChange}
                             />
                             <label className="text-xs text-gray-600 max-w-xs">{isChecked ? "added!" : "add"}</label>
-
                         </div>
-
                     </div>
-
                         </div>
                     {/* QuantitySelectors and QuantityButtons */}
                     <div className="flex flex-col w-full">
                     {custom === true &&
                         isActiveCard && (
-
                             <div className="">
                                 {dataCustom.map((data, index) => (
                                     <QuantitySelector
@@ -116,7 +112,6 @@ export function CardBudget(
                                     />
                                 ))}
                             </div>
-
                         )}
                     </div>
             </div>
