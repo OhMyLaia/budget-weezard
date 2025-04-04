@@ -39,3 +39,18 @@ export const IsCheckedHook = () => {
 
     return { isChecked, setIsChecked, handleCheckboxChange }
 }
+
+export const FinalPriceHook = () => {
+
+    const [finalPrice, setFinalPrice] = useState(0);
+
+    // const calculateFinalPrice = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        // setFinalPrice((prevPrice: SetStateAction<number>, price: number) => (prevPrice += price));
+    // }
+
+
+
+    return { finalPrice, setFinalPrice }
+
+
+}

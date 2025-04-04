@@ -36,7 +36,7 @@ export function CardBudget(
                 flex flex-col gap-1 mb-2 mt-4
                 bg-purple-100 p-2
                 hover:bg-violet-200 focus:outline-2
-                focus:outline-violet-500
+                focus:outline-violet-400
                 text-zinc-800
                 shadow-blue-900
                 border-fuchsia-900
@@ -59,7 +59,6 @@ export function CardBudget(
                             mt-2
                             font-bold
                             text-blue-950">{title}</h3>
-
                             <p className="w-50
                             ms-2
                             mt-2
