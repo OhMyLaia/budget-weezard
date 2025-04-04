@@ -1,16 +1,16 @@
+import { CardDataType } from "../../types/types";
+import * as globals from "../../services/global-elements";
+import { IsActiveHook } from "../../hooks/hooks";
 import { CardBudget } from "../cards/CardBudget";
-import { useState } from "react";
-import * as global from "../services/Data-card-service.json";
-import { CardData } from "../../types/CardData";
 
 
-const selectedCards: object[] = [];
+// const selectedCards: object[] = [];
 
 
-function calculateFinalPrice(isActiveState: boolean, array: Array<CardData>) : number {
+function calculateFinalPrice(isActiveState: boolean, array: Array<CardDataType>) : number {
 
     let totalPrice: number = 0;
-    array = global.dataCard;
+    array = globals.dataCard;
 
     const errorMssg = (error: string) => `An error occurred, ${error}`;
 
@@ -21,8 +21,6 @@ function calculateFinalPrice(isActiveState: boolean, array: Array<CardData>) : n
                 totalPrice += item.price
             }
         }
-    
-        return totalPrice;
 
     } catch (error) {
         if (!array || array.length === 0) {
@@ -33,6 +31,7 @@ function calculateFinalPrice(isActiveState: boolean, array: Array<CardData>) : n
 
     }
 
+    return totalPrice;
 }
 
 
@@ -46,13 +45,16 @@ export function BudgetContainer() {
     // listening if selectedCards has changes (to calculate total €€€)
     // const [selectedItems, setSelectedItems] = useState<Array<object>>(selectedCards);
 
-    const finalBudget : number = calculateFinalPrice(isActiveCard, global.dataCard);
+        
+const {isActiveCard} = IsActiveHook();
+
+    const finalBudget : number = calculateFinalPrice(isActiveCard, globals.dataCard);
 
     return (
         <div className="w-full min-h-screen bg-slate-50">
             <div className="w-full flex flex-col items-center">
 
-                {global.dataCard.map((item: CardData, index: number) => (
+                {globals.dataCard.map((item: CardDataType, index: number) => (
                     <CardBudget
                         key={index}
                         title={item.title}

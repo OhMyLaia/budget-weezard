@@ -1,14 +1,10 @@
+import { CustomDataType } from "../../types/types";
+import { CardDataType } from "../../types/types";
+import * as global from "../../services/global-elements"
+import { IsActiveHook } from "../../hooks/hooks";
+import { IsCheckedHook } from "../../hooks/hooks";
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
-import * as global from "../../services/Data-card-service.json";
-import { CardData } from "../../types/CardData";
-import { useState } from "react";
 
-// interface CardBudgetProps {
-//     title: string;
-//     description: string;
-//     price: number;
-//     custom: boolean;
-// }
 
 
 export function CardBudget(
@@ -17,23 +13,12 @@ export function CardBudget(
     description,
     price,
     custom,
-} : CardData
+} : CardDataType
 
 ) {
 
-    const dataCustom: CardData[] = [...global.dataCard];
-    const [isActiveCard, setIsActiveCard] = useState<boolean>(false);
-    const toggleCardState = () => {
-        setIsActiveCard(() => true)
-    }
-
-    // listening if checkbox is checked
-    const [isChecked, setIsChecked] = useState(false);
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        setIsChecked(event.target.checked);
-    }
-
-
+    const {isActiveCard, toggleCardState} = IsActiveHook();
+    const {isChecked, handleCheckboxChange} = IsCheckedHook();
 
     return (
         <div className="
@@ -125,7 +110,7 @@ export function CardBudget(
                     {custom === true &&
                         isActiveCard && (
                             <div>
-                                {dataCustom.map((data: CustomDataProps, index: number) => (
+                                {global.customDataCard.map((data: CustomDataType, index: number) => (
                                     <QuantitySelector
                                     key={`${data.customElement}-${index}`}
                                     customElement={data.customElement}

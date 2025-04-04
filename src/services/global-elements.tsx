@@ -1,8 +1,11 @@
+import { CardDataType, CustomDataType } from "../types/types";
 import ogDataCard from "../services/Data-card-service.json";
-import { CardData } from "../types/CardData";
+import ogCustomDataCard from "../services/Data-custom-quantity-service.json"
 
 export const selectedCards: object[] = [];
 
-export const dataCard: CardData[] = [...ogDataCard];
+export const dataCard: CardDataType[] = [...ogDataCard];
+
+export const customDataCard: CustomDataType[] = [...ogCustomDataCard];
 
 

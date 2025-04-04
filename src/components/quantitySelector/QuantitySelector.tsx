@@ -1,9 +1,8 @@
 import { QuantityButton } from "../quantityButton/QuantityButton";
-// import { useState } from "react";
-import { CustomDataProps } from "../cards/CardBudget";
-import { QuantityHook } from "../../hooks/quantity-hook";
+import { CustomDataType } from "../../types/types";
+import { QuantityHook } from "../../hooks/hooks";
 
-export function QuantitySelector (customElement : CustomDataProps) {
+export function QuantitySelector (customElement : CustomDataType) {
 
     const {quantity, decreaseQuantity, increaseQuantity} = QuantityHook();
 
