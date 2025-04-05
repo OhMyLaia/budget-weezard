@@ -10,7 +10,7 @@ export type CardDataType = {
 }
 
 export interface CalculateFinalPriceParams {
-    isActiveCard: boolean;
+    isChecked: boolean;
     array: Array<CardDataType>;
     // finalPrice: number;
     // setFinalPrice: React.Dispatch<React.SetStateAction<number>>;

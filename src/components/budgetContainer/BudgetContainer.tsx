@@ -1,12 +1,13 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { CardDataType, CalculateFinalPriceParams } from "../../types/types";
 import * as globals from "../../services/global-elements";
-import { IsActiveHook, FinalPriceHook } from "../../hooks/hooks";
+import { FinalPriceHook, IsCheckedHook } from "../../hooks/hooks";
 import { CardBudget } from "../cards/CardBudget";
+import { useEffect } from "react";
 
 
 function calculateFinalPrice({
-    isActiveCard,
+    isChecked,
     array
 } : CalculateFinalPriceParams): number {
 
@@ -16,8 +17,8 @@ function calculateFinalPrice({
     try {
         for (let i = 0; i < array.length; i++) {
             const item = array[i];
-
-            if (isActiveCard) {
+            console.log(`inside for ${item} - ${isChecked} - ${item.price}`)
+            if (isChecked) {
                 finalBudget += item.price
             }
         }
@@ -43,12 +44,16 @@ export function BudgetContainer() {
     // listening if selectedCards has changes (to calculate total €€€)
     // const [selectedItems, setSelectedItems] = useState<Array<object>>(selectedCards);
 
-    const {isActiveCard} = IsActiveHook();
+    const {isChecked } = IsCheckedHook();
     const dataCardParams = globals.dataCard;
     const { finalPrice, setFinalPrice } = FinalPriceHook();
-    const finalPriceParam = calculateFinalPrice({isActiveCard, array: dataCardParams});
-    setFinalPrice(finalPriceParam);
-    console.log(finalPriceParam, `finalpriceparam`);
+    
+    
+    useEffect( () => {
+        const finalPriceParams = calculateFinalPrice({isChecked, array: dataCardParams});
+        setFinalPrice(finalPriceParams);
+        console.log(finalPrice, `finalPrice inside useEffect`);
+    }, [isChecked, dataCardParams]);
 
 
     // const finalBudget : number = calculateFinalPrice(isActiveCard, globals.dataCard);
@@ -68,7 +73,7 @@ export function BudgetContainer() {
                 ))}
             </div>
             <h2>
-                        {`Budgeted price: ${finalPriceParam}`}
+                        {`Budgeted price: ${finalPrice}`}
                         <span>
 
                         </span>
