@@ -1,6 +1,5 @@
 export interface CustomDataType {
     customElement: string;
-    customElement2: string;
 }
 
 export type CardDataType = {
@@ -15,13 +14,3 @@ export type CardDataType = {
 export type CustomDataCardType = CardDataType & {
     customElement: CustomDataType
 }
-
-
-
-// export interface CalculateFinalPriceParams {
-//     // isChecked: boolean;
-//     array: Array<CardDataType>;
-//     // finalPrice: number;
-//     // setFinalPrice: React.Dispatch<React.SetStateAction<number>>;
-// }
-

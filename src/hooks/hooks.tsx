@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import * as globals from "../services/global-elements"
 import { CardDataType } from "../types/types";
-// import { data } from "react-router-dom";
 
 export const QuantityHook = () => {
 
@@ -26,16 +25,6 @@ export const IsActiveHook = () => {
     }
     return { isActiveCard, setIsActiveCard, toggleCardState }
 }
-
-// export const IsCheckedHook = () => {
-
-//     const [isChecked, setIsChecked] = useState(false);
-//     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-//         setIsChecked(event.target.checked);
-//     }
-//     console.log(`isChecked hook triggered, fuera ${isChecked}`)
-//     return { isChecked, setIsChecked, handleCheckboxChange }
-// }
 
 export const IsCheckedHook = () => {
 

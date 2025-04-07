@@ -1,7 +1,6 @@
 import { CustomDataType } from "../../types/types";
 import { CardDataType } from "../../types/types";
 import * as global from "../../services/global-elements"
-// import {  } from "../../hooks/hooks";
 import { IsActiveHook } from "../../hooks/hooks";
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
 
@@ -20,8 +19,6 @@ export function CardBudget(
 ) {
 
     const { isActiveCard, toggleCardState } = IsActiveHook();
-    // const { dataCardInitial } = DataCardHook();
-
 
     return (
         <div className="
