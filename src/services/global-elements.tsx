@@ -4,7 +4,15 @@ import ogCustomDataCard from "../services/Data-custom-quantity-service.json"
 
 export const selectedCards: object[] = [];
 
-export const dataCard: CardDataType[] = ogDataCard;
+export const dataCardListState: CardDataType[] = ogDataCard.map( (data) => ({
+    // let internalData = [...data, isCheckedValue, onCheckedToggled]
+    title: data.title,
+    description: data.description,
+    price: data.price,
+    custom: data.custom,
+    isCheckedValue: false, // valor inicial
+    onCheckedToggled: () => {} // función vacía por ahora
+}))
 
 export const customDataCard: CustomDataType[] = ogCustomDataCard;
 

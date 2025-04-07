@@ -2,25 +2,26 @@ import { CustomDataType } from "../../types/types";
 import { CardDataType } from "../../types/types";
 import * as global from "../../services/global-elements"
 // import {  } from "../../hooks/hooks";
-import { IsCheckedHook, IsActiveHook, DataCardHook } from "../../hooks/hooks";
+import { IsActiveHook } from "../../hooks/hooks";
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
 
 
 
 export function CardBudget(
     {
-    title,
-    description,
-    price,
-    custom,
-} : CardDataType
+        title,
+        description,
+        price,
+        custom,
+        isCheckedValue,
+        onCheckedToggled
+    }: CardDataType
 
 ) {
 
-    const {isActiveCard, toggleCardState} = IsActiveHook();
-    const {isChecked, handleCheckboxChange} = IsCheckedHook();
-    const { dataCardInitial } = DataCardHook();
-    
+    const { isActiveCard, toggleCardState } = IsActiveHook();
+    // const { dataCardInitial } = DataCardHook();
+
 
     return (
         <div className="
@@ -33,7 +34,7 @@ export function CardBudget(
             <div
                 onClick={toggleCardState}
                 className={
-                `w-full
+                    `w-full
                 rounded-4xl
                 flex flex-col gap-1 mb-2 mt-4
                 bg-purple-100 p-2
@@ -45,30 +46,30 @@ export function CardBudget(
                 shadow-[7px_7px_0px_0px_blue-900]
                 drop-shadow-lg
                 border-3
-                ${isChecked ?
-                    "border-3 bg-violet-200" :
-                    ""}`
-                    }>
-                    <div className="flex
+                ${isCheckedValue ?
+                        "border-3 bg-violet-200" :
+                        ""}`
+                }>
+                <div className="flex
                     w-full
                     flex-row">
-                        <div className="flex
+                    <div className="flex
                         flex-col
                         mr-6
                         justify-items-start">
-                            <h3 className="text-lg
+                        <h3 className="text-lg
                             ms-2
                             mt-2
                             font-bold
                             text-blue-950">{title}</h3>
-                            <p className="w-50
+                        <p className="w-50
                             ms-2
                             mt-2
                             text-xs
                             text-gray-600
                             text-start">{description}</p>
                     </div>
-                {/* Flex row for price and checkbox */}
+                    {/* Flex row for price and checkbox */}
                     <div className="
                     w-full
                     flex
@@ -93,33 +94,33 @@ export function CardBudget(
                         align-middle
                         gap-1">
                             <input className="dataCardInput"
-                            type="checkbox"
-                            name="addItemChx"
-                            checked={isChecked}
-                            onChange={handleCheckboxChange}
+                                type="checkbox"
+                                name="addItemChx"
+                                checked={isCheckedValue}
+                                onChange={onCheckedToggled}
                             />
                             <label className="text-xs
                             text-gray-600
                             max-w-xs">
-                                {isChecked ? "added!" : "add"}
+                                {isCheckedValue ? "added!" : "add"}
                             </label>
                         </div>
                     </div>
-                        </div>
-                    {/* QuantitySelectors and QuantityButtons */}
-                    <div className="flex flex-col w-full">
+                </div>
+                {/* QuantitySelectors and QuantityButtons */}
+                <div className="flex flex-col w-full">
                     {custom === true &&
                         isActiveCard && (
                             <div>
                                 {global.customDataCard.map((data: CustomDataType, index: number) => (
                                     <QuantitySelector
-                                    key={`${data.customElement}-${index}`}
-                                    customElement={data.customElement}
+                                        key={`${data.customElement}-${index}`}
+                                        customElement={data.customElement}
                                     />
                                 ))}
                             </div>
                         )}
-                    </div>
+                </div>
             </div>
 
         </div>

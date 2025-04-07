@@ -17,23 +17,31 @@ export const QuantityHook = () => {
 }
 
 
+// Revisar luego.
 export const IsActiveHook = () => {
 
     const [isActiveCard, setIsActiveCard] = useState<boolean>(false);
     const toggleCardState = () => {
-        setIsActiveCard(() => true)
+        setIsActiveCard((prevState) => !prevState)
     }
     return { isActiveCard, setIsActiveCard, toggleCardState }
 }
 
+// export const IsCheckedHook = () => {
+
+//     const [isChecked, setIsChecked] = useState(false);
+//     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+//         setIsChecked(event.target.checked);
+//     }
+//     console.log(`isChecked hook triggered, fuera ${isChecked}`)
+//     return { isChecked, setIsChecked, handleCheckboxChange }
+// }
+
 export const IsCheckedHook = () => {
 
-    const [isChecked, setIsChecked] = useState(false);
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        setIsChecked(event.target.checked);
-    }
-    console.log(`isChecked hook triggered, fuera ${isChecked}`)
-    return { isChecked, setIsChecked, handleCheckboxChange }
+    const [isChecked, setIsChecked] = useState<boolean>(false)
+
+    return { isChecked, setIsChecked }
 }
 
 export const FinalPriceHook = () => {
@@ -50,7 +58,7 @@ export const DataCardHook = () => {
     console.log(`inside datacard hook -> ${dataCardInitial}`);
 
     useEffect( () => {
-        setDataCardInitial(globals.dataCard)
+        setDataCardInitial(globals.dataCardListState)
     }, [])
     return { dataCardInitial, setDataCardInitial }
 }
