@@ -1,8 +1,8 @@
 import { CustomDataType } from "../../types/types";
 import { CardDataType } from "../../types/types";
 import * as global from "../../services/global-elements"
-import { IsActiveHook } from "../../hooks/hooks";
-import { IsCheckedHook } from "../../hooks/hooks";
+// import {  } from "../../hooks/hooks";
+import { IsCheckedHook, IsActiveHook, DataCardHook } from "../../hooks/hooks";
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
 
 
@@ -19,6 +19,8 @@ export function CardBudget(
 
     const {isActiveCard, toggleCardState} = IsActiveHook();
     const {isChecked, handleCheckboxChange} = IsCheckedHook();
+    const { dataCardInitial } = DataCardHook();
+    
 
     return (
         <div className="

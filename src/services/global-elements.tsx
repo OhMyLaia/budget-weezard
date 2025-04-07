@@ -4,8 +4,8 @@ import ogCustomDataCard from "../services/Data-custom-quantity-service.json"
 
 export const selectedCards: object[] = [];
 
-export const dataCard: CardDataType[] = [...ogDataCard];
+export const dataCard: CardDataType[] = ogDataCard;
 
-export const customDataCard: CustomDataType[] = [...ogCustomDataCard];
+export const customDataCard: CustomDataType[] = ogCustomDataCard;
 
-
+// igual estoy trabajando directamente con la copia y no

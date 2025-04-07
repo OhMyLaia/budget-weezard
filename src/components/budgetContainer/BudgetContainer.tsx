@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { CardDataType, CalculateFinalPriceParams } from "../../types/types";
-import * as globals from "../../services/global-elements";
-import { FinalPriceHook, IsCheckedHook } from "../../hooks/hooks";
+// import * as globals from "../../services/global-elements";
+import { FinalPriceHook, IsCheckedHook, DataCardHook } from "../../hooks/hooks";
 import { CardBudget } from "../cards/CardBudget";
 import { useEffect } from "react";
 
@@ -19,6 +18,7 @@ function calculateFinalPrice({
             const item = array[i];
             console.log(`inside for ${item} - ${isChecked} - ${item.price}`)
             if (isChecked) {
+                console.log(`Adding price to finalBudget: ${item.price}`)
                 finalBudget += item.price
             }
         }
@@ -45,15 +45,20 @@ export function BudgetContainer() {
     // const [selectedItems, setSelectedItems] = useState<Array<object>>(selectedCards);
 
     const {isChecked } = IsCheckedHook();
-    const dataCardParams = globals.dataCard;
+    const { dataCardInitial } = DataCardHook();
     const { finalPrice, setFinalPrice } = FinalPriceHook();
     
     
     useEffect( () => {
-        const finalPriceParams = calculateFinalPrice({isChecked, array: dataCardParams});
+        console.log("🔥 useEffect triggered");
+        console.log("isChecked:", isChecked);
+        console.log("dataCard:", dataCardInitial);
+
+        const finalPriceParams = calculateFinalPrice({isChecked, array: [...dataCardInitial]});
         setFinalPrice(finalPriceParams);
-        console.log(finalPrice, `finalPrice inside useEffect`);
-    }, [isChecked, dataCardParams]);
+
+        // console.log(finalPrice, `finalPrice inside useEffect`);
+    }, [isChecked, dataCardInitial]);
 
 
     // const finalBudget : number = calculateFinalPrice(isActiveCard, globals.dataCard);
@@ -62,7 +67,7 @@ export function BudgetContainer() {
         <div className="w-full min-h-screen bg-slate-50">
             <div className="w-full flex flex-col items-center">
 
-                {globals.dataCard.map((item: CardDataType, index: number) => (
+                {dataCardInitial.map((item: CardDataType, index: number) => (
                     <CardBudget
                         key={index}
                         title={item.title}
@@ -73,11 +78,8 @@ export function BudgetContainer() {
                 ))}
             </div>
             <h2>
-                        {`Budgeted price: ${finalPrice}`}
-                        <span>
-
-                        </span>
-                    </h2>
+                {`Budgeted price: ${finalPrice}`}
+            </h2>
         </div>
     )
 }

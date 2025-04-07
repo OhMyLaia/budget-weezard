@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as globals from "../services/global-elements"
+import { CardDataType } from "../types/types";
 // import { data } from "react-router-dom";
 
 export const QuantityHook = () => {
@@ -30,7 +31,6 @@ export const IsCheckedHook = () => {
     const [isChecked, setIsChecked] = useState(false);
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setIsChecked(event.target.checked);
-        console.log(`isChecked hook triggered, dentro${isChecked}`)
     }
     console.log(`isChecked hook triggered, fuera ${isChecked}`)
     return { isChecked, setIsChecked, handleCheckboxChange }
@@ -39,13 +39,18 @@ export const IsCheckedHook = () => {
 export const FinalPriceHook = () => {
 
     const [finalPrice, setFinalPrice] = useState(0);
+    console.log(`finalPrice -> ${finalPrice}`)
     return { finalPrice, setFinalPrice }
 
 }
 
 export const DataCardHook = () => {
 
-    const [dataCard, setDataCard] = useState(globals.dataCard)
-    console.log(`inside datacard hook -> ${globals.dataCard}`)
-    return { dataCard, setDataCard }
+    const [dataCardInitial, setDataCardInitial] = useState<CardDataType[]>([])
+    console.log(`inside datacard hook -> ${dataCardInitial}`);
+
+    useEffect( () => {
+        setDataCardInitial(globals.dataCard)
+    }, [])
+    return { dataCardInitial, setDataCardInitial }
 }
