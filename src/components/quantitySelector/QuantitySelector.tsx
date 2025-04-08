@@ -1,10 +1,10 @@
 import { QuantityButton } from "../quantityButton/QuantityButton";
-import { CustomDataType, QuantitySelectorProps } from "../../types/types";
+import { CustomDataType } from "../../types/types";
 import { QuantityHook } from "../../hooks/hooks";
 // import { CustomDataCardHook } from "../../hooks/hooks";
 
 export function QuantitySelector (
-    props: { customElement: CustomDataType, index: number }
+    props: { customElement: CustomDataType }
 ) {
     // const [customDataCardInitial, setCustomDataCardInitial] = CustomDataCardHook();
     // const {quantity, decreaseQuantity, increaseQuantity} = QuantityHook();
@@ -13,8 +13,8 @@ export function QuantitySelector (
     // props.customElement.productQuantity = quantity;
     console.log(`productQuantity -> ${props.customElement.productQuantity}`);
 
-    const handleIncrease = () => increaseQuantity();
-    const handleDecrease = () => decreaseQuantity();
+    // const handleIncrease = () => increaseQuantity();
+    // const handleDecrease = () => decreaseQuantity();
 
     return (
         <>
@@ -36,13 +36,13 @@ export function QuantitySelector (
                     ">{props.customElement.productTitle}</span>
                     <QuantityButton
                     key={`decrease-${props.customElement.productTitle}`}
-                    onClick={handleIncrease}
+                    onClick={decreaseQuantity}
                     quantityOperator={"-"}
                     />
                     <span className="mt-1 w-8 quantity-span align-middle text-center">{quantity}</span>
                     <QuantityButton
                     key={`increase-${props.customElement.productTitle}`}
-                    onClick={handleDecrease}
+                    onClick={increaseQuantity}
                     quantityOperator={"+"}
                     />
                 </div>

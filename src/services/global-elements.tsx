@@ -17,6 +17,6 @@ export const customDataCardListState: CustomDataType[] = ogCustomDataCard.map( (
     productTitle: data.extraTitle,
     productPrice: data.extraPrice,
     productQuantity: 0,
-    onProductIncrease: () => {},
-    onProductDecrease: () => {}
+    // onProductIncrease: () => {},
+    // onProductDecrease: () => {}
 }));

@@ -7,7 +7,6 @@ export function BudgetContainer() {
 
     const { dataCardInitial, setDataCardInitial } = DataCardHook();
     const { finalPrice, setFinalPrice } = FinalPriceHook();
-    const { quantity, increaseQuantity, decreaseQuantity } = QuantityHook();
     // const { quantity } = QuantityHook();
     // const { customDataCardInitial, increaseQuantity, decreaseQuantity } = CustomDataCardHook();
 
@@ -46,9 +45,6 @@ export function BudgetContainer() {
                             productTitle: item.title,
                             productPrice: item.price,
                             productQuantity: item.isCheckedValue === true ? 1 : 0,
-                            //aqui va el quantity handling ->
-                            onProductIncrease: increaseQuantity,
-                            onProductDecrease: decreaseQuantity
                         }}
                     />
                 ))}
