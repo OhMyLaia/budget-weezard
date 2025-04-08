@@ -9,7 +9,6 @@ export const QuantityHook = () => {
     const increaseQuantity = () => {
         setQuantity(prevQuantity => {
             const newQuantity = prevQuantity + 1;
-
             return newQuantity;
         });
     }
@@ -17,7 +16,6 @@ export const QuantityHook = () => {
     const decreaseQuantity = () => {
         setQuantity(prevQuantity => {
             const newQuantity = Math.max(0, prevQuantity - 1);
-
             return newQuantity;
         });
     }

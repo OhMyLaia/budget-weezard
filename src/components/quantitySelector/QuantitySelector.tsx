@@ -1,20 +1,16 @@
 import { QuantityButton } from "../quantityButton/QuantityButton";
 import { CustomDataType } from "../../types/types";
 import { QuantityHook } from "../../hooks/hooks";
-// import { CustomDataCardHook } from "../../hooks/hooks";
 
 export function QuantitySelector (
     props: { customElement: CustomDataType }
 ) {
-    // const [customDataCardInitial, setCustomDataCardInitial] = CustomDataCardHook();
-    // const {quantity, decreaseQuantity, increaseQuantity} = QuantityHook();
-    
-    const {quantity, increaseQuantity, decreaseQuantity} = QuantityHook();
-    // props.customElement.productQuantity = quantity;
-    console.log(`productQuantity -> ${props.customElement.productQuantity}`);
 
-    // const handleIncrease = () => increaseQuantity();
-    // const handleDecrease = () => decreaseQuantity();
+    const {quantity, increaseQuantity, decreaseQuantity} = QuantityHook();
+    const extraPrice : number = quantity * props.customElement.productPrice;
+
+    console.log(`productQuantity -> ${props.customElement.productQuantity}, quantity -> ${quantity}`);
+
 
     return (
         <>
@@ -34,6 +30,9 @@ export function QuantitySelector (
                     data-service
                     p-2
                     ">{props.customElement.productTitle}</span>
+                    <span
+                    className="text-xs"
+                    >{quantity === 0 ? "" : "+" + extraPrice + "€"}</span>
                     <QuantityButton
                     key={`decrease-${props.customElement.productTitle}`}
                     onClick={decreaseQuantity}
