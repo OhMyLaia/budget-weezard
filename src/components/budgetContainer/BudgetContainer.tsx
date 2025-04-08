@@ -1,5 +1,5 @@
 import { CardDataType } from "../../types/types";
-import { FinalPriceHook, DataCardHook, QuantityHook, CustomDataCardHook } from "../../hooks/hooks";
+import { FinalPriceHook, DataCardHook, CustomDataCardHook } from "../../hooks/hooks";
 import { CardBudget } from "../cards/CardBudget";
 import { useEffect } from "react";
 
@@ -7,7 +7,7 @@ export function BudgetContainer() {
 
     const { dataCardInitial, setDataCardInitial } = DataCardHook();
     const { finalPrice, setFinalPrice } = FinalPriceHook();
-    const { quantity } = QuantityHook();
+    // const { quantity } = QuantityHook();
     const { customDataCardInitial, increaseQuantity, decreaseQuantity } = CustomDataCardHook();
 
     const handleCheckboxChange = (index: number) => {
@@ -58,7 +58,7 @@ export function BudgetContainer() {
                         customElement={{
                             productTitle: item.title,
                             productPrice: item.price,
-                            productQuantity: quantity,
+                            productQuantity: customDataCardInitial[index]?.productQuantity || 0,
                             onProductIncrease: () => increaseQuantity(index),
                             onProductDecrease: () => decreaseQuantity(index)
                         }}

@@ -1,21 +1,21 @@
 
 
 
-export function QuantityButton({index, onClick, quantityOperator} : {index: number, onClick: (index: number) => void; quantityOperator: string} ) {
+export function QuantityButton({ onClick, quantityOperator }: { onClick: () => void; quantityOperator: string }) {
 
     return (
         <div>
-        <button
-        className=" bg-gray-300
-        flex items-center justify-center
-        w-8 h-8
-        rounded-full
-        hover:bg-blue-300
-                        shadow-blue-900
+            <button
+                className=" bg-gray-300
+                flex items-center justify-center
+                w-8 h-8
+                rounded-full
+                hover:bg-blue-300
+                shadow-blue-900
                 shadow-[1px_1px_0px_0px_blue-900]"
-        onClick={() => onClick(index)}>
-        <span className="pb-0.5">{quantityOperator}</span>
-        </button>
+                onClick={() => onClick}>
+                <span className="pb-0.5">{quantityOperator}</span>
+            </button>
         </div>
     )
 }

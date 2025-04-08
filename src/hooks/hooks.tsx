@@ -51,6 +51,7 @@ export const DataCardHook = () => {
 export const CustomDataCardHook = () => {
 
     const [customDataCardInitial, setCustomDataCardInitial] = useState<CustomDataType[]>([]);
+    const {quantity, setQuantity} = QuantityHook();
 
     useEffect( () => {
         setCustomDataCardInitial(globals.customDataCardListState)
@@ -60,13 +61,15 @@ export const CustomDataCardHook = () => {
     const increaseQuantity = (index: number) => {
         const updatedCards = [...customDataCardInitial];
         updatedCards[index].productQuantity = (updatedCards[index].productQuantity || 0) + 1;
-        setCustomDataCardInitial(updatedCards)
+        setCustomDataCardInitial(updatedCards);
+        setQuantity(quantity + 1)
     }
 
     const decreaseQuantity = (index: number) => {
         const updatedCards = [...customDataCardInitial];
         updatedCards[index].productQuantity = Math.max(0, (updatedCards[index].productQuantity || 0) - 1 );
-        setCustomDataCardInitial(updatedCards)
+        setCustomDataCardInitial(updatedCards);
+        setQuantity( quantity - 1)
     }
 
     return { customDataCardInitial, increaseQuantity, decreaseQuantity }
