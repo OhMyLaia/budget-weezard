@@ -11,6 +11,12 @@ export const dataCardListState: CardDataType[] = ogDataCard.map( (data) => ({
     custom: data.custom,
     isCheckedValue: false,
     onCheckedToggled: () => {} 
-}))
+}));
 
-export const customDataCard: CustomDataType[] = ogCustomDataCard;
+export const customDataCardListState: CustomDataType[] = ogCustomDataCard.map( (data) => ({
+    productTitle: data.extraTitle,
+    productPrice: data.extraPrice,
+    productQuantity: 0,
+    onProductIncrease: () => {},
+    onProductDecrease: () => {}
+}));

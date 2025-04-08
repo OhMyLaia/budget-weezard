@@ -1,18 +1,12 @@
 import { useState, useEffect } from "react";
 import * as globals from "../services/global-elements"
-import { CardDataType } from "../types/types";
+import { CardDataType, CustomDataType } from "../types/types";
 
 export const QuantityHook = () => {
 
     const [quantity, setQuantity] = useState<number>(0);
-    const increaseQuantity = () => {
-        setQuantity(prevQuantity => prevQuantity + 1)
-    }
-
-    const decreaseQuantity = () => {
-        setQuantity(prevQuantity => Math.max(0, prevQuantity - 1))
-    }
-    return { quantity, setQuantity, decreaseQuantity, increaseQuantity }
+    
+    return { quantity, setQuantity }
 }
 
 
@@ -41,6 +35,7 @@ export const FinalPriceHook = () => {
 
 }
 
+//* se refiere al array de servicios-card
 export const DataCardHook = () => {
 
     const [dataCardInitial, setDataCardInitial] = useState<CardDataType[]>([])
@@ -50,4 +45,29 @@ export const DataCardHook = () => {
         setDataCardInitial(globals.dataCardListState)
     }, [])
     return { dataCardInitial, setDataCardInitial }
+}
+
+//* se refiere al array de productos-custom
+export const CustomDataCardHook = () => {
+
+    const [customDataCardInitial, setCustomDataCardInitial] = useState<CustomDataType[]>([]);
+
+    useEffect( () => {
+        setCustomDataCardInitial(globals.customDataCardListState)
+    }, [])
+
+
+    const increaseQuantity = (index: number) => {
+        const updatedCards = [...customDataCardInitial];
+        updatedCards[index].productQuantity = (updatedCards[index].productQuantity || 0) + 1;
+        setCustomDataCardInitial(updatedCards)
+    }
+
+    const decreaseQuantity = (index: number) => {
+        const updatedCards = [...customDataCardInitial];
+        updatedCards[index].productQuantity = Math.max(0, (updatedCards[index].productQuantity || 0) - 1 );
+        setCustomDataCardInitial(updatedCards)
+    }
+
+    return { customDataCardInitial, increaseQuantity, decreaseQuantity }
 }

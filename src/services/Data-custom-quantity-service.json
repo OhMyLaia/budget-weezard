@@ -1,8 +1,10 @@
 [
     {
-        "customElement": "Pages"
+        "extraTitle": "Pages",
+        "extraPrice": 30
     },
     {
-        "customElement": "Languages"
+        "extraTitle": "Languages",
+        "extraPrice": 30
     }
 ]

@@ -1,10 +1,7 @@
-import { CustomDataType } from "../../types/types";
-import { CardDataType } from "../../types/types";
-import * as global from "../../services/global-elements"
-import { IsActiveHook } from "../../hooks/hooks";
+import { CustomDataType, CustomDataCardType } from "../../types/types";
+// import * as global from "../../services/global-elements"
+import { IsActiveHook, CustomDataCardHook } from "../../hooks/hooks";
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
-
-
 
 export function CardBudget(
     {
@@ -13,12 +10,16 @@ export function CardBudget(
         price,
         custom,
         isCheckedValue,
-        onCheckedToggled
-    }: CardDataType
+        onCheckedToggled,
+        customElement
+        // increaseQuantity,
+        // decreaseQuantity
+    }: CustomDataCardType
 
 ) {
 
-    const { isActiveCard, toggleCardState } = IsActiveHook();
+    const { toggleCardState } = IsActiveHook();
+    const { customDataCardInitial } = CustomDataCardHook();
 
     return (
         <div className="
@@ -106,13 +107,17 @@ export function CardBudget(
                 </div>
                 {/* QuantitySelectors and QuantityButtons */}
                 <div className="flex flex-col w-full">
-                    {custom === true &&
-                        isActiveCard && (
+                    {custom === true && isCheckedValue === true && (
                             <div>
-                                {global.customDataCard.map((data: CustomDataType, index: number) => (
+                                {customDataCardInitial.map((data: CustomDataType, index: number) => (
                                     <QuantitySelector
-                                        key={`${data.customElement}-${index}`}
-                                        customElement={data.customElement}
+                                        key={`${customElement.productTitle}-${index}`}
+                                        customElement={data}
+                                        index={index}
+                                        // increaseQuantity={increaseQuantity}
+                                        // decreaseQuantity={decreaseQuantity}
+                                        
+
                                     />
                                 ))}
                             </div>
