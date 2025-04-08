@@ -1,7 +1,7 @@
 
 
 
-export function QuantityButton({onClick, quantityOperator} : {onClick: () => void; quantityOperator: string} ) {
+export function QuantityButton({index, onClick, quantityOperator} : {index: number, onClick: (index: number) => void; quantityOperator: string} ) {
 
     return (
         <div>
@@ -13,7 +13,7 @@ export function QuantityButton({onClick, quantityOperator} : {onClick: () => voi
         hover:bg-blue-300
                         shadow-blue-900
                 shadow-[1px_1px_0px_0px_blue-900]"
-        onClick={onClick}>
+        onClick={() => onClick(index)}>
         <span className="pb-0.5">{quantityOperator}</span>
         </button>
         </div>
