@@ -5,8 +5,24 @@ import { CardDataType, CustomDataType } from "../types/types";
 export const QuantityHook = () => {
 
     const [quantity, setQuantity] = useState<number>(0);
+
+    const increaseQuantity = () => {
+        setQuantity(prevQuantity => {
+            const newQuantity = prevQuantity + 1;
+
+            return newQuantity;
+        });
+    }
+
+    const decreaseQuantity = () => {
+        setQuantity(prevQuantity => {
+            const newQuantity = Math.max(0, prevQuantity - 1);
+
+            return newQuantity;
+        });
+    }
     
-    return { quantity, setQuantity }
+    return { quantity, increaseQuantity, decreaseQuantity }
 }
 
 
@@ -51,26 +67,10 @@ export const DataCardHook = () => {
 export const CustomDataCardHook = () => {
 
     const [customDataCardInitial, setCustomDataCardInitial] = useState<CustomDataType[]>([]);
-    const {quantity, setQuantity} = QuantityHook();
 
     useEffect( () => {
         setCustomDataCardInitial(globals.customDataCardListState)
     }, [])
 
-
-    const increaseQuantity = (index: number) => {
-        const updatedCards = [...customDataCardInitial];
-        updatedCards[index].productQuantity = (updatedCards[index].productQuantity || 0) + 1;
-        setCustomDataCardInitial(updatedCards);
-        setQuantity(quantity + 1)
-    }
-
-    const decreaseQuantity = (index: number) => {
-        const updatedCards = [...customDataCardInitial];
-        updatedCards[index].productQuantity = Math.max(0, (updatedCards[index].productQuantity || 0) - 1 );
-        setCustomDataCardInitial(updatedCards);
-        setQuantity( quantity - 1)
-    }
-
-    return { customDataCardInitial, increaseQuantity, decreaseQuantity }
+    return { customDataCardInitial, setCustomDataCardInitial }
 }

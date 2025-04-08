@@ -12,8 +12,6 @@ export function CardBudget(
         isCheckedValue,
         onCheckedToggled,
         customElement
-        // increaseQuantity,
-        // decreaseQuantity
     }: CustomDataCardType
 
 ) {

@@ -13,7 +13,7 @@ export function QuantityButton({ onClick, quantityOperator }: { onClick: () => v
                 hover:bg-blue-300
                 shadow-blue-900
                 shadow-[1px_1px_0px_0px_blue-900]"
-                onClick={() => onClick}>
+                onClick={onClick}>
                 <span className="pb-0.5">{quantityOperator}</span>
             </button>
         </div>
