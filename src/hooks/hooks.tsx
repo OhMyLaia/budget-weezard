@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import * as globals from "../services/global-elements"
 import { CardDataType, CustomDataType } from "../types/types";
-
+//! y si -->
 export const QuantityHook = () => {
 
     const [quantity, setQuantity] = useState<number>(0);
+    const {finalPrice, setFinalPrice} = FinalPriceHook();
+
 
     const increaseQuantity = () => {
         setQuantity(prevQuantity => {
@@ -13,11 +15,17 @@ export const QuantityHook = () => {
         });
     }
 
-    const decreaseQuantity = () => {
+    const decreaseQuantity = (priceParam: number) => {
         setQuantity(prevQuantity => {
             const newQuantity = Math.max(0, prevQuantity - 1);
             return newQuantity;
         });
+
+        setFinalPrice(prevPrice => {
+            console.log(`newQuantity -> ${priceParam}`)
+            const newPrice = prevPrice - priceParam;
+            return newPrice;
+        })
     }
     
     return { quantity, increaseQuantity, decreaseQuantity }

@@ -18,7 +18,8 @@ export type CardDataType = {
 }
 
 export type CustomDataCardType = CardDataType & {
-    customElement: CustomDataType;
+    // customElement: CustomDataType;
+    onQuantityChange: (newQuantity: number) => void;
     // index: number;
     // increaseQuantity: (index: number) => void;
     // decreaseQuantity: (index: number) => void;
@@ -26,6 +27,4 @@ export type CustomDataCardType = CardDataType & {
 
 export interface QuantitySelectorProps {
     customElement: CustomDataType
-    // increaseQuantity: () => void;
-    // decreaseQuantity: () => void;
 }

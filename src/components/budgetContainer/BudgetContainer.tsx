@@ -28,6 +28,11 @@ export function BudgetContainer() {
         console.log(" Final price updated:", totalPrice);
     }, [dataCardInitial, setFinalPrice]);
 
+    const handleQuantityChange = (newQuantity: number) => {
+        console.log(`newQuantity -> ${newQuantity}`)
+        setFinalPrice(prevPrice => prevPrice + newQuantity);
+    }
+
     return (
         <div className="w-full min-h-screen bg-slate-50">
             <div className="w-full flex flex-col items-center">
@@ -41,10 +46,8 @@ export function BudgetContainer() {
                         custom={item.custom}
                         isCheckedValue={item.isCheckedValue}
                         onCheckedToggled={ () => handleCheckboxChange(index) }
-                        customElement={{
-                            productTitle: item.title,
-                            productPrice: item.price,
-                            productQuantity: item.isCheckedValue === true ? 1 : 0,
+                        onQuantityChange={(newQuantity) => {
+                            handleQuantityChange(newQuantity)
                         }}
                     />
                 ))}

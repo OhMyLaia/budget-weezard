@@ -1,6 +1,6 @@
-import { CustomDataType, CustomDataCardType, QuantitySelectorProps } from "../../types/types";
+import { CustomDataType, CustomDataCardType } from "../../types/types";
 // import * as global from "../../services/global-elements"
-import { IsActiveHook, CustomDataCardHook, QuantityHook } from "../../hooks/hooks";
+import { IsActiveHook, CustomDataCardHook } from "../../hooks/hooks";
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
 
 export function CardBudget(
@@ -11,7 +11,7 @@ export function CardBudget(
         custom,
         isCheckedValue,
         onCheckedToggled,
-        customElement
+        onQuantityChange
     }: CustomDataCardType
 
 ) {
@@ -112,6 +112,7 @@ export function CardBudget(
                                     <QuantitySelector
                                         key={data.productTitle}
                                         customElement={data}
+                                        onQuantityChange={onQuantityChange}
                                     />
                                 ))}
                             </div>

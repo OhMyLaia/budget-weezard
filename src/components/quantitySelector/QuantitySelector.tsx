@@ -1,16 +1,24 @@
-import { QuantityButton } from "../quantityButton/QuantityButton";
-import { CustomDataType } from "../../types/types";
+import { useEffect } from "react";
+import { CustomDataType, QuantitySelectorProps } from "../../types/types";
 import { QuantityHook } from "../../hooks/hooks";
+import { QuantityButton } from "../quantityButton/QuantityButton";
 
-export function QuantitySelector (
-    props: { customElement: CustomDataType }
-) {
+export function QuantitySelector(
+    props: {
+        customElement: CustomDataType;
+        onQuantityChange(newQuantity: number): void;
+    })
+    {
 
-    const {quantity, increaseQuantity, decreaseQuantity} = QuantityHook();
-    const extraPrice : number = quantity * props.customElement.productPrice;
+    const { quantity, increaseQuantity, decreaseQuantity } = QuantityHook();
+    const extraPrice: number = quantity * props.customElement.productPrice;
+    // props.customElement.productQuantity = quantity;
 
-    console.log(`productQuantity -> ${props.customElement.productQuantity}, quantity -> ${quantity}`);
+    // useEffect(() => {
+    //     props.onQuantityChange(props.customElement.productPrice);
+    // }, [extraPrice, props.customElement.productQuantity]);
 
+    console.log(`newQuantity -> ${props.customElement.productPrice}, quantity -> ${quantity}`);
 
     return (
         <>
@@ -19,7 +27,7 @@ export function QuantitySelector (
             text-justify
             m-1
             "
-            key={props.customElement.productTitle}>
+                key={props.customElement.productTitle}>
                 <div className="
                 flex w-full
                 bg-transparent
@@ -31,22 +39,32 @@ export function QuantitySelector (
                     p-2
                     ">{props.customElement.productTitle}</span>
                     <span
-                    className="text-xs"
+                        className="text-xs"
                     >{quantity === 0 ? "" : "+" + extraPrice + "€"}</span>
                     <QuantityButton
-                    key={`decrease-${props.customElement.productTitle}`}
-                    onClick={decreaseQuantity}
-                    quantityOperator={"-"}
+                        key={`decrease-${props.customElement.productTitle}`}
+                        onClick={() => {
+                            decreaseQuantity(props.customElement.productPrice);
+                            props.onQuantityChange(-props.customElement.productPrice);
+                        }}
+                        quantityOperator={"-"}
                     />
                     <span className="mt-1 w-8 quantity-span align-middle text-center">{quantity}</span>
                     <QuantityButton
-                    key={`increase-${props.customElement.productTitle}`}
-                    onClick={increaseQuantity}
-                    quantityOperator={"+"}
+                        key={`increase-${props.customElement.productTitle}`}
+                        onClick={() => {
+                            increaseQuantity();
+                            props.onQuantityChange(props.customElement.productPrice);
+                        }}
+                        quantityOperator={"+"}
                     />
                 </div>
             </div>
         </>
     )
 }
+
+
+// linkear productQuantity con quantity
+// pasar quantity al padre
 
