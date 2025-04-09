@@ -1,5 +1,5 @@
 import { CardDataType } from "../../types/types";
-import { FinalPriceHook, DataCardHook, QuantityHook } from "../../hooks/hooks";
+import { FinalPriceHook, DataCardHook } from "../../hooks/hooks";
 import { CardBudget } from "../cards/CardBudget";
 import { useEffect } from "react";
 
@@ -52,8 +52,14 @@ export function BudgetContainer() {
                     />
                 ))}
             </div>
-            <h2>
-                {`Budgeted price: ${finalPrice}`}
+            <h2 className="text-xl
+            flex flex-row
+            items-center
+            justify-end
+            me-7
+            mt-3
+            ">
+                {`Budgeted price: ${finalPrice}€`}
             </h2>
         </div>
     )

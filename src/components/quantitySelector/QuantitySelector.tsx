@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { CustomDataType, QuantitySelectorProps } from "../../types/types";
+import { CustomDataType } from "../../types/types";
 import { QuantityHook } from "../../hooks/hooks";
 import { QuantityButton } from "../quantityButton/QuantityButton";
 
@@ -12,11 +11,6 @@ export function QuantitySelector(
 
     const { quantity, increaseQuantity, decreaseQuantity } = QuantityHook();
     const extraPrice: number = quantity * props.customElement.productPrice;
-    // props.customElement.productQuantity = quantity;
-
-    // useEffect(() => {
-    //     props.onQuantityChange(props.customElement.productPrice);
-    // }, [extraPrice, props.customElement.productQuantity]);
 
     console.log(`newQuantity -> ${props.customElement.productPrice}, quantity -> ${quantity}`);
 
@@ -63,8 +57,3 @@ export function QuantitySelector(
         </>
     )
 }
-
-
-// linkear productQuantity con quantity
-// pasar quantity al padre
-

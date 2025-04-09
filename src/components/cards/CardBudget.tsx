@@ -1,5 +1,4 @@
 import { CustomDataType, CustomDataCardType } from "../../types/types";
-// import * as global from "../../services/global-elements"
 import { IsActiveHook, CustomDataCardHook } from "../../hooks/hooks";
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
 

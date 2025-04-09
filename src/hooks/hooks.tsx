@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import * as globals from "../services/global-elements"
 import { CardDataType, CustomDataType } from "../types/types";
-//! y si -->
+
 export const QuantityHook = () => {
 
     const [quantity, setQuantity] = useState<number>(0);
-    const {finalPrice, setFinalPrice} = FinalPriceHook();
+    const {setFinalPrice} = FinalPriceHook();
 
 
     const increaseQuantity = () => {
