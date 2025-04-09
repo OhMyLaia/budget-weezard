@@ -21,3 +21,7 @@ export type CustomDataCardType = CardDataType & {
 export interface QuantitySelectorProps {
     customElement: CustomDataType
 }
+
+export type InputFormType = {
+    placeHolder: string;
+}

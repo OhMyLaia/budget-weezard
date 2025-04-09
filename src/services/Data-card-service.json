@@ -1,13 +1,13 @@
 [
     {
         "title": "Seo",
-        "description": "Full responsive website seo-friendly",
+        "description": "Full responsive website seo-friendly.",
         "price": 300,
         "custom": false
     },
     {
         "title": "Ads",
-        "description": "Full responsive website with ads",
+        "description": "Full responsive website with ads.",
         "price": 400,
         "custom": false
     },

@@ -79,6 +79,7 @@ export function Navbar() {
                         </nav>
                         <h1 className="
                         press-start-2p-regular
+                        justify-center
                         tracking-tighter
                         text-5xl
                         lg:text-7xl
@@ -89,7 +90,7 @@ export function Navbar() {
                         text-blue-900 bg-emerald-200 
                         lg:ps-22
                         md:ps-5
-                        sm:ps-2
+                        ps-7
                         ">
                         WEEZARD
                         </h1>
