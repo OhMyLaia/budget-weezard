@@ -9,7 +9,7 @@ import { AppRoutes } from "./routes/Router.tsx";
 function App() {
 
   return (
-    <div>
+    <div className="bg-slate-50">
       <Navbar />
       <BrowserRouter>
       <AppRoutes />

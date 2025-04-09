@@ -34,8 +34,19 @@ export function BudgetContainer() {
     }
 
     return (
-        <div className="w-full min-h-screen bg-slate-50">
-            <div className="w-full flex flex-col items-center">
+        <div className="
+        w-full
+        min-h-screen
+        bg-slate-50
+        flex
+        flex-col
+        items-center
+        ">
+            <div className="
+            w-[95%]
+            flex
+            flex-col
+            items-center">
 
                 {dataCardInitial.map((item: CardDataType, index: number) => (
                     <CardBudget
@@ -52,15 +63,35 @@ export function BudgetContainer() {
                     />
                 ))}
             </div>
-            <h2 className="text-xl
+            <span className="
+            text-xl
             flex flex-row
             items-center
-            justify-end
-            me-7
-            mt-3
+            justify-center
+            lg:mt-10
+            lg:text-2xl
+            lg:w-[30%]
+            w-[65%]
+            rounded-full
+            gap-1 mb-2 mt-4
+            bg-emerald-200 p-2
+            hover:bg-violet-200 focus:outline-2
+            focus:outline-violet-400
+            text-zinc-800
+            border-blue-900
             ">
-                {`Budgeted price: ${finalPrice}€`}
-            </h2>
+                <span className="
+                text-blue-950">
+                {`Budgeted price:`}
+                </span>
+                <h2 className="text-3xl
+                font-bold
+                align-middle
+                text-blue-950
+                ">
+                {finalPrice}</h2>
+                <span>{"€"}</span>
+            </span>
         </div>
     )
 }

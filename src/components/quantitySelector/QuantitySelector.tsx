@@ -29,6 +29,9 @@ export function QuantitySelector(
                     <span className="w-full
                     mt-2
                     text-xs
+                    text-gray-600
+                    lg:text-2xl
+                    md:text-lg
                     data-service
                     p-2
                     ">{props.customElement.productTitle}</span>
