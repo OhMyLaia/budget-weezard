@@ -2,19 +2,19 @@
     {
         "title": "Seo",
         "description": "Full responsive website seo-friendly",
-        "price": "300€",
+        "price": 300,
         "custom": false
     },
     {
         "title": "Ads",
         "description": "Full responsive website with ads",
-        "price": "300€",
+        "price": 400,
         "custom": false
     },
     {
         "title": "Web",
         "description": "Full custom responsive website, with ads and seo-friendly. Customize it below.",
-        "price": "300€",
+        "price": 500,
         "custom": true
     }
 ]

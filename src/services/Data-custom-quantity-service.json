@@ -1,10 +1,10 @@
 [
     {
-        "Custom-pages": "Pages",
-        "number": 0
+        "extraTitle": "Pages",
+        "extraPrice": 30
     },
     {
-        "Custom-pages": "Languages",
-        "number": 0
+        "extraTitle": "Languages",
+        "extraPrice": 30
     }
 ]
