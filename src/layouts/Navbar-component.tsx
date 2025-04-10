@@ -6,7 +6,6 @@ export function Navbar() {
         <div>
             
                     <nav className="bg-blue-900 w-full h-20 md:h-30 xl:h-30
-                    rounded-t-4xl
                     ">
                     <div className="max-w-screen-xl 
                     flex flex-row 

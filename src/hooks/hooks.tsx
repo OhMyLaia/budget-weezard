@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import * as globals from "../services/global-elements"
-import { CardDataType, CustomDataType } from "../types/types";
+import { CardDataType, CustomDataType, UserBudgetType, UserDataType } from "../types/types";
 
 export const QuantityHook = () => {
 
@@ -79,4 +79,26 @@ export const CustomDataCardHook = () => {
     }, [])
 
     return { customDataCardInitial, setCustomDataCardInitial }
+}
+
+export const UserListHook = () => {
+
+    const [userListInitial, setUserListInitial] = useState<UserDataType[]>([]);
+
+    useEffect( () => {
+        setUserListInitial(globals.userListState)
+    }, [])
+
+    return { userListInitial, setUserListInitial }
+}
+
+export const UserBudgetHook = () => {
+
+    const [userBudgetInitial, setUserBudgetInitial] = useState<UserBudgetType[]>([]);
+
+    useEffect( () => {
+        setUserBudgetInitial(globals.budgetList)
+    }, [])
+
+    return { userBudgetInitial, setUserBudgetInitial }
 }
