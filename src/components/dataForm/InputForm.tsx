@@ -1,6 +1,7 @@
-import { InputFormType } from "../../types/types"
+import { InputFormType } from "../../types/types";
 
 export function InputForm(props: InputFormType) {
+    // const [inputValue, setInputValue] = useState("");
     return (
             <div className="
             flex
@@ -13,6 +14,8 @@ export function InputForm(props: InputFormType) {
             ">
                 <input
                     placeholder={props.placeHolder}
+                    type={props.type}
+                    required={props.required}
                     className="
                     w-full
                     rounded-4xl

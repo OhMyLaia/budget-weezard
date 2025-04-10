@@ -1,5 +1,5 @@
 import { CardDataType } from "../../types/types";
-import { FinalPriceHook, DataCardHook } from "../../hooks/hooks";
+import { FinalPriceHook, DataCardHook, UserBudgetHook } from "../../hooks/hooks";
 import { CardBudget } from "../cards/CardBudget";
 import { DataForm } from "../dataForm/DataForm";
 import { useEffect } from "react";
@@ -8,6 +8,8 @@ export function BudgetContainer() {
 
     const { dataCardInitial, setDataCardInitial } = DataCardHook();
     const { finalPrice, setFinalPrice } = FinalPriceHook();
+    const {userBudgetListInitial, setUserBudgetListInitial} = UserBudgetHook();
+
     // const { quantity } = QuantityHook();
     // const { customDataCardInitial, increaseQuantity, decreaseQuantity } = CustomDataCardHook();
 
@@ -32,6 +34,10 @@ export function BudgetContainer() {
     const handleQuantityChange = (newQuantity: number) => {
         console.log(`newQuantity -> ${newQuantity}`)
         setFinalPrice(prevPrice => prevPrice + newQuantity);
+    }
+
+    const handleSubmit = () => {
+        //todo
     }
 
     return (
@@ -95,7 +101,10 @@ export function BudgetContainer() {
                 {finalPrice}</h2>
                 <span>{"€"}</span>
             </span>
-            <DataForm />
+            <DataForm
+            budgetList={userBudgetListInitial}
+            setBudgetList={setUserBudgetListInitial}
+            />
         </div>
     )
 }

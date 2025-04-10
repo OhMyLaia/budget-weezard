@@ -24,7 +24,24 @@ export type QuantitySelectorProps = {
 
 export type InputFormType = {
     placeHolder: string;
+    type: string;
+    value: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>,
+        inputSetter: React.Dispatch<React.SetStateAction<string>>,
+    ) => void;
+    required: boolean;
 }
+
+export type SubmitPropsType = {
+    name: string,
+    email: string,
+    phone: string
+}
+
+// export type ErrorMessageDivType = {
+//     errorMssg: string,
+//     explanationMssg: string
+// }
 
 export type UserDataType = {
     userName: string;
@@ -43,4 +60,4 @@ export type budgetDataType = CustomDataType & {
 // + total del budget
 export type UserBudgetType = budgetDataType & UserDataType & {
     total: number;
-} 
+}

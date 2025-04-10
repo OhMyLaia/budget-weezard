@@ -22,6 +22,9 @@ export function Navbar() {
                             md:text-7xl
                             md:ms-3
                             xl:text-8xl
+                            xl:self-start
+                            xl:text-start
+                            xl:bg-amber-500
                             text-violet-200 hover:text-blue-300">
                                 Budget
                             </span>
@@ -38,20 +41,27 @@ export function Navbar() {
                         lg:translate-x-0.5"></img>
                         <div className="w-full 
                                 flex flex-row 
-                                justify-end flex-wrap 
-                                items-center
+                                justify-end flex-wrap
                                 pe-3" 
                                 id="navbar-default">
                                     
-                                    <ul className="font-medium 
-                                    flex flex-row 
-                                    p-1 md:p-0 mt-2 
+                                    <ul className="
+                                    font-medium 
+                                    flex
+                                    flex-col
+                                    text-left
+                                    md:flex-row
+                                    mt-2
+                                    md:gap-6
+                                    gap-0.5
                                     rounded-lg md:space-x-4 
                                     lg:space-x-4 
-                                    md:mt-0 md:border-0">
+                                    ">
                                         
                                         <li>
-                                            <a href="#" className="block py-2 
+                                            <a href="#" className="
+                                            flex
+                                            justify-center
                                             text-sm
                                             lg:text-2xl
                                             px-3 rounded-sm 
@@ -62,13 +72,27 @@ export function Navbar() {
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" className="block py-2
+                                            <a href="#" className="
+                                            flex
+                                            justify-center
                                             text-sm
                                             lg:text-2xl
                                             px-3 rounded-sm 
                                             md:border-0 md:p-0 
                                             text-violet-200 hover:text-blue-300">
                                                 About
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" className="
+                                            flex
+                                            justify-center
+                                            text-sm
+                                            lg:text-2xl
+                                            px-3 rounded-sm 
+                                            md:border-0 md:p-0 
+                                            text-violet-200 hover:text-blue-300">
+                                                MyBudgets
                                             </a>
                                         </li>
                                         </ul>

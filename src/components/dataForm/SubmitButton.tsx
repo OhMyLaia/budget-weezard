@@ -1,6 +1,8 @@
 
+// prevent default noseque
 
-export function SubmitButton() {
+
+export function SubmitButton(props: {disabled: boolean}) {
     return (
         <div
         className="
@@ -10,11 +12,13 @@ export function SubmitButton() {
         content-center
         "
         >
-            <button className="
+            <button
+            type="submit"
+            className={`
             press-start-2p-regular
             rounded-4xl
             gap-1 mb-2 mt-4
-            bg-emerald-200 p-2
+            p-2
             hover:bg-blue-200 focus:outline-2
             hover:w-35
             text-zinc-800
@@ -24,7 +28,10 @@ export function SubmitButton() {
             drop-shadow-lg
             border-3
             font-extrabold
-            ">
+            ${props.disabled === true ?
+                "bg-gray-200" :
+                "bg-emerald-200"}
+            `}>
             {"Submit"}
             </button>
         </div>

@@ -86,7 +86,7 @@ export const UserListHook = () => {
     const [userListInitial, setUserListInitial] = useState<UserDataType[]>([]);
 
     useEffect( () => {
-        setUserListInitial(globals.userListState)
+        setUserListInitial(globals.userListStateArr)
     }, [])
 
     return { userListInitial, setUserListInitial }
@@ -94,11 +94,13 @@ export const UserListHook = () => {
 
 export const UserBudgetHook = () => {
 
-    const [userBudgetInitial, setUserBudgetInitial] = useState<UserBudgetType[]>([]);
+    const [userBudgetListInitial, setUserBudgetListInitial] = useState<UserBudgetType[]>([]);
 
     useEffect( () => {
-        setUserBudgetInitial(globals.budgetList)
+        setUserBudgetListInitial(globals.budgetListArr)
     }, [])
 
-    return { userBudgetInitial, setUserBudgetInitial }
+    return { userBudgetListInitial, setUserBudgetListInitial }
 }
+
+
