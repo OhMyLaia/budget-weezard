@@ -16,7 +16,8 @@ export function DataForm(props:
     const [inputNameValue, setInputNameValue] = useState("");
     const [inputEmailValue, setInputEmailValue] = useState("");
     const [inputPhoneValue, setInputPhoneValue] = useState("");
-    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errorsState, setErrorsState] = useState<string[]>([]);
 
     // const onChangeInput =
     //     (event: React.ChangeEvent<HTMLInputElement>,
@@ -46,6 +47,26 @@ export function DataForm(props:
     const handleSubmit = (event: React.ChangeEvent<HTMLInputElement>) : boolean | null | void => {
         event.preventDefault();
         setIsSubmitting(true);
+
+        if (!validName) {
+            setErrorsState(["Name is not valid"]);
+            setIsSubmitting(false);
+            return
+        }
+
+        if (!validEmail) {
+            setErrorsState(["Email is not valid"]);
+            setIsSubmitting(false);
+            return
+        }
+
+        if (!validPhone) {
+            setErrorsState(["Phone is not valid"]);
+            setIsSubmitting(false);
+            return
+        }
+
+
         //todo
         // submit to server
         try {
@@ -58,6 +79,11 @@ export function DataForm(props:
             console.log(`data is not valid`, error);
             return false
         }
+
+        // async (?)
+        // successfully submitted o algo con un setTimeout
+        // setear campos (?)
+
 
         setIsSubmitting(false)
     return console.log(inputNameValue, inputEmailValue, inputPhoneValue)
@@ -79,6 +105,18 @@ export function DataForm(props:
             rounded-4xl"
             >
                 <form onSubmit={handleSubmit}>
+                    {errorsState.length > 0 && (
+                        <ul>
+                            {errorsState.map((error) => (
+                                <li
+                                key={error}
+                                className="bg-red-100 text-red-600 px-4 py-2 rounded"
+                                >
+                                    {error}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                     <InputForm
                         placeHolder={"Name"}
                         type={""}
