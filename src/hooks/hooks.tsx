@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import * as globals from "../services/global-elements"
 import { CardDataType, CustomDataType, UserBudgetType, UserDataType } from "../types/types";
+import { set } from "react-hook-form";
 
 export const QuantityHook = () => {
 
@@ -103,4 +104,11 @@ export const UserBudgetHook = () => {
     return { userBudgetListInitial, setUserBudgetListInitial }
 }
 
+
+export const ShowDataFormHook = () => {
+
+    const [ showDataForm, setShowDataForm ] = useState<boolean>(false);
+
+    return { showDataForm, setShowDataForm }
+}
 

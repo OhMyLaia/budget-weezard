@@ -1,7 +1,7 @@
 import { CardDataType } from "../../types/types";
-import { FinalPriceHook, DataCardHook, UserBudgetHook } from "../../hooks/hooks";
+import { FinalPriceHook, DataCardHook, UserBudgetHook, ShowDataFormHook } from "../../hooks/hooks";
 import { CardBudget } from "../cards/CardBudget";
-import { DataForm } from "../dataForm/DataForm";
+import { DataForm } from "../dataForm/DataForm-useForm";
 import { useEffect } from "react";
 
 export function BudgetContainer() {
@@ -9,6 +9,7 @@ export function BudgetContainer() {
     const { dataCardInitial, setDataCardInitial } = DataCardHook();
     const { finalPrice, setFinalPrice } = FinalPriceHook();
     const {userBudgetListInitial, setUserBudgetListInitial} = UserBudgetHook();
+    const { showDataForm, setShowDataForm } = ShowDataFormHook();
 
     // const { quantity } = QuantityHook();
     // const { customDataCardInitial, increaseQuantity, decreaseQuantity } = CustomDataCardHook();
@@ -16,6 +17,10 @@ export function BudgetContainer() {
     const handleCheckboxChange = (index: number) => {
         const updatedCards = [...dataCardInitial];
         updatedCards[index].isCheckedValue = !updatedCards[index].isCheckedValue;
+
+        if (updatedCards.some(card => card.isCheckedValue === true)) setShowDataForm(true)
+            else setShowDataForm(false)
+
         setDataCardInitial(updatedCards);
     };
 
@@ -101,10 +106,12 @@ export function BudgetContainer() {
                 {finalPrice}</h2>
                 <span>{"€"}</span>
             </span>
-            <DataForm
-            budgetList={userBudgetListInitial}
-            setBudgetList={setUserBudgetListInitial}
-            />
+            {showDataForm === true && (
+                <DataForm
+                budgetList={userBudgetListInitial}
+                setBudgetList={setUserBudgetListInitial}
+                />
+            )}
         </div>
     )
 }
