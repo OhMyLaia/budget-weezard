@@ -29,14 +29,19 @@ export function DataForm(props:
 
     const onSubmit = (data: FieldValues) => {
         //todo
+        console.log(data)
         reset();
     }
 
     return (
-        <div>
+
+        <div className="
+        flex
+        flex-col
+        md:w-1/2
+        ">
             <div className="
-            w-90
-            lg:w-1/3
+            w-full
             justify-center
             align-middle
             content-center
@@ -92,11 +97,6 @@ export function DataForm(props:
                     me-6"
             >
                 {/* { handleSubmit() === true || handleSubmit() === null ? "" : */}
-                <ErrorMessageDiv
-                    error={"Invalid data"}
-                    explanation={"Please submit valid data"}
-                />
-
                 {/* } */}
                 <SubmitButton
                     disabled={isSubmitting}

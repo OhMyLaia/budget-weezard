@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import * as globals from "../services/global-elements"
 import { CardDataType, CustomDataType, UserBudgetType, UserDataType } from "../types/types";
-import { set } from "react-hook-form";
 
 export const QuantityHook = () => {
 
-    const [quantity, setQuantity] = useState<number>(0);
+    const [quantity, setQuantity] = useState<number>(1);
     const {setFinalPrice} = FinalPriceHook();
 
 
