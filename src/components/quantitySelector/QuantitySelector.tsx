@@ -10,7 +10,7 @@ export function QuantitySelector(
     {
 
     const { quantity, increaseQuantity, decreaseQuantity } = QuantityHook();
-    const extraPrice: number = quantity * props.customElement.productPrice;
+    const extraPrice: number = (quantity -1) * props.customElement.productPrice;
 
     console.log(`newQuantity -> ${props.customElement.productPrice}, quantity -> ${quantity}`);
 
@@ -47,11 +47,11 @@ export function QuantitySelector(
                         lg:text-2xl
                         translate-y-3
                         lg:translate-y-0"
-                    >{quantity === 0 ? "" : "+" + extraPrice + "€"}</span>
+                    >{quantity === 1 ? "" : "+" + extraPrice + "€"}</span>
                     <QuantityButton
                         key={`decrease-${props.customElement.productTitle}`}
                         onClick={
-                            quantity === 0 ?
+                            quantity === 1 ?
                             () => {} :
                             () => {
                             decreaseQuantity(props.customElement.productPrice);

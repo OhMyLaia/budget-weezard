@@ -4,7 +4,7 @@ import { CardDataType, CustomDataType } from "../types/types";
 
 export const QuantityHook = () => {
 
-    const [quantity, setQuantity] = useState<number>(0);
+    const [quantity, setQuantity] = useState<number>(1);
     const {setFinalPrice} = FinalPriceHook();
 
 

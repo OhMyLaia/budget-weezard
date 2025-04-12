@@ -5,11 +5,13 @@ export function InputForm(props: InputFormType) {
             <div className="
             flex
             flex-col
+            w-full
             justify-center
             align-middle
             self-center
             ms-5
             me-5
+            md:me-10
             ">
                 <input
                     placeholder={props.placeHolder}
