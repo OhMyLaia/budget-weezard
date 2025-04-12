@@ -60,6 +60,7 @@ export type budgetDataType = CustomDataType & {
 // + total del budget
 export type UserBudgetType = UserDataType & {
     customProducts?: CustomDataType[];
+    serviceTitle: string[];
     totalPrice: number;
 }
 

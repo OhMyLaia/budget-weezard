@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { useState } from "react";
-import { InputFormType, ErrorMessageDivType, UserBudgetType, CardDataType, CustomDataCardType } from "../../types/types";
+import { InputFormType, ErrorMessageDivType, UserBudgetType, CardDataType, CustomDataCardType, CustomDataType } from "../../types/types";
 import * as globals from "../../services/global-elements"
 import { ErrorMessageDiv } from "./ErrorMessageDiv";
 import { InputForm } from "./InputForm";
@@ -29,30 +29,44 @@ export function DataForm(props:
         getValues,
     } = useForm();
 
-    const onSubmit = (data: FieldValues) => {
-        //todo
+    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+
         console.log(data)
-        const selectedCards = props.dataCardInitial.filter( data => data.isCheckedValue === true);
-        const selectedProducts = selectedCards.filter( data => data.isCheckedValue === true && data.custom === true)
+        
+        const selectedCards = props.dataCardInitial.filter(card => card.isCheckedValue === true);
+        const customCards: CustomDataType[] = [];
+        const cardServiceTitles: string[] = [];
+
         if (!selectedCards) return;
 
-        const customProducts = selectedProducts.map( element => ({
-            productTitle: element.title,
-            productPrice: element.price,
-            productQuantity: element.productQuantity || 1
+        for (let i = 0 ; i < selectedCards.length ; i++) {
+            const card = selectedCards[i];
+            console.log(card)
 
-        }))
+            if (card.custom === true) {
+                customCards.push({
+                    productTitle: card.title,
+                    productPrice: card.price,
+                    productQuantity: card.productQuantity ?? 1
+                });
+            }
+        
+        cardServiceTitles.push(card.title)
+
+        return customCards;
+        }
 
         const newUserBudget: UserBudgetType = {
             userName: data.name,
             userEmail: data.email,
             userPhone: data.phone,
-            customProducts,
+            customProducts: customCards,
+            serviceTitle: cardServiceTitles,
             totalPrice: props.finalPrice
         };
 
         props.setUserBudgetListInitial([...props.userBudgetListInitial, newUserBudget]);
-        console.log(`newUserBudget -> ${newUserBudget}`)
+        console.log(`newUserBudget -> ${JSON.stringify(newUserBudget)}`)
         reset();
     }
 
