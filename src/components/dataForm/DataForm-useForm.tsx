@@ -124,8 +124,6 @@ export function DataForm(props:
                     {errors.phone && (
                         <p className="text-red-600">{`${errors.phone.message}`}</p>
                     )}
-                </form>
-            </div>
             <div
                 className="
                     flex
@@ -138,6 +136,8 @@ export function DataForm(props:
                 <SubmitButton
                     disabled={isSubmitting}
                 />
+            </div>
+                </form>
             </div>
         </div>
     )
