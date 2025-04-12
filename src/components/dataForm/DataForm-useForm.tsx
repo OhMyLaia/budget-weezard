@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { useState } from "react";
-import { InputFormType, ErrorMessageDivType } from "../../types/types";
+import { InputFormType, ErrorMessageDivType, UserBudgetType, CardDataType, CustomDataCardType } from "../../types/types";
 import * as globals from "../../services/global-elements"
 import { ErrorMessageDiv } from "./ErrorMessageDiv";
 import { InputForm } from "./InputForm";
@@ -11,8 +11,10 @@ import { UserBudgetHook } from "../../hooks/hooks";
 
 export function DataForm(props:
     {
-        userBudget: React.Dispatch<React.SetStateAction<string[]>>,
-        setUserBudget: React.Dispatch<React.SetStateAction<string[]>>
+        userBudgetListInitial: UserBudgetType[],
+        setUserBudgetListInitial: React.Dispatch<React.SetStateAction<UserBudgetType[]>>,
+        dataCardInitial: CardDataType[]
+        finalPrice: number
     },
 ) {
 
@@ -30,6 +32,27 @@ export function DataForm(props:
     const onSubmit = (data: FieldValues) => {
         //todo
         console.log(data)
+        const selectedCards = props.dataCardInitial.filter( data => data.isCheckedValue === true);
+        const selectedProducts = selectedCards.filter( data => data.isCheckedValue === true && data.custom === true)
+        if (!selectedCards) return;
+
+        const customProducts = selectedProducts.map( element => ({
+            productTitle: element.title,
+            productPrice: element.price,
+            productQuantity: element.productQuantity || 1
+
+        }))
+
+        const newUserBudget: UserBudgetType = {
+            userName: data.name,
+            userEmail: data.email,
+            userPhone: data.phone,
+            customProducts,
+            totalPrice: props.finalPrice
+        };
+
+        props.setUserBudgetListInitial([...props.userBudgetListInitial, newUserBudget]);
+        console.log(`newUserBudget -> ${newUserBudget}`)
         reset();
     }
 
@@ -58,7 +81,7 @@ export function DataForm(props:
                             // validate: regex?
                         })}
                         placeHolder={"Name"}
-                        type={""}
+                        type="text"
                         required={true}
                     />
                     {errors.name && (
@@ -81,7 +104,7 @@ export function DataForm(props:
                             required: "Phone is required"
                         })}
                         placeHolder={"Phone"}
-                        type={""}
+                        type="tel"
                         required={true}
                     />
                     {errors.phone && (

@@ -58,6 +58,11 @@ export type budgetDataType = CustomDataType & {
 // datos de custom data (title(lang, pages), price(30) y quantity)
 // datos de usuario (name, email, phone)
 // + total del budget
-export type UserBudgetType = budgetDataType & UserDataType & {
-    total: number;
+export type UserBudgetType = UserDataType & {
+    customProducts?: CustomDataType[];
+    totalPrice: number;
 }
+
+// •	UserDataType → (userName, userEmail, userPhone)
+// •	CustomDataType → (productTitle, productPrice, productQuantity)
+// •	+ serviceTitle + totalPrice

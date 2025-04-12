@@ -11,9 +11,6 @@ export function BudgetContainer() {
     const {userBudgetListInitial, setUserBudgetListInitial} = UserBudgetHook();
     const { showDataForm, setShowDataForm } = ShowDataFormHook();
 
-    // const { quantity } = QuantityHook();
-    // const { customDataCardInitial, increaseQuantity, decreaseQuantity } = CustomDataCardHook();
-
     const handleCheckboxChange = (index: number) => {
         const updatedCards = [...dataCardInitial];
         updatedCards[index].isCheckedValue = !updatedCards[index].isCheckedValue;
@@ -26,7 +23,7 @@ export function BudgetContainer() {
 
     useEffect(() => {
         console.log("🔥 useEffect triggered");
-
+        
         const checkedCards: CardDataType[] = dataCardInitial.filter(card => card.isCheckedValue);
 
         const totalPrice = checkedCards.reduce((sum, card) => sum + card.price, 0);
@@ -38,12 +35,12 @@ export function BudgetContainer() {
 
     const handleQuantityChange = (newQuantity: number) => {
         console.log(`newQuantity -> ${newQuantity}`)
-        setFinalPrice(prevPrice => prevPrice + newQuantity);
+    setFinalPrice(prevPrice => prevPrice + newQuantity);
     }
 
-    const handleSubmit = () => {
-        //todo
-    }
+    // const handleSubmit = () => {
+    //     //todo
+    // }
 
     return (
         <div className="
@@ -108,8 +105,10 @@ export function BudgetContainer() {
             </span>
             {showDataForm === true && (
                 <DataForm
-                budgetList={userBudgetListInitial}
-                setBudgetList={setUserBudgetListInitial}
+                userBudgetListInitial={userBudgetListInitial}
+                setUserBudgetListInitial={setUserBudgetListInitial}
+                dataCardInitial={dataCardInitial}
+                finalPrice={finalPrice}
                 />
             )}
         </div>
