@@ -1,11 +1,9 @@
+"use client"
+
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-import { useState } from "react";
-import { InputFormType, ErrorMessageDivType, UserBudgetType, CardDataType, CustomDataCardType, CustomDataType } from "../../types/types";
-import * as globals from "../../services/global-elements"
-import { ErrorMessageDiv } from "./ErrorMessageDiv";
+import { UserBudgetType, CardDataType, CustomDataType } from "../../types/types";
 import { InputForm } from "./InputForm";
 import { SubmitButton } from "./SubmitButton";
-import { UserBudgetHook } from "../../hooks/hooks";
 
 
 
@@ -50,10 +48,7 @@ export function DataForm(props:
                     productQuantity: card.productQuantity ?? 1
                 });
             }
-        
         cardServiceTitles.push(card.title)
-
-        return customCards;
         }
 
         const newUserBudget: UserBudgetType = {
@@ -67,6 +62,8 @@ export function DataForm(props:
 
         props.setUserBudgetListInitial([...props.userBudgetListInitial, newUserBudget]);
         console.log(`newUserBudget -> ${JSON.stringify(newUserBudget)}`)
+        console.log(`data form -> ${JSON.stringify(getValues())}`)
+        console.log(`valor de isSubmitting -> ${isSubmitting.valueOf}`)
         reset();
     }
 
@@ -90,10 +87,14 @@ export function DataForm(props:
             >
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <InputForm
-                        {...register("name", {
+                        {...register(("name"), {
                             required: "Name is required",
-                            // validate: regex?
+                            pattern: {
+                                value: /^[a-zA-ZÀ-ÿ\s]{2,}$/,
+                                message: "Invalid name"
+                            }
                         })}
+                        value={getValues("name") || ""}
                         placeHolder={"Name"}
                         type="text"
                         required={true}
@@ -102,10 +103,14 @@ export function DataForm(props:
                         <p className="text-red-600">{`${errors.name.message}`}</p>
                     )}
                     <InputForm
-                        {...register("email", {
-                            required: "Email is required"
-
+                        {...register(("email"), {
+                            required: "Email is required",
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: "Invalid email"
+                            }
                         })}
+                        value={getValues("email") || ""}
                         placeHolder={"Email"}
                         type={"email"}
                         required={true}
@@ -114,9 +119,14 @@ export function DataForm(props:
                         <p className="text-red-600">{`${errors.email.message}`}</p>
                     )}
                     <InputForm
-                        {...register("phone", {
-                            required: "Phone is required"
+                        {...register(("phone"), {
+                            required: "Phone is required",
+                            pattern: {
+                                value: /^\+?\d{7,15}$/,
+                                message: "Invalid phone number"
+                            }
                         })}
+                        value={getValues("phone") || ""}
                         placeHolder={"Phone"}
                         type="tel"
                         required={true}
@@ -124,19 +134,19 @@ export function DataForm(props:
                     {errors.phone && (
                         <p className="text-red-600">{`${errors.phone.message}`}</p>
                     )}
-            <div
+            {/* <div
                 className="
                     flex
                     flex-row
                     justify-end
                     me-6"
-            >
+            > */}
                 {/* { handleSubmit() === true || handleSubmit() === null ? "" : */}
                 {/* } */}
                 <SubmitButton
                     disabled={isSubmitting}
                 />
-            </div>
+            {/* </div> */}
                 </form>
             </div>
         </div>

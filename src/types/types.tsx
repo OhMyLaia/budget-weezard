@@ -22,15 +22,16 @@ export type QuantitySelectorProps = {
     customElement: CustomDataType
 }
 
-// export type InputFormType = {
-//     placeHolder: string;
-//     type: string;
-//     value: string;
-//     onChange: (event: React.ChangeEvent<HTMLInputElement>,
-//         inputSetter: React.Dispatch<React.SetStateAction<string>>,
-//     ) => void;
-//     required: boolean;
-// }
+export type InputFormType = {
+    name: string
+    placeHolder: string;
+    type: string;
+    value: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement> ) => void;
+        // inputSetter: React.Dispatch<React.SetStateAction<string>>,
+    onBlur: (event: React.ChangeEvent<HTMLInputElement> ) => void;
+    required?: boolean;
+}
 
 export type SubmitPropsType = {
     name: string,
