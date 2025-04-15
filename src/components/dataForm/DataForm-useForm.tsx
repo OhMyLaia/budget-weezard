@@ -47,6 +47,7 @@ export function DataForm(props:
                     customCards.push({
                         productTitle: product.productTitle,
                         productPrice: product.productPrice,
+                        //! hay que cambiar esta productQuantity, no la pilla
                         productQuantity: product.productQuantity ?? 1
                     })
                 )})

@@ -5,6 +5,7 @@ import { QuantityButton } from "../buttons/QuantityButton";
 export function QuantitySelector(
     props: {
         customElement: CustomDataType;
+        productTitle: string;
         onQuantityChange(newQuantity: number): void;
     })
     {

@@ -21,6 +21,7 @@ export const QuantityHook = () => {
             return newQuantity;
         });
 
+
         setFinalPrice(prevPrice => {
             console.log(`newQuantity -> ${priceParam}`)
             const newPrice = prevPrice - priceParam;

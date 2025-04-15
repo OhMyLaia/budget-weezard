@@ -10,7 +10,7 @@ export function CardBudget(
         custom,
         isCheckedValue,
         onCheckedToggled,
-        onQuantityChange
+        onQuantityChange,
     }: CustomDataCardType
 
 ) {
@@ -136,8 +136,9 @@ export function CardBudget(
                                     <QuantitySelector
                                         key={data.productTitle}
                                         customElement={data}
+                                        productTitle={title}
                                         onQuantityChange={(newQuantity: number) => 
-                                            onQuantityChange(data.productTitle, data.productPrice, newQuantity)
+                                            onQuantityChange(data.productTitle, newQuantity)
                                         }
                                     />
                                 ))}

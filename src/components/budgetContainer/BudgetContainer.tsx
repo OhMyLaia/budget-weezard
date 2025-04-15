@@ -11,6 +11,7 @@ export function BudgetContainer() {
     const {userBudgetListInitial, setUserBudgetListInitial} = UserBudgetHook();
     const { showDataForm, setShowDataForm } = ShowDataFormHook();
     const { customDataCardInitial, setCustomDataCardInitial } = CustomDataCardHook();
+
     
 
     const handleCheckboxChange = (index: number) => {
@@ -35,7 +36,15 @@ export function BudgetContainer() {
         console.log(" Final price updated:", totalPrice);
     }, [dataCardInitial, setFinalPrice]);
 
-    const handleQuantityChange = (productTitle: string, productPrice: number, newQuantity: number) => {
+    const handleQuantityChange = (productTitle: string, newQuantity: number) => {
+        //! tengo que poner esto en algun lugar pero no se donde, porque requiere
+        //! dos states: quantity y el setter
+        // setCustomDataCardInitial(prevState =>
+        //     prevState.map(product =>
+        //         product.productTitle === props.productTitle ?
+        //         { ...product, productQuantity: quantity}
+        //         : product
+        //     ))
         console.log(`newQuantity -> ${newQuantity}`)
     setFinalPrice(prevPrice => prevPrice + newQuantity);
     }
@@ -64,8 +73,8 @@ export function BudgetContainer() {
                         custom={item.custom}
                         isCheckedValue={item.isCheckedValue}
                         onCheckedToggled={ () => handleCheckboxChange(index) }
-                        onQuantityChange={(productTitle, productPrice, newQuantity) => {
-                            handleQuantityChange(productTitle, productPrice, newQuantity)
+                        onQuantityChange={(productTitle, newQuantity) => {
+                            handleQuantityChange(productTitle, newQuantity)
                         }}
                     />
                 ))}
