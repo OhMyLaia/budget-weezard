@@ -7,13 +7,12 @@ export const InputForm = React.forwardRef<HTMLInputElement, InputFormType>((prop
         <div className="
             flex
             flex-col
-            w-full
+            w-fit
+            md:w-5/6
             justify-center
-            align-middle
-            self-center
-            ms-5
-            me-5
-            md:me-10
+            items-center
+            text-center
+            mx-auto
             ">
             <input
             name={props.name}

@@ -38,10 +38,6 @@ export function BudgetContainer() {
     setFinalPrice(prevPrice => prevPrice + newQuantity);
     }
 
-    // const handleSubmit = () => {
-    //     //todo
-    // }
-
     return (
         <div className="
         w-full
