@@ -11,7 +11,8 @@ export function DataForm(props:
     {
         userBudgetListInitial: UserBudgetType[],
         setUserBudgetListInitial: React.Dispatch<React.SetStateAction<UserBudgetType[]>>,
-        dataCardInitial: CardDataType[]
+        dataCardInitial: CardDataType[],
+        customDataCardInitial: CustomDataType[],
         finalPrice: number
     },
 ) {
@@ -42,11 +43,13 @@ export function DataForm(props:
             console.log(card)
 
             if (card.custom === true) {
-                customCards.push({
-                    productTitle: card.title,
-                    productPrice: card.price,
-                    productQuantity: card.productQuantity ?? 1
-                });
+                props.customDataCardInitial.map((product) => {(
+                    customCards.push({
+                        productTitle: product.productTitle,
+                        productPrice: product.productPrice,
+                        productQuantity: product.productQuantity ?? 1
+                    })
+                )})
             }
         cardServiceTitles.push(card.title)
         }

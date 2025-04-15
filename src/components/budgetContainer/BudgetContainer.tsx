@@ -1,5 +1,5 @@
 import { CardDataType } from "../../types/types";
-import { FinalPriceHook, DataCardHook, UserBudgetHook, ShowDataFormHook } from "../../hooks/hooks";
+import { FinalPriceHook, DataCardHook, UserBudgetHook, ShowDataFormHook, CustomDataCardHook } from "../../hooks/hooks";
 import { CardBudget } from "../cards/CardBudget";
 import { DataForm } from "../dataForm/DataForm-useForm";
 import { useEffect } from "react";
@@ -10,6 +10,8 @@ export function BudgetContainer() {
     const { finalPrice, setFinalPrice } = FinalPriceHook();
     const {userBudgetListInitial, setUserBudgetListInitial} = UserBudgetHook();
     const { showDataForm, setShowDataForm } = ShowDataFormHook();
+    const { customDataCardInitial, setCustomDataCardInitial } = CustomDataCardHook();
+    
 
     const handleCheckboxChange = (index: number) => {
         const updatedCards = [...dataCardInitial];
@@ -33,7 +35,7 @@ export function BudgetContainer() {
         console.log(" Final price updated:", totalPrice);
     }, [dataCardInitial, setFinalPrice]);
 
-    const handleQuantityChange = (newQuantity: number) => {
+    const handleQuantityChange = (productTitle: string, productPrice: number, newQuantity: number) => {
         console.log(`newQuantity -> ${newQuantity}`)
     setFinalPrice(prevPrice => prevPrice + newQuantity);
     }
@@ -62,8 +64,8 @@ export function BudgetContainer() {
                         custom={item.custom}
                         isCheckedValue={item.isCheckedValue}
                         onCheckedToggled={ () => handleCheckboxChange(index) }
-                        onQuantityChange={(newQuantity) => {
-                            handleQuantityChange(newQuantity)
+                        onQuantityChange={(productTitle, productPrice, newQuantity) => {
+                            handleQuantityChange(productTitle, productPrice, newQuantity)
                         }}
                     />
                 ))}
@@ -104,6 +106,7 @@ export function BudgetContainer() {
                 userBudgetListInitial={userBudgetListInitial}
                 setUserBudgetListInitial={setUserBudgetListInitial}
                 dataCardInitial={dataCardInitial}
+                customDataCardInitial={customDataCardInitial}
                 finalPrice={finalPrice}
                 />
             )}

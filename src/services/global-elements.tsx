@@ -29,11 +29,10 @@ export const userListStateArr: UserDataType[] = userListArr.map( (user) => ({
 
 export const budgetListStateArr: UserBudgetType[] = budgetListArr.map( (data) => ({
     serviceTitle: data.serviceTitle,
-    productTitle: data.productTitle,
-    productPrice: data.productPrice,
-    productQuantity: data.productQuantity,
+    customProducts: customDataCardListState,
     userName: data.userName,
     userEmail: data.userEmail,
     userPhone: data.userPhone,
-    total: data.total
+    totalPrice: data.totalPrice
 }))
+

@@ -15,7 +15,7 @@ export type CardDataType = {
 }
 
 export type CustomDataCardType = CardDataType & {
-    onQuantityChange: (newQuantity: number) => void;
+    onQuantityChange: (title: string, price: number, newQuantity: number) => void;
 }
 
 export type QuantitySelectorProps = {
