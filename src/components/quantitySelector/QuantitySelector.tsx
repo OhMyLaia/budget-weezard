@@ -1,5 +1,5 @@
 import { CustomDataType } from "../../types/types";
-import { QuantityHook } from "../../hooks/hooks";
+import { QuantityHook } from "./useQuantitySelector";
 import { QuantityButton } from "../buttons/QuantityButton";
 
 export function QuantitySelector(
@@ -10,7 +10,7 @@ export function QuantitySelector(
     })
     {
 
-    const { quantity, increaseQuantity, decreaseQuantity } = QuantityHook();
+    const { quantity, increaseQuantity, decreaseQuantity, setFinalPrice } = QuantityHook();
     const extraPrice: number = (quantity -1) * props.customElement.productPrice;
 
     console.log(`newQuantity -> ${props.customElement.productPrice}, quantity -> ${quantity}`);
@@ -55,8 +55,9 @@ export function QuantitySelector(
                             quantity === 1 ?
                             () => {} :
                             () => {
-                            decreaseQuantity(props.customElement.productPrice);
+                            decreaseQuantity();
                             props.onQuantityChange(-props.customElement.productPrice);
+                            // setFinalPrice()
                         }}
                         quantityOperator={"-"}
                     />

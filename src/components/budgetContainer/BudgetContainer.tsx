@@ -1,5 +1,5 @@
 import { CardDataType } from "../../types/types";
-import { FinalPriceHook, DataCardHook, UserBudgetHook, ShowDataFormHook, CustomDataCardHook } from "../../hooks/hooks";
+import { FinalPriceHook, DataCardHook, UserBudgetHook, ShowDataFormHook, CustomDataCardHook } from "./useBudgetContainer";
 import { CardBudget } from "../cards/CardBudget";
 import { DataForm } from "../dataForm/DataForm-useForm";
 import { useEffect } from "react";
@@ -38,7 +38,7 @@ export function BudgetContainer() {
 
     const handleQuantityChange = (productTitle: string, newQuantity: number) => {
         //! tengo que poner esto en algun lugar pero no se donde, porque requiere
-        //! dos states: quantity y el setter
+        //! dos states: quantity(quantitySelector) y el setter()
         // setCustomDataCardInitial(prevState =>
         //     prevState.map(product =>
         //         product.productTitle === props.productTitle ?
@@ -76,6 +76,7 @@ export function BudgetContainer() {
                         onQuantityChange={(productTitle, newQuantity) => {
                             handleQuantityChange(productTitle, newQuantity)
                         }}
+                        customDataCardHook={customDataCardInitial}
                     />
                 ))}
             </div>

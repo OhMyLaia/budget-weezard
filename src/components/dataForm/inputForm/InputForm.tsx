@@ -1,4 +1,4 @@
-import { InputFormType } from "../../types/types";
+import { InputFormType } from "../../../types/types";
 import React from "react";
 
 export const InputForm = React.forwardRef<HTMLInputElement, InputFormType>((props, ref) => {

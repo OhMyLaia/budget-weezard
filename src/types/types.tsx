@@ -12,6 +12,7 @@ export type CardDataType = {
     isCheckedValue: boolean;
     onCheckedToggled: () => void;
     productQuantity?: number;
+    customDataCardHook: Array<CustomDataType>
 }
 
 export type CustomDataCardType = CardDataType & {

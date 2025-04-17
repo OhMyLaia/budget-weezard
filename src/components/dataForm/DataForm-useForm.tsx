@@ -2,8 +2,8 @@
 
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { UserBudgetType, CardDataType, CustomDataType } from "../../types/types";
-import { InputForm } from "./InputForm";
-import { SubmitButton } from "./SubmitButton";
+import { InputForm } from "./inputForm/InputForm";
+import { SubmitButton } from "./submitButton/SubmitButton";
 
 
 
@@ -46,9 +46,10 @@ export function DataForm(props:
                 props.customDataCardInitial.map((product) => {(
                     customCards.push({
                         productTitle: product.productTitle,
+                        //! hay que llenar productPrice, es 30 siempre
                         productPrice: product.productPrice,
                         //! hay que cambiar esta productQuantity, no la pilla
-                        productQuantity: product.productQuantity ?? 1
+                        productQuantity: product.productPrice / product.productPrice
                     })
                 )})
             }

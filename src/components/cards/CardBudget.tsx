@@ -1,5 +1,5 @@
 import { CustomDataType, CustomDataCardType } from "../../types/types";
-import { IsActiveHook, CustomDataCardHook } from "../../hooks/hooks";
+import { IsActiveHook } from "./useCardBudget";
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
 
 export function CardBudget(
@@ -11,12 +11,11 @@ export function CardBudget(
         isCheckedValue,
         onCheckedToggled,
         onQuantityChange,
+        customDataCardHook
     }: CustomDataCardType
 
 ) {
-
-    const { toggleCardState } = IsActiveHook();
-    const { customDataCardInitial } = CustomDataCardHook();
+    const {toggleCardState} = IsActiveHook();
     // const { quantity, increaseQuantity, decreaseQuantity } = QuantityHook();
 
     return (
@@ -132,7 +131,7 @@ export function CardBudget(
                 lg:text-3xl">
                     {custom === true && isCheckedValue === true && (
                             <div>
-                                {customDataCardInitial.map((data: CustomDataType) => (
+                                {customDataCardHook.map((data: CustomDataType) => (
                                     <QuantitySelector
                                         key={data.productTitle}
                                         customElement={data}
