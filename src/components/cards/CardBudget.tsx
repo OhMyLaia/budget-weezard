@@ -136,8 +136,8 @@ export function CardBudget(
                                         key={data.productTitle}
                                         customElement={data}
                                         productTitle={title}
-                                        onQuantityChange={(newQuantity: number) => 
-                                            onQuantityChange(data.productTitle, newQuantity)
+                                        onQuantityChange={(productTitle: string, newQuantity: number) => 
+                                            onQuantityChange(productTitle, newQuantity)
                                         }
                                     />
                                 ))}

@@ -6,14 +6,14 @@ export function QuantitySelector(
     props: {
         customElement: CustomDataType;
         productTitle: string;
-        onQuantityChange(newQuantity: number): void;
+        onQuantityChange(title: string, newQuantity: number): void;
     })
     {
 
-    const { quantity, increaseQuantity, decreaseQuantity, setFinalPrice } = QuantityHook();
-    const extraPrice: number = (quantity -1) * props.customElement.productPrice;
+    const { quantity, increaseQuantity, decreaseQuantity } = QuantityHook();
+    const extraPrice: number = (quantity) * props.customElement.productPrice;
 
-    console.log(`newQuantity -> ${props.customElement.productPrice}, quantity -> ${quantity}`);
+    // console.log(`newQuantity -> ${props.customElement.productPrice}, quantity -> ${quantity}`);
 
     return (
         <>
@@ -48,15 +48,14 @@ export function QuantitySelector(
                         lg:text-2xl
                         translate-y-3
                         lg:translate-y-0"
-                    >{quantity === 1 ? "" : "+" + extraPrice + "€"}</span>
+                    >{quantity === 1 ? "" : "+" + (extraPrice - props.customElement.productPrice) + "€"}</span>
                     <QuantityButton
                         key={`decrease-${props.customElement.productTitle}`}
-                        onClick={
-                            quantity === 1 ?
-                            () => {} :
-                            () => {
+                        onClick={ () => {
+                            if (quantity === 1) return
                             decreaseQuantity();
-                            props.onQuantityChange(-props.customElement.productPrice);
+                            // const newQuantity = quantity - 1;
+                            props.onQuantityChange(props.customElement.productTitle, (-props.customElement.productPrice));
                             // setFinalPrice()
                         }}
                         quantityOperator={"-"}
@@ -74,7 +73,8 @@ export function QuantitySelector(
                         key={`increase-${props.customElement.productTitle}`}
                         onClick={() => {
                             increaseQuantity();
-                            props.onQuantityChange(props.customElement.productPrice);
+                            // const newQuantity = quantity + 1;
+                            props.onQuantityChange(props.customElement.productTitle, props.customElement.productPrice);
                         }}
                         quantityOperator={"+"}
                     />
