@@ -1,5 +1,6 @@
 "use client"
-
+import { useContext } from "react";
+import { UserBudgetContext } from "../../context/UserBudgetContext";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { UserBudgetType, CardDataType, CustomDataType } from "../../types/types";
 import { InputForm } from "./inputForm/InputForm";
@@ -9,16 +10,13 @@ import { SubmitButton } from "./submitButton/SubmitButton";
 
 export function DataForm(props:
     {
-        userBudgetListInitial: UserBudgetType[],
-        setUserBudgetListInitial: React.Dispatch<React.SetStateAction<UserBudgetType[]>>,
         dataCardInitial: CardDataType[],
         customDataCardInitial: CustomDataType[],
         finalPrice: number
     },
 ) {
 
-    // const [isSubmitting, setIsSubmitting] = useState(false);
-    // const [errorsState, setErrorsState] = useState<string[]>([]);
+    const [userBudgetListInitial, setUserBudgetListInitial] = useContext(UserBudgetContext);
 
     const {
         register,
@@ -65,11 +63,18 @@ export function DataForm(props:
             totalPrice: props.finalPrice
         };
 
-        props.setUserBudgetListInitial([...props.userBudgetListInitial, newUserBudget]);
-        console.log(`newUserBudget -> ${JSON.stringify(newUserBudget)}`)
-        console.log(`data form -> ${JSON.stringify(getValues())}`)
-        console.log(`valor de isSubmitting -> ${isSubmitting.valueOf}`)
-        reset();
+        // const arrayTemporal: any = [];
+        // arrayTemporal.push(newUserBudget);
+        setUserBudgetListInitial((prevState) => {
+            const updatedList = [...prevState, newUserBudget];
+            // console.log(`newUserBudget -> ${JSON.stringify(newUserBudget)}`);
+            console.log(`updatedlist -> ${JSON.stringify(updatedList)} `)
+            return updatedList;
+        });
+        setTimeout(() => {
+            // console.log(`🔍 length array -> ${arrayTemporal.length} `)
+            reset();
+        }, 1500); 
     }
 
     return (
