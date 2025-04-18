@@ -5,7 +5,8 @@ export function Navbar() {
     return (
         <div>
             
-                    <nav className="bg-blue-900 w-full h-20 md:h-30 xl:h-30">
+                    <nav className="bg-blue-900 w-full h-20 md:h-30 xl:h-30
+                    ">
                     <div className="max-w-screen-xl 
                     flex flex-row 
                     items-center justify-between 
@@ -15,11 +16,15 @@ export function Navbar() {
                         space-x-3 rtl:space-x-reverse">
                             <span className="self-center 
                             font-semibold whitespace-nowrap
+                            
                             text-5xl
                             ms-2
                             md:text-7xl
                             md:ms-3
                             xl:text-8xl
+                            xl:self-start
+                            xl:text-start
+                            xl:bg-amber-500
                             text-violet-200 hover:text-blue-300">
                                 Budget
                             </span>
@@ -36,20 +41,27 @@ export function Navbar() {
                         lg:translate-x-0.5"></img>
                         <div className="w-full 
                                 flex flex-row 
-                                justify-end flex-wrap 
-                                items-center
+                                justify-end flex-wrap
                                 pe-3" 
                                 id="navbar-default">
                                     
-                                    <ul className="font-medium 
-                                    flex flex-row 
-                                    p-1 md:p-0 mt-2 
+                                    <ul className="
+                                    font-medium 
+                                    flex
+                                    flex-col
+                                    text-left
+                                    md:flex-row
+                                    mt-2
+                                    md:gap-6
+                                    gap-0.5
                                     rounded-lg md:space-x-4 
                                     lg:space-x-4 
-                                    md:mt-0 md:border-0">
+                                    ">
                                         
                                         <li>
-                                            <a href="#" className="block py-2 
+                                            <a href="#" className="
+                                            flex
+                                            justify-center
                                             text-sm
                                             lg:text-2xl
                                             px-3 rounded-sm 
@@ -60,7 +72,9 @@ export function Navbar() {
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" className="block py-2
+                                            <a href="#" className="
+                                            flex
+                                            justify-center
                                             text-sm
                                             lg:text-2xl
                                             px-3 rounded-sm 
@@ -69,22 +83,39 @@ export function Navbar() {
                                                 About
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="#" className="
+                                            flex
+                                            justify-center
+                                            text-sm
+                                            lg:text-2xl
+                                            px-3 rounded-sm 
+                                            md:border-0 md:p-0 
+                                            text-violet-200 hover:text-blue-300">
+                                                MyBudgets
+                                            </a>
+                                        </li>
                                         </ul>
                                 </div>
             
                             </div>
                         </nav>
-                        <h1 className="text-7xl
-                        p-2
+                        <h1 className="
+                        press-start-2p-regular
+                        justify-center
+                        tracking-tighter
+                        text-5xl
+                        lg:text-7xl
+                        p-2.5
                         border-0
-                        bg-gradient-to-l from-blue-900 via-blue-300 to-purple-200
+                        rounded-b-4xl
+                        bg-gradient-to-l via-blue-300 to-purple-200
                         text-blue-900 bg-emerald-200 
                         lg:ps-22
                         md:ps-5
-                        sm:ps-2
-                        
+                        ps-7
                         ">
-                            WIZARD
+                        WEEZARD
                         </h1>
                         
                     </div>

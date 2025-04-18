@@ -1,5 +1,5 @@
 import { CustomDataType, CustomDataCardType } from "../../types/types";
-import { IsActiveHook, CustomDataCardHook } from "../../hooks/hooks";
+import { IsActiveHook } from "./useCardBudget";
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
 
 export function CardBudget(
@@ -10,19 +10,18 @@ export function CardBudget(
         custom,
         isCheckedValue,
         onCheckedToggled,
-        onQuantityChange
+        onQuantityChange,
+        customDataCardHook
     }: CustomDataCardType
 
 ) {
-
-    const { toggleCardState } = IsActiveHook();
-    const { customDataCardInitial } = CustomDataCardHook();
+    const {toggleCardState} = IsActiveHook();
     // const { quantity, increaseQuantity, decreaseQuantity } = QuantityHook();
 
     return (
         <div className="
         flex
-        w-[90%]
+        w-[95%]
         md:w-[70%]
         lg:w-[70%]">
 
@@ -46,24 +45,36 @@ export function CardBudget(
                         "border-3 bg-violet-200" :
                         ""}`
                 }>
-                <div className="flex
-                    w-full
-                    flex-row">
-                    <div className="flex
-                        flex-col
-                        mr-6
-                        justify-items-start">
+                <div className="
+                flex
+                w-full
+                flex-row">
+                    <div className="
+                    flex
+                    flex-col
+                    mr-6
+                    justify-items-start
+                    w-1/2
+                    w-">
                         <h3 className="text-lg
-                            ms-2
-                            mt-2
-                            font-bold
-                            text-blue-950">{title}</h3>
+                        lg:text-5xl
+                        md:text-3xl
+                        ms-2
+                        mt-2
+                        font-bold
+                        text-blue-950
+                        ">{title}</h3>
                         <p className="w-50
-                            ms-2
-                            mt-2
-                            text-xs
-                            text-gray-600
-                            text-start">{description}</p>
+                        md:text-xl
+                        md:w-full
+                        lg:text-2xl
+                        lg:w-full
+                        ms-2
+                        mt-2
+                        text-xs
+                        text-gray-600
+                        text-start"
+                        >{description}</p>
                     </div>
                     {/* Flex row for price and checkbox */}
                     <div className="
@@ -74,16 +85,20 @@ export function CardBudget(
                     gap-1 pt-15
                     -translate-x-5
                     lg:w-[20%]
-                    lg:translate-x-71
+                    lg:translate-x-10
                     lg:gap-10
-                    md:w-[17%]
-                    md:translate-x-42
+                    md:w-[10%]
+                    md:translate-x-20
                     md:items-end">
                         <h2 className="
                         text-lg
-                        font-bol
+                        font-bold
+                        md:text-2xl
+                        md:me-1
+                        lg:text-3xl
                         text-blue-950
-                        md:translate-y-1">{price}€</h2>
+                        "
+                        >{price}€</h2>
                         <div className="
                         flex
                         items-center
@@ -95,23 +110,35 @@ export function CardBudget(
                                 checked={isCheckedValue}
                                 onChange={onCheckedToggled}
                             />
-                            <label className="text-xs
+                            <label className="
+                            text-xs
                             text-gray-600
-                            max-w-xs">
+                            max-w-xs
+                            md:text-lg
+                            lg:text-2xl
+                            ">
                                 {isCheckedValue ? "added!" : "add"}
                             </label>
                         </div>
                     </div>
                 </div>
                 {/* QuantitySelectors and QuantityButtons */}
-                <div className="flex flex-col w-full">
+                <div className="
+                flex
+                flex-col
+                w-full
+                md:text-xl
+                lg:text-3xl">
                     {custom === true && isCheckedValue === true && (
                             <div>
-                                {customDataCardInitial.map((data: CustomDataType) => (
+                                {customDataCardHook.map((data: CustomDataType) => (
                                     <QuantitySelector
                                         key={data.productTitle}
                                         customElement={data}
-                                        onQuantityChange={onQuantityChange}
+                                        productTitle={title}
+                                        onQuantityChange={(productTitle: string, newQuantity: number) => 
+                                            onQuantityChange(productTitle, newQuantity)
+                                        }
                                     />
                                 ))}
                             </div>
