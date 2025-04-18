@@ -1,6 +1,6 @@
-import { CustomDataType } from "../../types/types";
+import { CustomDataType } from "../../../types/types";
 import { QuantityHook } from "./useQuantitySelector";
-import { QuantityButton } from "../buttons/QuantityButton";
+import { QuantityButton } from "./buttons/QuantityButton";
 
 export function QuantitySelector(
     props: {

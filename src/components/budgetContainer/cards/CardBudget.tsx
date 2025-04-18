@@ -1,4 +1,4 @@
-import { CustomDataType, CustomDataCardType } from "../../types/types";
+import { CustomDataType, CustomDataCardType } from "../../../types/types";
 import { IsActiveHook } from "./useCardBudget";
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
 

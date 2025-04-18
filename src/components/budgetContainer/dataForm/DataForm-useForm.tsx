@@ -1,8 +1,8 @@
 "use client"
 import { useContext } from "react";
-import { UserBudgetContext } from "../../context/UserBudgetContext";
+import { UserBudgetContext } from "../../../context/UserBudgetContext";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-import { UserBudgetType, CardDataType, CustomDataType } from "../../types/types";
+import { UserBudgetType, CardDataType, CustomDataType } from "../../../types/types";
 import { InputForm } from "./inputForm/InputForm";
 import { SubmitButton } from "./submitButton/SubmitButton";
 
@@ -16,7 +16,7 @@ export function DataForm(props:
     },
 ) {
 
-    const [userBudgetListInitial, setUserBudgetListInitial] = useContext(UserBudgetContext);
+    const [setUserBudgetListInitial] = useContext(UserBudgetContext);
 
     const {
         register,

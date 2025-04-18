@@ -1,7 +1,7 @@
 import { CardDataType } from "../../types/types";
 import { FinalPriceHook, DataCardHook, ShowDataFormHook, CustomDataCardHook } from "./useBudgetContainer";
-import { CardBudget } from "../cards/CardBudget";
-import { DataForm } from "../dataForm/DataForm-useForm";
+import { CardBudget } from "./cards/CardBudget";
+import { DataForm } from "../budgetContainer/dataForm/DataForm-useForm";
 import { useEffect } from "react";
 
 export function BudgetContainer() {
