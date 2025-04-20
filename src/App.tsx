@@ -16,8 +16,8 @@ function App() {
   return (
     <div className="bg-slate-50">
       <UserBudgetContext.Provider value={[userBudgetListInitial, setUserBudgetListInitial]}>
-      <Navbar />
       <BrowserRouter>
+      <Navbar />
       <AppRoutes />
       </BrowserRouter>
       </UserBudgetContext.Provider>
