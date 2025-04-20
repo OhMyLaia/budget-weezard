@@ -1,10 +1,12 @@
 import { UserBudgetCard } from "./userBudgetCard/UserBudgetCard";
 import { UserBudgetContext } from "../../context/UserBudgetContext";
-import { useContext } from "react";
+import { useContext, createContext } from "react";
 import { CustomDataType, UserBudgetType } from "../../types/types";
 import { useEffect } from "react";
 
+
 export function BudgetFinderContainer() {
+    
     const [UserBudgetListInitial, setUserBudgetListInitial] = useContext(UserBudgetContext);
 
     const mockDataUser: UserBudgetType = {
@@ -46,7 +48,7 @@ export function BudgetFinderContainer() {
         serviceTitle: ["Marketing", "Content Creation"],
         totalPrice: 700
     }
-    
+
     const mockDataUser3: UserBudgetType = {
         customProducts: [
             {
@@ -66,7 +68,7 @@ export function BudgetFinderContainer() {
         serviceTitle: ["Hosting", "Domain"],
         totalPrice: 300
     }
-    
+
     const mockDataUser4: UserBudgetType = {
         customProducts: [
             {
@@ -87,29 +89,35 @@ export function BudgetFinderContainer() {
         totalPrice: 1200
     }
 
+    // useEffect(() => {
+    //     if (UserBudgetListInitial.length === 0) {
+    //         setUserBudgetListInitial(prev => [
+    //         ...prev, mockDataUser, mockDataUser2, mockDataUser3, mockDataUser4]);
+    //     }
+    // }, []);
+
     useEffect(() => {
-        setUserBudgetListInitial(prev => {
-            const updatedArray = [...prev, mockDataUser, mockDataUser2, mockDataUser3, mockDataUser4];
-            return updatedArray;
-        });
-    }, []);
+        console.log("🎯 Contexto actualizado en BudgetFinder:", UserBudgetListInitial);
+      }, [UserBudgetListInitial]); // Dependencia del estado
 
     return (
         <div className="bg-slate-50">
             <div className="mb-5">
             </div>
-            {UserBudgetListInitial.map((card, index) => (
-                <UserBudgetCard
-                    key={index}
-                    customProducts={card.customProducts || ([] as CustomDataType[])}
-                    serviceTitle={card.serviceTitle}
-                    userName={card.userName}
-                    userEmail={card.userEmail}
-                    userPhone={card.userPhone}
-                    totalPrice={card.totalPrice}
-                />
-            ))}
-                
+            {UserBudgetListInitial.map((card, index) => {
+                console.log("🧾 PRESUPUESTO:", card);
+                return (
+                    <UserBudgetCard
+                        key={index}
+                        customProducts={card.customProducts || []}
+                        serviceTitle={card.serviceTitle}
+                        userName={card.userName}
+                        userEmail={card.userEmail}
+                        userPhone={card.userPhone}
+                        totalPrice={card.totalPrice}
+                    />
+                );
+            })}
         </div>
     )
 }

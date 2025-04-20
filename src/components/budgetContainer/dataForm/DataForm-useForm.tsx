@@ -40,7 +40,7 @@ export function DataForm(props:
             console.log(card)
 
             if (card.custom === true) {
-                props.customDataCardInitial.map((product) => {(
+                props.customDataCardInitial.forEach((product) => {(
                     customCards.push({
                         productTitle: product.productTitle,
                         //! hay que llenar productPrice, es 30 siempre
@@ -70,10 +70,11 @@ export function DataForm(props:
             console.log(`updatedlist -> ${JSON.stringify(updatedList)} `)
             return updatedList;
         });
-        setTimeout(() => {
-            // console.log(`🔍 length array -> ${arrayTemporal.length} `)
-            reset();
-        }, 1500); 
+        // setTimeout(() => {
+        //     // console.log(`🔍 length array -> ${arrayTemporal.length} `)
+        //     reset();
+        // }, 1500); 
+        reset();
     }
 
     return (

@@ -12,7 +12,7 @@ function App() {
   
   // type UserBudgetContextType = [UserBudgetType[], Dispatch<SetStateAction<UserBudgetType[]>>];
   const [userBudgetListInitial, setUserBudgetListInitial] = useState<UserBudgetType[]>([]);
-
+  console.log(`Context in App.tsx -> ${JSON.stringify(userBudgetListInitial)}`)
   return (
     <div className="bg-slate-50">
       <UserBudgetContext.Provider value={[userBudgetListInitial, setUserBudgetListInitial]}>
