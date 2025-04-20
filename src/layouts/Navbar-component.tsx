@@ -12,7 +12,9 @@ export function Navbar() {
                     items-center justify-between 
                     mx-auto">
 
-                    <div className="flex items-center 
+                    <div className="
+                    bricolage-grotesque-wizard
+                    flex items-center 
                         space-x-3 rtl:space-x-reverse">
                         <span className="self-center 
                             font-semibold whitespace-nowrap
@@ -83,6 +85,7 @@ export function Navbar() {
                             </li>
                             <li>
                                 <Link to="/my-budgets" className="
+                                    
                                             flex
                                             justify-center
                                             text-sm
@@ -106,7 +109,7 @@ export function Navbar() {
                         lg:text-7xl
                         p-2.5
                         border-0
-                        rounded-b-4xl
+
                         bg-gradient-to-l via-blue-300 to-purple-200
                         text-blue-900 bg-emerald-200 
                         lg:ps-22

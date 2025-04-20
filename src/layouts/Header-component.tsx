@@ -9,7 +9,7 @@ export function Header() {
         ">
             <img src="../../public/bw-header.png"
             className="
-            rounded-lg
+
             mt-4
             md:mt-10
             md:mb-10
