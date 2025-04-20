@@ -4,9 +4,10 @@ interface GenericButtonProps {
     text: string;
     width: string;
     onClick: () => void;
+    effect?: string
 }
 
-export function GenericButton({ text, width, onClick }: GenericButtonProps) {
+export function GenericButton({ text, width, onClick, effect }: GenericButtonProps) {
     return (
         <div
         className={`
@@ -15,6 +16,7 @@ export function GenericButton({ text, width, onClick }: GenericButtonProps) {
         flex-col
         text-center
         content-center
+        ${effect}
         `}
         >
             <button

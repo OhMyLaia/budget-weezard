@@ -1,12 +1,15 @@
 import { UserBudgetCard } from "./userBudgetCard/UserBudgetCard";
 import { UserBudgetContext } from "../../context/UserBudgetContext";
-import { useContext, createContext } from "react";
+import { useContext } from "react";
 import { CustomDataType, UserBudgetType } from "../../types/types";
 import { useEffect } from "react";
+import { GenericButton } from "../ui/GenericButton";
+import { useNavigate } from "react-router-dom";
+
 
 
 export function BudgetFinderContainer() {
-    
+
     const [UserBudgetListInitial, setUserBudgetListInitial] = useContext(UserBudgetContext);
 
     const mockDataUser: UserBudgetType = {
@@ -98,26 +101,54 @@ export function BudgetFinderContainer() {
 
     useEffect(() => {
         console.log("🎯 Contexto actualizado en BudgetFinder:", UserBudgetListInitial);
-      }, [UserBudgetListInitial]); // Dependencia del estado
+    }, [UserBudgetListInitial]); // Dependencia del estado
+
+
+    const navigate = useNavigate();
+
+    const handleOnClickHomeButton = () => {
+        navigate("/budget-calculator");
+    }
 
     return (
         <div className="bg-slate-50">
             <div className="mb-5">
             </div>
-            {UserBudgetListInitial.map((card, index) => {
-                console.log("🧾 PRESUPUESTO:", card);
-                return (
-                    <UserBudgetCard
-                        key={index}
-                        customProducts={card.customProducts || []}
-                        serviceTitle={card.serviceTitle}
-                        userName={card.userName}
-                        userEmail={card.userEmail}
-                        userPhone={card.userPhone}
-                        totalPrice={card.totalPrice}
+            {UserBudgetListInitial.length === 0 ? (
+                <div>
+                    <h2
+                        className="
+                        bricolage-grotesque-wizard
+                        text-6xl
+                        text-blue-900
+                        break-words
+                        text-center
+                        mb-7
+                        "
+                    >No budgets yet</h2>
+                    <GenericButton
+                        text={"Discover"}
+                        width="full"
+                        onClick={handleOnClickHomeButton}
+                        effect="animate-bounce"
                     />
-                );
-            })}
+                </div>
+            ) : (
+                UserBudgetListInitial.map((card, index) => {
+                    console.log("🧾 PRESUPUESTO:", card);
+                    return (
+                        <UserBudgetCard
+                            key={index}
+                            customProducts={card.customProducts || []}
+                            serviceTitle={card.serviceTitle}
+                            userName={card.userName}
+                            userEmail={card.userEmail}
+                            userPhone={card.userPhone}
+                            totalPrice={card.totalPrice}
+                        />
+                    );
+                })
+            )}
         </div>
     )
 }
