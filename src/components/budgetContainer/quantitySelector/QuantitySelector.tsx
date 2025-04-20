@@ -6,7 +6,7 @@ export function QuantitySelector(
     props: {
         customElement: CustomDataType;
         productTitle: string;
-        onQuantityChange(title: string, newQuantity: number): void;
+        onQuantityChange(title: string, newQuantity: number, price: number): void;
     })
     {
 
@@ -55,7 +55,7 @@ export function QuantitySelector(
                             if (quantity === 1) return
                             decreaseQuantity();
                             // const newQuantity = quantity - 1;
-                            props.onQuantityChange(props.customElement.productTitle, (-props.customElement.productPrice));
+                            props.onQuantityChange(props.customElement.productTitle, (quantity - 1), props.customElement.productPrice);
                             // setFinalPrice()
                         }}
                         quantityOperator={"-"}
@@ -73,8 +73,7 @@ export function QuantitySelector(
                         key={`increase-${props.customElement.productTitle}`}
                         onClick={() => {
                             increaseQuantity();
-                            // const newQuantity = quantity + 1;
-                            props.onQuantityChange(props.customElement.productTitle, props.customElement.productPrice);
+                            props.onQuantityChange(props.customElement.productTitle, (quantity + 1), props.customElement.productPrice);
                         }}
                         quantityOperator={"+"}
                     />

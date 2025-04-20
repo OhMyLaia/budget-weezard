@@ -51,3 +51,9 @@ export const ShowDataFormHook = () => {
 
     return { showDataForm, setShowDataForm }
 }
+
+export const HandleQuantitesHook = () => {
+    const [quantities, setQuantities] = useState<{ [title: string]: number }>({});
+    
+    return { quantities, setQuantities }
+}

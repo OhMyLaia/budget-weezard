@@ -96,8 +96,8 @@ export function BudgetFinderContainer() {
 
     return (
         <div className="bg-slate-50">
-            <h2>My Budgets</h2>
-            <div>finder</div>
+            <div className="mb-5">
+            </div>
             {UserBudgetListInitial.map((card, index) => (
                 <UserBudgetCard
                     key={index}
@@ -109,6 +109,7 @@ export function BudgetFinderContainer() {
                     totalPrice={card.totalPrice}
                 />
             ))}
+                
         </div>
     )
 }

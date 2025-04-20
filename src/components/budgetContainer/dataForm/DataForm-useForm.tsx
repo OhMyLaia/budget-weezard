@@ -7,16 +7,15 @@ import { InputForm } from "./inputForm/InputForm";
 import { SubmitButton } from "./submitButton/SubmitButton";
 
 
-
 export function DataForm(props:
     {
         dataCardInitial: CardDataType[],
         customDataCardInitial: CustomDataType[],
-        finalPrice: number
+        finalPrice: number,
     },
 ) {
 
-    const [setUserBudgetListInitial] = useContext(UserBudgetContext);
+    const [userBudgetListInitial, setUserBudgetListInitial] = useContext(UserBudgetContext);
 
     const {
         register,
@@ -47,7 +46,7 @@ export function DataForm(props:
                         //! hay que llenar productPrice, es 30 siempre
                         productPrice: product.productPrice,
                         //! hay que cambiar esta productQuantity, no la pilla
-                        productQuantity: product.productPrice / product.productPrice
+                        productQuantity: product.productQuantity
                     })
                 )})
             }

@@ -15,6 +15,7 @@ export function UserBudgetCard(props: {
         flex
         flex-col
         items-center
+        mb-5
         ">
             <div className="
             w-[95%]
@@ -87,7 +88,7 @@ export function UserBudgetCard(props: {
                         lg:text-xl
                         justify-center
                         w-2/5
-                        ps-7">
+                        md:ps-7">
                         {props.customProducts.map(product => (
                             <div key={product.productTitle}>
                                 <ul>
