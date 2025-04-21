@@ -3,6 +3,7 @@ import { FinalPriceHook, HandleQuantitesHook, DataCardHook, ShowDataFormHook, Cu
 import { CardBudget } from "./cards/CardBudget";
 import { DataForm } from "../budgetContainer/dataForm/DataForm-useForm";
 import { useEffect } from "react";
+import { IsCheckedHook } from "./cards/useCardBudget";
 
 export function BudgetContainer() {
 
@@ -11,6 +12,7 @@ export function BudgetContainer() {
     const { showDataForm, setShowDataForm } = ShowDataFormHook();
     const { customDataCardInitial, setCustomDataCardInitial } = CustomDataCardHook();
     const { quantities, setQuantities } = HandleQuantitesHook();
+    const { isChecked, setIsChecked } = IsCheckedHook();
 
 
     const handleCheckboxChange = (index: number) => {
@@ -22,6 +24,23 @@ export function BudgetContainer() {
 
         setDataCardInitial(updatedCards);
     };
+
+    // const calculateExtra = () => {
+
+    //     const checkedCards: CardDataType[] = dataCardInitial.filter(card => card.isCheckedValue);
+
+    //     const totalBasePrice = checkedCards.reduce((sum, card) => sum + card.price, 0);
+
+    //     const extraCustomCost = customDataCardInitial.reduce((sum: number, product) => {
+    //         if (product.productQuantity > 1) {
+    //             return sum + ((product.productQuantity - 1) * product.productPrice);
+    //         }
+    //         return sum;
+    //     }, 0);
+
+    //     const totalPrice = totalBasePrice + extraCustomCost;
+    // }
+
 
     useEffect(() => {
         console.log("🔥 useEffect triggered");
@@ -37,19 +56,17 @@ export function BudgetContainer() {
             return sum;
         }, 0);
 
-        const totalPrice = totalBasePrice + extraCustomCost
+        const totalPrice = totalBasePrice + extraCustomCost;
 
         setFinalPrice(totalPrice);
 
         console.log(" Final price updated:", totalPrice);
-    }, [dataCardInitial, quantities, setFinalPrice]);
+    }, [dataCardInitial, quantities]);
 
     const handleQuantityChange = (productTitle: string, newQuantity: number) => {
         setCustomDataCardInitial(prevState =>
             prevState.map(product => {
                 if (product.productTitle === productTitle) {
-                    // const quantityDiff = newQuantity
-                    // setFinalPrice(prev => prev + product.productPrice );
                     return { ...product, productQuantity: newQuantity }
                 }
                 return product;
@@ -59,6 +76,14 @@ export function BudgetContainer() {
             ...prev, [productTitle]: newQuantity
         }))
     };
+
+    const resetAllFields = () => {
+        const resetCards = dataCardInitial.map( card => ({
+            ...card, isCheckedValue: false
+        }));
+        setDataCardInitial(resetCards);
+        setFinalPrice(0);
+    }
 
 
     return (
@@ -113,6 +138,7 @@ export function BudgetContainer() {
                 </span>
                 <h2
                     className="
+                    bricolage-grotesque-wizard
                 text-3xl
                 font-bold
                 align-middle
@@ -121,13 +147,14 @@ export function BudgetContainer() {
                     {finalPrice}</h2>
                 <span>{"€"}</span>
             </span>
-            {showDataForm === true && (
-                <DataForm
-                    dataCardInitial={dataCardInitial}
-                    customDataCardInitial={customDataCardInitial}
-                    finalPrice={finalPrice}
-                />
-            )}
+        {showDataForm === true && (
+            <DataForm
+                dataCardInitial={dataCardInitial}
+                customDataCardInitial={customDataCardInitial}
+                finalPrice={finalPrice}
+                resetFunction={resetAllFields}
+            />
+        )}
         </div>
     )
 }

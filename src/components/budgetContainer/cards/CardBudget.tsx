@@ -56,7 +56,9 @@ export function CardBudget(
                     justify-items-start
                     w-1/2
                     w-">
-                        <h3 className="text-lg
+                        <h3 className="
+                        bricolage-grotesque-wizard
+                        text-lg
                         lg:text-5xl
                         md:text-3xl
                         ms-2
@@ -91,6 +93,7 @@ export function CardBudget(
                     md:translate-x-20
                     md:items-end">
                         <h2 className="
+                        bricolage-grotesque-wizard
                         text-lg
                         font-bold
                         md:text-2xl

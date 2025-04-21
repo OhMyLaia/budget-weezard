@@ -23,7 +23,7 @@ export function SubmitButton(props: {disabled: boolean}) {
             mx-auto
             md:w-1/2
             p-2
-            hover:bg-emerald-200 focus:outline-2
+            hover:bg-purple-200 focus:outline-2
             text-zinc-800
             shadow-blue-900
             border-fuchsia-900

@@ -134,9 +134,18 @@ export function BudgetFinderContainer() {
                     />
                 </div>
             ) : (
-                UserBudgetListInitial.map((card, index) => {
-                    console.log("🧾 PRESUPUESTO:", card);
-                    return (
+                <div>
+                    <h2
+                    className="
+                    bricolage-grotesque-wizard
+                    text-5xl
+                    text-blue-900
+                    break-words
+                    text-center
+                    mb-3
+                    "
+                    >Current Budgets</h2>
+                    {UserBudgetListInitial.map((card, index) => (
                         <UserBudgetCard
                             key={index}
                             customProducts={card.customProducts || []}
@@ -146,8 +155,9 @@ export function BudgetFinderContainer() {
                             userPhone={card.userPhone}
                             totalPrice={card.totalPrice}
                         />
-                    );
-                })
+                    ))}
+
+                </div>
             )}
         </div>
     )

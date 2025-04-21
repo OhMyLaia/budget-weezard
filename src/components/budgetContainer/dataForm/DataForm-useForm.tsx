@@ -1,10 +1,11 @@
 "use client"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserBudgetContext } from "../../../context/UserBudgetContext";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { UserBudgetType, CardDataType, CustomDataType } from "../../../types/types";
 import { InputForm } from "./inputForm/InputForm";
 import { SubmitButton } from "./submitButton/SubmitButton";
+import { MessageDiv } from "../../ui/MessageDiv";
 
 
 export function DataForm(props:
@@ -12,10 +13,12 @@ export function DataForm(props:
         dataCardInitial: CardDataType[],
         customDataCardInitial: CustomDataType[],
         finalPrice: number,
+        resetFunction: () => void
     },
 ) {
 
     const [userBudgetListInitial, setUserBudgetListInitial] = useContext(UserBudgetContext);
+    const [isSubmittedData, setIsSubmittedData] = useState(false)
 
     const {
         register,
@@ -43,9 +46,7 @@ export function DataForm(props:
                 props.customDataCardInitial.forEach((product) => {(
                     customCards.push({
                         productTitle: product.productTitle,
-                        //! hay que llenar productPrice, es 30 siempre
                         productPrice: product.productPrice,
-                        //! hay que cambiar esta productQuantity, no la pilla
                         productQuantity: product.productQuantity
                     })
                 )})
@@ -62,19 +63,22 @@ export function DataForm(props:
             totalPrice: props.finalPrice
         };
 
-        // const arrayTemporal: any = [];
-        // arrayTemporal.push(newUserBudget);
         setUserBudgetListInitial((prevState) => {
             const updatedList = [...prevState, newUserBudget];
-            // console.log(`newUserBudget -> ${JSON.stringify(newUserBudget)}`);
             console.log(`updatedlist -> ${JSON.stringify(updatedList)} `)
             return updatedList;
         });
-        // setTimeout(() => {
-        //     // console.log(`🔍 length array -> ${arrayTemporal.length} `)
-        //     reset();
-        // }, 1500); 
+
+        setIsSubmittedData(true)
+
         reset();
+
+        setTimeout(() => {
+            setIsSubmittedData(false);
+        }, 4000);
+
+        props.resetFunction();
+
     }
 
     return (
@@ -83,6 +87,7 @@ export function DataForm(props:
         flex
         flex-col
         md:w-1/2
+        mb-10
         ">
             <div className="
             w-full
@@ -144,20 +149,17 @@ export function DataForm(props:
                     {errors.phone && (
                         <p className="text-red-600">{`${errors.phone.message}`}</p>
                     )}
-            {/* <div
-                className="
-                    flex
-                    flex-row
-                    justify-end
-                    me-6"
-            > */}
-                {/* { handleSubmit() === true || handleSubmit() === null ? "" : */}
-                {/* } */}
                 <SubmitButton
                     disabled={isSubmitting}
                 />
-            {/* </div> */}
                 </form>
+                {isSubmittedData === true && (
+                    <MessageDiv
+                    color="blue-900"
+                    message={`Budget submitted successfully!
+                        Go to MyBudgets page for more info.`}
+                    />
+                )}
             </div>
         </div>
     )
