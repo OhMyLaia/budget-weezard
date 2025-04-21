@@ -1,5 +1,6 @@
 // import { IsOpenModalHook } from "./useInfoModal"
 import { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 
 export function InfoModal(props:
     {
@@ -18,53 +19,80 @@ export function InfoModal(props:
     }, [isOpen]);
 
     return (
-        <div>
-            <button onClick={() => setIsOpen(true)}
+        <>
+            <button
+                onClick={() => setIsOpen(true)}
                 className="
-                block text-white
-                bg-blue-700
-                hover:bg-blue-800
-                focus:ring-4 focus:outline-non
-                focus:ring-blue-300
-                font-medium
-                rounded-lg
-                text-sm
-                px-5
-                py-2.5
-                text-center"
-                type="button">
+            block text-white
+            bg-fuchsia-900
+            focus:ring-4 focus:outline-none
+            focus:ring-blue-300
+            font-medium rounded-full
+            text-sm px-5 py-2.5 text-center"
+                type="button"
+            >
                 {props.customInfoBtn}
             </button>
-            {isOpen === true && (
-                <div id="popup-modal" tabIndex={-1} className="
-                overflow-y-auto
-                fixed top-0 right-0 left-0 z-50
-                justify-center
-                items-center
-                w-full
-                md:inset-0
-                h-[calc(100%-1rem)]
-                max-h-full">
-                    <div className="relative
-                    p-4 w-full
-                    max-w-md
-                    max-h-full">
-                        <div className="relative
-                        bg-white
-                        rounded-lg
-                        shadow-sm dark:bg-gray-700">
-                            <button
-                                onClick={() => setIsOpen(false)}
-                                type="button" className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
-                                x
-                            </button>
-                            <div className="p-4 md:p-5 text-center">
-                                <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">${props.customTitle}</h3>
-                                <p>{`${props.customDescription}. Only extra ${props.customPrice} per extra service.`}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>)}
-        </div>
-    )
+
+            {isOpen &&
+  ReactDOM.createPortal(
+    <div
+      className="
+      fixed
+      inset-0
+      z-50
+      flex
+      items-center
+      justify-center
+    backdrop-blur-xs
+      bg-opacity-10"
+    >
+      <div
+        className="
+        w-3/4
+        max-w-lg
+        max-h-[90vh]
+        overflow-y-auto
+        rounded-4xl
+        flex
+        flex-col
+        gap-4
+        p-6
+        bg-purple-100
+        hover:bg-violet-200
+        focus:outline-2
+        focus:outline-violet-400
+        text-zinc-800
+        shadow-blue-900
+        border-fuchsia-900
+        shadow-[7px_7px_0px_0px_blue-900]
+        drop-shadow-lg
+        border-3
+        relative"
+      >
+        <button
+          onClick={() => setIsOpen(false)}
+          className="
+          absolute
+          top-2
+          right-3
+          text-xl
+          text-zinc-600
+          hover:text-red-700"
+        >
+          ✕
+        </button>
+
+        <h3 className="text-xl font-bold text-blue-950">
+          {props.customTitle}
+        </h3>
+        <p className="text-gray-700 text-base">
+          {`${props.customDescription}. Only extra ${props.customPrice} per extra service.`}
+        </p>
+      </div>
+    </div>,
+    document.getElementById("modal-root")!
+  )}
+        </>
+    );
 }

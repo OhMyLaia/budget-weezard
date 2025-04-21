@@ -10,7 +10,6 @@ export function QuantitySelector(
         onQuantityChange(title: string, newQuantity: number, price: number): void;
         modalTitle: string;
         modalDescription: string;
-        modalSvg: string;
     })
     {
 
