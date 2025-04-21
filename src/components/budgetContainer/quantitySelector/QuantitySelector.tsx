@@ -1,7 +1,7 @@
 import { CustomDataType } from "../../../types/types";
 import { QuantityHook } from "./useQuantitySelector";
 import { QuantityButton } from "./buttons/QuantityButton";
-import { InfoModal } from "../../ui/InfoModal";
+import { InfoModal } from "../../ui/infoModal/InfoModal";
 
 export function QuantitySelector(
     props: {
@@ -10,13 +10,13 @@ export function QuantitySelector(
         onQuantityChange(title: string, newQuantity: number, price: number): void;
         modalTitle: string;
         modalDescription: string;
+        modalSvg: string;
     })
     {
 
     const { quantity, increaseQuantity, decreaseQuantity } = QuantityHook();
     const extraPrice: number = (quantity) * props.customElement.productPrice;
-    const customSvg: string = `<svg className="w-3 h-3 rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/></svg>`;
+    
     return (
         <>
             <div
@@ -53,10 +53,9 @@ export function QuantitySelector(
                         >
 
                         <InfoModal
-                        customText={props.customElement.productTitle}
-                        customDescription={`language`}
+                        customTitle={props.modalTitle}
+                        customDescription={props.modalDescription}
                         customInfoBtn={`I`}
-                        customSvg={customSvg}
                         customPrice={(props.customElement.productPrice).toString()}
                         />
 

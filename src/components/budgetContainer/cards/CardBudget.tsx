@@ -1,6 +1,7 @@
 import { CustomDataType, CustomDataCardType } from "../../../types/types";
 import { IsActiveHook } from "./useCardBudget";
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
+import { dataModal } from "../../ui/infoModal/data-infoModal";
 
 export function CardBudget(
     {
@@ -140,8 +141,8 @@ export function CardBudget(
                                         customElement={data}
                                         productTitle={title}
                                         onQuantityChange={onQuantityChange}
-                                        modalTitle={array1[index].title}
-                                        modalDescription={array1[index].description}
+                                        modalTitle={dataModal[index].title}
+                                        modalDescription={dataModal[index].description}
                                     />
                                 ))}
                             </div>
