@@ -39,6 +39,8 @@ export function BudgetContainer() {
     //     }, 0);
 
     //     const totalPrice = totalBasePrice + extraCustomCost;
+
+    //     return { totalPrice, extraCustomCost}
     // }
 
 
@@ -47,6 +49,10 @@ export function BudgetContainer() {
 
         const checkedCards: CardDataType[] = dataCardInitial.filter(card => card.isCheckedValue);
 
+        if (checkedCards.length === 0) {
+            setFinalPrice(0)
+            return
+        }
         const totalBasePrice = checkedCards.reduce((sum, card) => sum + card.price, 0);
 
         const extraCustomCost = customDataCardInitial.reduce((sum: number, product) => {
@@ -83,6 +89,8 @@ export function BudgetContainer() {
         }));
         setDataCardInitial(resetCards);
         setFinalPrice(0);
+        // let { extraCustomCost } = calculateExtra();
+        // extraCustomCost = 0;
     }
 
 
