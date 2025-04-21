@@ -134,12 +134,14 @@ export function CardBudget(
                 lg:text-3xl">
                     {custom === true && isCheckedValue === true && (
                             <div>
-                                {customDataCardHook.map((data: CustomDataType) => (
+                                {customDataCardHook.map((data: CustomDataType, index) => (
                                     <QuantitySelector
                                         key={data.productTitle}
                                         customElement={data}
                                         productTitle={title}
                                         onQuantityChange={onQuantityChange}
+                                        modalTitle={array1[index].title}
+                                        modalDescription={array1[index].description}
                                     />
                                 ))}
                             </div>

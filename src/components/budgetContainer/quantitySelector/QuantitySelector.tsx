@@ -1,20 +1,22 @@
 import { CustomDataType } from "../../../types/types";
 import { QuantityHook } from "./useQuantitySelector";
 import { QuantityButton } from "./buttons/QuantityButton";
+import { InfoModal } from "../../ui/InfoModal";
 
 export function QuantitySelector(
     props: {
         customElement: CustomDataType;
         productTitle: string;
         onQuantityChange(title: string, newQuantity: number, price: number): void;
+        modalTitle: string;
+        modalDescription: string;
     })
     {
 
     const { quantity, increaseQuantity, decreaseQuantity } = QuantityHook();
     const extraPrice: number = (quantity) * props.customElement.productPrice;
-
-    // console.log(`newQuantity -> ${props.customElement.productPrice}, quantity -> ${quantity}`);
-
+    const customSvg: string = `<svg className="w-3 h-3 rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/></svg>`;
     return (
         <>
             <div
@@ -48,7 +50,17 @@ export function QuantitySelector(
                         lg:text-2xl
                         translate-y-3
                         lg:translate-y-0"
-                    >{quantity === 1 ? "" : "+" + (extraPrice - props.customElement.productPrice) + "€"}</span>
+                        >
+
+                        <InfoModal
+                        customText={props.customElement.productTitle}
+                        customDescription={`language`}
+                        customInfoBtn={`I`}
+                        customSvg={customSvg}
+                        customPrice={(props.customElement.productPrice).toString()}
+                        />
+
+                        {quantity === 1 ? "" : "+" + (extraPrice - props.customElement.productPrice) + "€"}</span>
                     <QuantityButton
                         key={`decrease-${props.customElement.productTitle}`}
                         onClick={ () => {
