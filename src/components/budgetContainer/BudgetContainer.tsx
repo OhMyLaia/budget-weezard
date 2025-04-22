@@ -3,7 +3,12 @@ import { FinalPriceHook, HandleQuantitesHook, DataCardHook, ShowDataFormHook, Cu
 import { CardBudget } from "./cards/CardBudget";
 import { DataForm } from "../budgetContainer/dataForm/DataForm-useForm";
 import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom"
 import { IsCheckedHook } from "./cards/useCardBudget";
+import { MessageDiv } from "../ui/MessageDiv";
+import { useState } from "react";
+import { GenericButton } from "../ui/GenericButton";
+
 
 export function BudgetContainer() {
 
@@ -13,6 +18,10 @@ export function BudgetContainer() {
     const { customDataCardInitial, setCustomDataCardInitial } = CustomDataCardHook();
     const { quantities, setQuantities } = HandleQuantitesHook();
     const { isChecked, setIsChecked } = IsCheckedHook();
+    const [isSubmittedData, setIsSubmittedData] = useState(false)
+
+
+    // const location = useLocation();
 
 
     const handleCheckboxChange = (index: number) => {
@@ -49,10 +58,18 @@ export function BudgetContainer() {
 
         const checkedCards: CardDataType[] = dataCardInitial.filter(card => card.isCheckedValue);
 
-        if (checkedCards.length === 0) {
-            setFinalPrice(0)
-            return
+        // if (checkedCards.length === 0) {
+        //     setFinalPrice(0)
+        //     return
+        // }
+        if (checkedCards.length > 0) {
+            setShowDataForm(true);
+        } else {
+            setShowDataForm(false);
+            setFinalPrice(0);
+            return;
         }
+
         const totalBasePrice = checkedCards.reduce((sum, card) => sum + card.price, 0);
 
         const extraCustomCost = customDataCardInitial.reduce((sum: number, product) => {
@@ -84,14 +101,25 @@ export function BudgetContainer() {
     };
 
     const resetAllFields = () => {
-        const resetCards = dataCardInitial.map( card => ({
+        const resetCards = dataCardInitial.map(card => ({
             ...card, isCheckedValue: false
         }));
+        const resetCustomProducts = customDataCardInitial.map(product => ({
+            ...product,
+            productQuantity: 1,
+        }));
+
         setDataCardInitial(resetCards);
+        setCustomDataCardInitial(resetCustomProducts)
         setFinalPrice(0);
-        // let { extraCustomCost } = calculateExtra();
-        // extraCustomCost = 0;
     }
+
+    const navigate = useNavigate();
+
+    const handleOnClickMyBudgetsButton = () => {
+        navigate("/my-budgets");
+    }
+
 
 
     return (
@@ -155,14 +183,31 @@ export function BudgetContainer() {
                     {finalPrice}</h2>
                 <span>{"€"}</span>
             </span>
-        {showDataForm === true && (
-            <DataForm
-                dataCardInitial={dataCardInitial}
-                customDataCardInitial={customDataCardInitial}
-                finalPrice={finalPrice}
-                resetFunction={resetAllFields}
-            />
-        )}
+            {showDataForm === true && (
+                <DataForm
+                    dataCardInitial={dataCardInitial}
+                    customDataCardInitial={customDataCardInitial}
+                    finalPrice={finalPrice}
+                    resetFunction={resetAllFields}
+                    submittedData={isSubmittedData}
+                    setSubmittedData={setIsSubmittedData}
+                />
+            )}
+            {isSubmittedData === true && (
+                <div>
+                <MessageDiv
+                    color="blue-900"
+                    message={`Budget submitted successfully!
+                        Go to MyBudgets page for more info.`}
+                />
+                <GenericButton
+                        text={"MyBudgets"}
+                        width="full"
+                        onClick={handleOnClickMyBudgetsButton}
+                        effect="animate-bounce"
+                    />
+            </div>
+            )}
         </div>
     )
 }

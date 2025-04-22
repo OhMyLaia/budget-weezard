@@ -6,8 +6,11 @@ export function UserBudgetCard(props: {
     userEmail: string,
     userPhone: string,
     serviceTitle: string[],
-    totalPrice: number
+    totalPrice: number,
+    timeStamp: number
 }) {
+
+
     return (
         <div className="
         w-full

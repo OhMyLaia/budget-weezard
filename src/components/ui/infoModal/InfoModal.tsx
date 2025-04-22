@@ -1,6 +1,7 @@
 // import { IsOpenModalHook } from "./useInfoModal"
 import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import { svgInfo } from "../../../../public/info-svg"
 
 export function InfoModal(props:
     {
@@ -23,15 +24,17 @@ export function InfoModal(props:
             <button
                 onClick={() => setIsOpen(true)}
                 className="
-            block text-white
-            bg-fuchsia-900
-            focus:ring-4 focus:outline-none
-            focus:ring-blue-300
-            font-medium rounded-full
-            text-sm px-5 py-2.5 text-center"
+                bg-gray-300
+                flex items-center justify-center
+                w-4 h-4
+                -translate-y-1
+                rounded-full
+                hover:bg-blue-300
+                shadow-blue-900
+                shadow-[1px_1px_0px_0px_blue-900]"
                 type="button"
             >
-                {props.customInfoBtn}
+                {svgInfo}
             </button>
 
             {isOpen &&
@@ -87,7 +90,7 @@ export function InfoModal(props:
           {props.customTitle}
         </h3>
         <p className="text-gray-700 text-base">
-          {`${props.customDescription}. Only extra ${props.customPrice} per extra service.`}
+          {`${props.customDescription} Only ${props.customPrice}€ per extra service.`}
         </p>
       </div>
     </div>,

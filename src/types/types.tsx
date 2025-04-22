@@ -66,6 +66,7 @@ export type UserBudgetType = UserDataType & {
     customProducts?: CustomDataType[];
     serviceTitle: string[];
     totalPrice: number;
+    timeStampProp: number;
 }
 
 // •	UserDataType → (userName, userEmail, userPhone)

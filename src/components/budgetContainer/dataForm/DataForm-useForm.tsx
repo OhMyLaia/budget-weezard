@@ -1,11 +1,10 @@
 "use client"
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserBudgetContext } from "../../../context/UserBudgetContext";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { UserBudgetType, CardDataType, CustomDataType } from "../../../types/types";
 import { InputForm } from "./inputForm/InputForm";
 import { SubmitButton } from "./submitButton/SubmitButton";
-import { MessageDiv } from "../../ui/MessageDiv";
 
 
 export function DataForm(props:
@@ -14,11 +13,12 @@ export function DataForm(props:
         customDataCardInitial: CustomDataType[],
         finalPrice: number,
         resetFunction: () => void
+        submittedData: boolean
+        setSubmittedData: React.Dispatch<React.SetStateAction<boolean>>
     },
 ) {
 
     const [userBudgetListInitial, setUserBudgetListInitial] = useContext(UserBudgetContext);
-    const [isSubmittedData, setIsSubmittedData] = useState(false)
 
     const {
         register,
@@ -27,6 +27,12 @@ export function DataForm(props:
         reset,
         getValues,
     } = useForm();
+
+    const timeStampFun = () => {
+        const now = Date.now()
+        console.log(`now -> ${now}`)
+        return now;
+    }
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 
@@ -60,7 +66,8 @@ export function DataForm(props:
             userPhone: data.phone,
             customProducts: customCards,
             serviceTitle: cardServiceTitles,
-            totalPrice: props.finalPrice
+            totalPrice: props.finalPrice,
+            timeStampProp: timeStampFun()
         };
 
         setUserBudgetListInitial((prevState) => {
@@ -69,13 +76,13 @@ export function DataForm(props:
             return updatedList;
         });
 
-        setIsSubmittedData(true)
+        props.setSubmittedData(true)
 
         reset();
 
-        setTimeout(() => {
-            setIsSubmittedData(false);
-        }, 4000);
+        // setTimeout(() => {
+        //     props.setSubmittedData(false);
+        // }, 3000);
 
         props.resetFunction();
 
@@ -153,13 +160,7 @@ export function DataForm(props:
                     disabled={isSubmitting}
                 />
                 </form>
-                {isSubmittedData === true && (
-                    <MessageDiv
-                    color="blue-900"
-                    message={`Budget submitted successfully!
-                        Go to MyBudgets page for more info.`}
-                    />
-                )}
+                
             </div>
         </div>
     )

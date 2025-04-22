@@ -42,7 +42,6 @@ export function QuantitySelector(
                         <span
                         className="
                         text-blue-950
-                        bg-emerald-200
                         h-8
                         text-xs
                         md:text-lg

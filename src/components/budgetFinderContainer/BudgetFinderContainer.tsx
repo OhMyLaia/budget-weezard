@@ -5,99 +5,13 @@ import { CustomDataType, UserBudgetType } from "../../types/types";
 import { useEffect } from "react";
 import { GenericButton } from "../ui/GenericButton";
 import { useNavigate } from "react-router-dom";
+import { SearchBar } from "./searchBar/SearchBar";
 
 
 
 export function BudgetFinderContainer() {
 
     const [UserBudgetListInitial, setUserBudgetListInitial] = useContext(UserBudgetContext);
-
-    const mockDataUser: UserBudgetType = {
-        customProducts: [
-            {
-                productTitle: "Pages",
-                productPrice: 30,
-                productQuantity: 1
-            },
-            {
-                productTitle: "Languages",
-                productPrice: 30,
-                productQuantity: 2
-            }
-        ] as CustomDataType[],
-        userName: "EsmeDafne",
-        userEmail: "esme@dafne.miau",
-        userPhone: "123456789",
-        serviceTitle: ["Service title"],
-        totalPrice: 1000
-    }
-
-    const mockDataUser2: UserBudgetType = {
-        customProducts: [
-            {
-                productTitle: "SEO Optimization",
-                productPrice: 50,
-                productQuantity: 1
-            },
-            {
-                productTitle: "Blog Setup",
-                productPrice: 40,
-                productQuantity: 1
-            }
-        ],
-        userName: "Mario López",
-        userEmail: "mario.lopez@example.com",
-        userPhone: "654987321",
-        serviceTitle: ["Marketing", "Content Creation"],
-        totalPrice: 700
-    }
-
-    const mockDataUser3: UserBudgetType = {
-        customProducts: [
-            {
-                productTitle: "Hosting",
-                productPrice: 20,
-                productQuantity: 12
-            },
-            {
-                productTitle: "Custom Domain",
-                productPrice: 15,
-                productQuantity: 1
-            }
-        ],
-        userName: "Laura Sánchez",
-        userEmail: "laura.sanchez@example.com",
-        userPhone: "612345678",
-        serviceTitle: ["Hosting", "Domain"],
-        totalPrice: 300
-    }
-
-    const mockDataUser4: UserBudgetType = {
-        customProducts: [
-            {
-                productTitle: "Online Store",
-                productPrice: 200,
-                productQuantity: 1
-            },
-            {
-                productTitle: "Payment Integration",
-                productPrice: 100,
-                productQuantity: 1
-            }
-        ],
-        userName: "Alex García",
-        userEmail: "alex.garcia@example.com",
-        userPhone: "699112233",
-        serviceTitle: ["E-commerce"],
-        totalPrice: 1200
-    }
-
-    // useEffect(() => {
-    //     if (UserBudgetListInitial.length === 0) {
-    //         setUserBudgetListInitial(prev => [
-    //         ...prev, mockDataUser, mockDataUser2, mockDataUser3, mockDataUser4]);
-    //     }
-    // }, []);
 
     useEffect(() => {
         console.log("🎯 Contexto actualizado en BudgetFinder:", UserBudgetListInitial);
@@ -108,6 +22,59 @@ export function BudgetFinderContainer() {
 
     const handleOnClickHomeButton = () => {
         navigate("/budget-calculator");
+    }
+
+    enum sortByType {
+        timeStampEnum = "latest",
+        totalPriceEnum = "price",
+        userNameEnum = "name"
+    }
+
+    const setStateBySorting = (newSorting: UserBudgetType[]) => {
+    setUserBudgetListInitial(newSorting)
+    }
+
+    const mappingUserBudgetCards = () => {
+        UserBudgetListInitial.map((card, index) => {
+            <UserBudgetCard
+                key={index}
+                customProducts={card.customProducts || []}
+                serviceTitle={card.serviceTitle}
+                userName={card.userName}
+                userEmail={card.userEmail}
+                userPhone={card.userPhone}
+                totalPrice={card.totalPrice}
+                timeStamp={card.timeStampProp}
+            />
+        }
+    )}
+
+    const sortData = (array: UserBudgetType[], sortBy: keyof UserBudgetType) => {
+        const sorted = [...array].sort((a, b) => {
+            return (b[sortBy] ?? 0) > (a[sortBy] ?? 0) ? 1 : -1
+        });
+        setUserBudgetListInitial(sorted)
+    }
+
+
+    const sortDataSwitch = (byType: sortByType) => {
+        switch (byType) {
+            case sortByType.timeStampEnum:
+                sortData(UserBudgetListInitial, "timeStampProp")
+                mappingUserBudgetCards();
+                break;
+            case sortByType.totalPriceEnum:
+                sortData(UserBudgetListInitial, "totalPrice")
+                mappingUserBudgetCards();
+                break;
+            case sortByType.userNameEnum:
+                sortData(UserBudgetListInitial, "userName")
+                mappingUserBudgetCards();
+                break;
+            default:
+                mappingUserBudgetCards();
+                break;
+        }
     }
 
     return (
@@ -144,7 +111,12 @@ export function BudgetFinderContainer() {
                     text-center
                     mb-3
                     "
-                    >Current Budgets</h2>
+                    >Current budgets</h2>
+                <SearchBar
+                search1="Latest"
+                search2="Price"
+                search3="Name"
+                />
                     {UserBudgetListInitial.map((card, index) => (
                         <UserBudgetCard
                             key={index}
@@ -154,9 +126,9 @@ export function BudgetFinderContainer() {
                             userEmail={card.userEmail}
                             userPhone={card.userPhone}
                             totalPrice={card.totalPrice}
+                            timeStamp={card.timeStampProp}
                         />
                     ))}
-
                 </div>
             )}
         </div>
