@@ -6,12 +6,18 @@ import { useEffect } from "react";
 import { GenericButton } from "../ui/GenericButton";
 import { useNavigate } from "react-router-dom";
 import { SearchBar } from "./searchBar/SearchBar";
+import React, { useState } from 'react';
+import { sortByType } from "../../types/types";
+
+
 
 
 
 export function BudgetFinderContainer() {
 
     const [UserBudgetListInitial, setUserBudgetListInitial] = useContext(UserBudgetContext);
+    const [isOpen, setIsOpen] = useState(false);
+
 
     useEffect(() => {
         console.log("🎯 Contexto actualizado en BudgetFinder:", UserBudgetListInitial);
@@ -24,15 +30,9 @@ export function BudgetFinderContainer() {
         navigate("/budget-calculator");
     }
 
-    enum sortByType {
-        timeStampEnum = "latest",
-        totalPriceEnum = "price",
-        userNameEnum = "name"
-    }
-
-    const setStateBySorting = (newSorting: UserBudgetType[]) => {
-    setUserBudgetListInitial(newSorting)
-    }
+    // const setStateBySorting = (newSorting: UserBudgetType[]) => {
+    // setUserBudgetListInitial(newSorting)
+    // }
 
     const mappingUserBudgetCards = () => {
         UserBudgetListInitial.map((card, index) => {
@@ -50,9 +50,17 @@ export function BudgetFinderContainer() {
     )}
 
     const sortData = (array: UserBudgetType[], sortBy: keyof UserBudgetType) => {
+
         const sorted = [...array].sort((a, b) => {
+            const aValue = a[sortBy];
+            const bValue = b[sortBy];
+
+            if (typeof aValue === "string" && typeof bValue === "string") {
+                return aValue.toLocaleLowerCase().localeCompare(bValue.toLocaleLowerCase());
+            }
             return (b[sortBy] ?? 0) > (a[sortBy] ?? 0) ? 1 : -1
         });
+
         setUserBudgetListInitial(sorted)
     }
 
@@ -75,6 +83,12 @@ export function BudgetFinderContainer() {
                 mappingUserBudgetCards();
                 break;
         }
+        setIsOpen(false);
+    }
+
+
+    const toggleDropdown = () => {
+        setIsOpen(prev => !prev)
     }
 
     return (
@@ -116,6 +130,9 @@ export function BudgetFinderContainer() {
                 search1="Latest"
                 search2="Price"
                 search3="Name"
+                onClick={toggleDropdown}
+                onSort={sortDataSwitch}
+                isOpen={isOpen}
                 />
                     {UserBudgetListInitial.map((card, index) => (
                         <UserBudgetCard

@@ -69,6 +69,9 @@ export type UserBudgetType = UserDataType & {
     timeStampProp: number;
 }
 
-// •	UserDataType → (userName, userEmail, userPhone)
-// •	CustomDataType → (productTitle, productPrice, productQuantity)
-// •	+ serviceTitle + totalPrice
+
+export enum sortByType {
+    timeStampEnum = "latest",
+    totalPriceEnum = "price",
+    userNameEnum = "name"
+}

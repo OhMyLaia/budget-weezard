@@ -93,13 +93,14 @@ export function UserBudgetCard(props: {
                         w-2/5
                         md:ps-7">
                         {props.customProducts.map(product => (
-                            <div key={product.productTitle}>
-                                <ul>
-                                    <li><strong>{product.productTitle}</strong></li>
-                                    <li> → {product.productPrice}€ x {product.productQuantity} = {<strong>{product.productPrice * product.productQuantity}</strong>}€</li>
-                                </ul>
-                            </div>
-
+                            product.productQuantity !== 0 ? (
+                                <div key={product.productTitle}>
+                                    <ul>
+                                        <li><strong>{product.productTitle}</strong></li>
+                                        <li> → {product.productPrice}€ x {product.productQuantity} = {<strong>{product.productPrice * product.productQuantity}</strong>}€</li>
+                                    </ul>
+                                </div>
+                            ) : null
                         ))}
                     </div>
 
