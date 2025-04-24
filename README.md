@@ -3,7 +3,7 @@
 A visual and customizable budgeting app built with **React + TypeScript**.  
 Designed to be responsive and intuitive, using **TailwindCSS** for styling.
 
-<div style="display: flex; justify-content: center; gap: 50px;">
+<div style="display: flex; justify-content: center; gap: 100px;">
   <img src="./public/previewF1.png" alt="App Preview 1" width="45%" />
   <img src="./public/previewF2.png" alt="App Preview 2" width="45%" />
 </div>
@@ -21,7 +21,7 @@ Designed to be responsive and intuitive, using **TailwindCSS** for styling.
 
 ---
 
- ###🚀 Getting Started
+ ### 🚀 Getting Started
 
 ## 1. Clone the repo
 
