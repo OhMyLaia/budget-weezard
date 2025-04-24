@@ -93,7 +93,7 @@ export function BudgetFinderContainer() {
 
     return (
         <div className="bg-slate-50">
-            <div className="mb-5">
+            <div className="mb-5 z-10">
             </div>
             {UserBudgetListInitial.length === 0 ? (
                 <div>
@@ -115,7 +115,12 @@ export function BudgetFinderContainer() {
                     />
                 </div>
             ) : (
-                <div>
+                <div className="
+                flex
+                flex-col
+                items-center
+                justify-center
+                relative z-[10000]">
                     <h2
                     className="
                     bricolage-grotesque-wizard
@@ -126,6 +131,8 @@ export function BudgetFinderContainer() {
                     mb-3
                     "
                     >Current budgets</h2>
+                    <div className="relative w-full flex justify-end me-10">
+
                 <SearchBar
                 search1="Latest"
                 search2="Price"
@@ -134,6 +141,7 @@ export function BudgetFinderContainer() {
                 onSort={sortDataSwitch}
                 isOpen={isOpen}
                 />
+                    </div>
                     {UserBudgetListInitial.map((card, index) => (
                         <UserBudgetCard
                             key={index}

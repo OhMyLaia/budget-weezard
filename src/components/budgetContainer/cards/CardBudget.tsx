@@ -42,6 +42,7 @@ export function CardBudget(
                 shadow-[7px_7px_0px_0px_blue-900]
                 drop-shadow-lg
                 border-3
+                xl:m-8
                 ${isCheckedValue ?
                         "border-3 bg-violet-200" :
                         ""}`

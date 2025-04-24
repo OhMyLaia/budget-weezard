@@ -4,7 +4,6 @@ import { CardBudget } from "./cards/CardBudget";
 import { DataForm } from "../budgetContainer/dataForm/DataForm-useForm";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom"
-import { IsCheckedHook } from "./cards/useCardBudget";
 import { MessageDiv } from "../ui/MessageDiv";
 import { useState } from "react";
 import { GenericButton } from "../ui/GenericButton";
@@ -17,11 +16,11 @@ export function BudgetContainer() {
     const { showDataForm, setShowDataForm } = ShowDataFormHook();
     const { customDataCardInitial, setCustomDataCardInitial } = CustomDataCardHook();
     const { quantities, setQuantities } = HandleQuantitesHook();
-    const { isChecked, setIsChecked } = IsCheckedHook();
     const [isSubmittedData, setIsSubmittedData] = useState(false)
 
 
     // const location = useLocation();
+
 
 
     const handleCheckboxChange = (index: number) => {
@@ -51,6 +50,8 @@ export function BudgetContainer() {
 
     //     return { totalPrice, extraCustomCost}
     // }
+
+
 
 
     useEffect(() => {
@@ -101,17 +102,23 @@ export function BudgetContainer() {
     };
 
     const resetAllFields = () => {
-        const resetCards = dataCardInitial.map(card => ({
-            ...card, isCheckedValue: false
-        }));
+
+        setDataCardInitial(prev =>
+            prev.map(card => ({
+                ...card,
+                isCheckedValue: false
+            }))
+        );
+
         const resetCustomProducts = customDataCardInitial.map(product => ({
             ...product,
-            productQuantity: 1,
+            productQuantity: 1
         }));
 
-        setDataCardInitial(resetCards);
+        // setDataCardInitial(resetCards);
         setCustomDataCardInitial(resetCustomProducts)
         setFinalPrice(0);
+        // dataCardInitial.forEach(card => card.isCheckedValue === false)
     }
 
     const navigate = useNavigate();
@@ -119,6 +126,7 @@ export function BudgetContainer() {
     const handleOnClickMyBudgetsButton = () => {
         navigate("/my-budgets");
     }
+
 
 
 
@@ -167,10 +175,8 @@ export function BudgetContainer() {
             text-zinc-800
             border-blue-900
             ">
-                <span
-                    className="
-                text-blue-950">
-                    {`Budgeted price:`}
+                <span className="text-blue-950">
+                {`Budgeted price:`}
                 </span>
                 <h2
                     className="
@@ -195,18 +201,18 @@ export function BudgetContainer() {
             )}
             {isSubmittedData === true && (
                 <div>
-                <MessageDiv
-                    color="blue-900"
-                    message={`Budget submitted successfully!
+                    <MessageDiv
+                        color="blue-900"
+                        message={`Budget submitted successfully!
                         Go to MyBudgets page for more info.`}
-                />
-                <GenericButton
+                    />
+                    <GenericButton
                         text={"MyBudgets"}
                         width="full"
                         onClick={handleOnClickMyBudgetsButton}
                         effect="animate-bounce"
                     />
-            </div>
+                </div>
             )}
         </div>
     )

@@ -1,4 +1,6 @@
 import { sortByType } from "../../../types/types";
+import ReactDOM from 'react-dom';
+
 
 export function SearchBar(props:
     {
@@ -15,10 +17,13 @@ export function SearchBar(props:
         <div
         className="
         flex
+        flex-col
         justify-end
         items-end
         m-4
         md:me-10
+        lg:me-90
+        xl:me-110
         relative"
         >
             <button id="dropdownHoverButton"
@@ -54,9 +59,8 @@ export function SearchBar(props:
             {props.isOpen === true && (
             <div id="dropdownHover"
             className="
-            absolute
-            bottom-full
-            z-10
+
+            top-full
             bg-blue-900
             divide-y
             rounded-lg

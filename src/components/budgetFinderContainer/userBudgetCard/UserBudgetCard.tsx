@@ -13,12 +13,14 @@ export function UserBudgetCard(props: {
 
     return (
         <div className="
-        w-full
         bg-slate-50
         flex
         flex-col
+        w-[90%]
         items-center
+        justify-center
         mb-5
+        xl:w-[50%]
         ">
             <div className="
             w-[95%]
@@ -36,6 +38,7 @@ export function UserBudgetCard(props: {
                     mt-4
                     bg-purple-100
                     p-2
+
                     hover:bg-violet-200
                     focus:outline-2
                     focus:outline-violet-400

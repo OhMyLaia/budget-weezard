@@ -12,7 +12,8 @@ export const dataCardListState: CardDataType[] = ogDataCard.map( (data) => ({
     price: data.price,
     custom: data.custom,
     isCheckedValue: false,
-    onCheckedToggled: () => {} 
+    onCheckedToggled: () => {},
+    customDataCardHook: []
 }));
 
 export const customDataCardListState: CustomDataType[] = ogCustomDataCard.map( (data) => ({
@@ -33,6 +34,7 @@ export const budgetListStateArr: UserBudgetType[] = budgetListArr.map( (data) =>
     userName: data.userName,
     userEmail: data.userEmail,
     userPhone: data.userPhone,
-    totalPrice: data.totalPrice
+    totalPrice: data.totalPrice,
+    timeStampProp: data.timeStampProp
 }))
 

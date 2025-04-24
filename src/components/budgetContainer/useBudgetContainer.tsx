@@ -8,9 +8,19 @@ export const DataCardHook = () => {
     const [dataCardInitial, setDataCardInitial] = useState<CardDataType[]>([])
     console.log(`inside datacard hook -> ${dataCardInitial}`);
 
-    useEffect( () => {
-        setDataCardInitial(globals.dataCardListState)
-    }, [])
+    // useEffect( () => {
+    //     setDataCardInitial(globals.dataCardListState)
+    // }, [])
+
+    useEffect(() => {
+        const cardsReset = globals.dataCardListState.map(card => ({
+            ...card,
+            isCheckedValue: false,
+        }));
+        setDataCardInitial(cardsReset);
+    }, []);
+
+
     return { dataCardInitial, setDataCardInitial }
 }
 
@@ -19,7 +29,7 @@ export const CustomDataCardHook = () => {
 
     const [customDataCardInitial, setCustomDataCardInitial] = useState<CustomDataType[]>([]);
 
-    useEffect( () => {
+    useEffect(() => {
         setCustomDataCardInitial(globals.customDataCardListState)
     }, [])
 
@@ -38,7 +48,7 @@ export const UserBudgetHook = () => {
 
     const [userBudgetListInitial, setUserBudgetListInitial] = useState<UserBudgetType[]>([]);
 
-    useEffect( () => {
+    useEffect(() => {
         setUserBudgetListInitial(globals.budgetListArr)
     }, [])
 
@@ -47,13 +57,13 @@ export const UserBudgetHook = () => {
 
 export const ShowDataFormHook = () => {
 
-    const [ showDataForm, setShowDataForm ] = useState<boolean>(false);
+    const [showDataForm, setShowDataForm] = useState<boolean>(false);
 
     return { showDataForm, setShowDataForm }
 }
 
 export const HandleQuantitesHook = () => {
     const [quantities, setQuantities] = useState<{ [title: string]: number }>({});
-    
+
     return { quantities, setQuantities }
 }
