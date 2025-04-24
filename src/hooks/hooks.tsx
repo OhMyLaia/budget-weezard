@@ -3,16 +3,16 @@ import * as globals from "../services/global-elements";
 import { UserDataType } from "../types/types";
 
 
-export const UserListHook = () => {
+// export const UserListHook = () => {
 
-    const [userListInitial, setUserListInitial] = useState<UserDataType[]>([]);
+//     const [userListInitial, setUserListInitial] = useState<UserDataType[]>([]);
 
-    useEffect( () => {
-        setUserListInitial(globals.userListStateArr)
-    }, [])
+//     useEffect( () => {
+//         setUserListInitial(globals.userListStateArr)
+//     }, [])
 
-    return { userListInitial, setUserListInitial }
-}
+//     return { userListInitial, setUserListInitial }
+// }
 
 
 

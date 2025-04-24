@@ -1,6 +1,7 @@
-import { CustomDataType, CustomDataCardType } from "../../types/types";
+import { CustomDataType, CustomDataCardType } from "../../../types/types";
 import { IsActiveHook } from "./useCardBudget";
 import { QuantitySelector } from "../quantitySelector/QuantitySelector";
+import { dataModal } from "../../ui/infoModal/data-infoModal";
 
 export function CardBudget(
     {
@@ -41,6 +42,7 @@ export function CardBudget(
                 shadow-[7px_7px_0px_0px_blue-900]
                 drop-shadow-lg
                 border-3
+                xl:m-8
                 ${isCheckedValue ?
                         "border-3 bg-violet-200" :
                         ""}`
@@ -56,7 +58,9 @@ export function CardBudget(
                     justify-items-start
                     w-1/2
                     w-">
-                        <h3 className="text-lg
+                        <h3 className="
+                        bricolage-grotesque-wizard
+                        text-lg
                         lg:text-5xl
                         md:text-3xl
                         ms-2
@@ -91,6 +95,7 @@ export function CardBudget(
                     md:translate-x-20
                     md:items-end">
                         <h2 className="
+                        bricolage-grotesque-wizard
                         text-lg
                         font-bold
                         md:text-2xl
@@ -131,14 +136,14 @@ export function CardBudget(
                 lg:text-3xl">
                     {custom === true && isCheckedValue === true && (
                             <div>
-                                {customDataCardHook.map((data: CustomDataType) => (
+                                {customDataCardHook.map((data: CustomDataType, index) => (
                                     <QuantitySelector
                                         key={data.productTitle}
                                         customElement={data}
                                         productTitle={title}
-                                        onQuantityChange={(productTitle: string, newQuantity: number) => 
-                                            onQuantityChange(productTitle, newQuantity)
-                                        }
+                                        onQuantityChange={onQuantityChange}
+                                        modalTitle={dataModal[index].title}
+                                        modalDescription={dataModal[index].description}
                                     />
                                 ))}
                             </div>

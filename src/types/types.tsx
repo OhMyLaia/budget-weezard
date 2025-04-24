@@ -4,6 +4,12 @@ export type CustomDataType = {
     productQuantity: number;
 }
 
+export type QuantitySelectorProps = CustomDataType & {
+    customElement: CustomDataType
+    modalTitle: string;
+    modalDescription: string;
+}
+
 export type CardDataType = {
     title: string;
     description: string;
@@ -17,10 +23,6 @@ export type CardDataType = {
 
 export type CustomDataCardType = CardDataType & {
     onQuantityChange: (title: string, newQuantity: number) => void;
-}
-
-export type QuantitySelectorProps = {
-    customElement: CustomDataType
 }
 
 export type InputFormType = {
@@ -64,8 +66,12 @@ export type UserBudgetType = UserDataType & {
     customProducts?: CustomDataType[];
     serviceTitle: string[];
     totalPrice: number;
+    timeStampProp: number;
 }
 
-// •	UserDataType → (userName, userEmail, userPhone)
-// •	CustomDataType → (productTitle, productPrice, productQuantity)
-// •	+ serviceTitle + totalPrice
+
+export enum sortByType {
+    timeStampEnum = "latest",
+    totalPriceEnum = "price",
+    userNameEnum = "name"
+}

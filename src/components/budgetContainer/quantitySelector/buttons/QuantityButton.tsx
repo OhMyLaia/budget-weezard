@@ -6,7 +6,8 @@ export function QuantityButton({ onClick, quantityOperator }: { onClick: () => v
     return (
         <div>
             <button
-                className=" bg-gray-300
+                className="
+                bg-gray-300
                 flex items-center justify-center
                 w-8 h-8
                 rounded-full

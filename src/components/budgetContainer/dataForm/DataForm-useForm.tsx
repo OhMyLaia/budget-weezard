@@ -1,18 +1,20 @@
 "use client"
 import { useContext } from "react";
-import { UserBudgetContext } from "../../context/UserBudgetContext";
+import { UserBudgetContext } from "../../../context/UserBudgetContext";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-import { UserBudgetType, CardDataType, CustomDataType } from "../../types/types";
+import { UserBudgetType, CardDataType, CustomDataType } from "../../../types/types";
 import { InputForm } from "./inputForm/InputForm";
 import { SubmitButton } from "./submitButton/SubmitButton";
-
 
 
 export function DataForm(props:
     {
         dataCardInitial: CardDataType[],
         customDataCardInitial: CustomDataType[],
-        finalPrice: number
+        finalPrice: number,
+        resetFunction: () => void
+        submittedData: boolean
+        setSubmittedData: React.Dispatch<React.SetStateAction<boolean>>
     },
 ) {
 
@@ -25,6 +27,12 @@ export function DataForm(props:
         reset,
         getValues,
     } = useForm();
+
+    const timeStampFun = () => {
+        const now = Date.now()
+        console.log(`now -> ${now}`)
+        return now;
+    }
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 
@@ -41,13 +49,11 @@ export function DataForm(props:
             console.log(card)
 
             if (card.custom === true) {
-                props.customDataCardInitial.map((product) => {(
+                props.customDataCardInitial.forEach((product) => {(
                     customCards.push({
                         productTitle: product.productTitle,
-                        //! hay que llenar productPrice, es 30 siempre
                         productPrice: product.productPrice,
-                        //! hay que cambiar esta productQuantity, no la pilla
-                        productQuantity: product.productPrice / product.productPrice
+                        productQuantity: product.productQuantity
                     })
                 )})
             }
@@ -60,21 +66,26 @@ export function DataForm(props:
             userPhone: data.phone,
             customProducts: customCards,
             serviceTitle: cardServiceTitles,
-            totalPrice: props.finalPrice
+            totalPrice: props.finalPrice,
+            timeStampProp: timeStampFun()
         };
 
-        // const arrayTemporal: any = [];
-        // arrayTemporal.push(newUserBudget);
         setUserBudgetListInitial((prevState) => {
             const updatedList = [...prevState, newUserBudget];
-            // console.log(`newUserBudget -> ${JSON.stringify(newUserBudget)}`);
             console.log(`updatedlist -> ${JSON.stringify(updatedList)} `)
             return updatedList;
         });
-        setTimeout(() => {
-            // console.log(`🔍 length array -> ${arrayTemporal.length} `)
-            reset();
-        }, 1500); 
+
+        props.setSubmittedData(true)
+
+        reset();
+
+        // setTimeout(() => {
+        //     props.setSubmittedData(false);
+        // }, 3000);
+
+        props.resetFunction();
+
     }
 
     return (
@@ -83,6 +94,7 @@ export function DataForm(props:
         flex
         flex-col
         md:w-1/2
+        mb-10
         ">
             <div className="
             w-full
@@ -144,20 +156,11 @@ export function DataForm(props:
                     {errors.phone && (
                         <p className="text-red-600">{`${errors.phone.message}`}</p>
                     )}
-            {/* <div
-                className="
-                    flex
-                    flex-row
-                    justify-end
-                    me-6"
-            > */}
-                {/* { handleSubmit() === true || handleSubmit() === null ? "" : */}
-                {/* } */}
                 <SubmitButton
                     disabled={isSubmitting}
                 />
-            {/* </div> */}
                 </form>
+                
             </div>
         </div>
     )
