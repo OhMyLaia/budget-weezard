@@ -1,54 +1,81 @@
-# React + TypeScript + Vite
+# 🧙‍♀️🪄 Budget Weezard 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A visual and customizable budgeting app built with **React + TypeScript**.  
+Designed to be responsive and intuitive, using **TailwindCSS** for styling.
 
-Currently, two official plugins are available:
+<div style="display: flex; justify-content: space-between; gap: 20px;">
+  <img src="./public/preview.png" alt="App Preview 1" width="45%" />
+  <img src="./public/preview2.png" alt="App Preview 2" width="45%" />
+</div>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ⚛️ React 18 with Vite
+- 🌐 React Router DOM
+- 📦 Context API for global state
+- 💅 TailwindCSS (utility-first CSS)
+- 🧠 TypeScript
+- 🖼️ Local static image assets
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+ ###🚀 Getting Started
+
+## 1. Clone the repo
+
+```bash
+git clone https://github.com/OhMyLaia/budget-wizard-local.git
+cd budget-wizard-local
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 2. Install Dependencies
 ```
+npm install
+npm run dev
+npm install -g tailwindcss
+```
+o
+```
+npm install tailwindcss --save-dev
+```
+
+Ensure you have this dependencies in the package.json:
+```
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.16",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.55.0",
+    "react-router-dom": "^7.4.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "tailwindcss": "^4.1.3",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0"
+  }
+```
+
+## ✨ Features
+- Sort budgets by date, price, or name
+- Reusable components
+- Clean and modular component structure
+- Responsive design (mobile-first, tablet, desktop)
+
+### 👩‍💻 Developed by
+
+Laia M. Lerma — Frontend developer.
+Stack: **React, Vue, Tailwind, CSS, Html, Javascript, Typescript... and more!**
+📍 Based in Barcelona. 2025.
+
+Feel free to fork! 🍴
