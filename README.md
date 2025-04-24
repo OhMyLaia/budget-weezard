@@ -26,8 +26,8 @@ Designed to be responsive and intuitive, using **TailwindCSS** for styling.
 ## 1. Clone the repo
 
 ```bash
-git clone https://github.com/OhMyLaia/budget-wizard-local.git
-cd budget-wizard-local
+git clone https://github.com/OhMyLaia/budget-weezard.git
+cd budget-weezard
 ```
 
 ## 2. Install Dependencies

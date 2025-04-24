@@ -4,9 +4,15 @@ import tailwindcss from '@tailwindcss/vite';
 
 
 // https://vite.dev/config/
+// export default defineConfig({
+//   base: "/budget-weezard",
+//   plugins: [react(),
+//     tailwindcss()
+//   ]
+// })
+
 export default defineConfig({
-  plugins: [react(),
-    tailwindcss()
-  ],
-})
+  base: "/",  // Esto asegura que se use la raíz del servidor
+  plugins: [react(), tailwindcss()]
+});
 
