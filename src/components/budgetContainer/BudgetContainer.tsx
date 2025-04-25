@@ -3,7 +3,7 @@ import { FinalPriceHook, HandleQuantitesHook, DataCardHook, ShowDataFormHook, Cu
 import { CardBudget } from "./cards/CardBudget";
 import { DataForm } from "../budgetContainer/dataForm/DataForm-useForm";
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { MessageDiv } from "../ui/MessageDiv";
 import { useState } from "react";
 import { GenericButton } from "../ui/GenericButton";
@@ -19,10 +19,6 @@ export function BudgetContainer() {
     const [isSubmittedData, setIsSubmittedData] = useState(false)
 
 
-    // const location = useLocation();
-
-
-
     const handleCheckboxChange = (index: number) => {
         const updatedCards = [...dataCardInitial];
         updatedCards[index].isCheckedValue = !updatedCards[index].isCheckedValue;
@@ -33,36 +29,12 @@ export function BudgetContainer() {
         setDataCardInitial(updatedCards);
     };
 
-    // const calculateExtra = () => {
-
-    //     const checkedCards: CardDataType[] = dataCardInitial.filter(card => card.isCheckedValue);
-
-    //     const totalBasePrice = checkedCards.reduce((sum, card) => sum + card.price, 0);
-
-    //     const extraCustomCost = customDataCardInitial.reduce((sum: number, product) => {
-    //         if (product.productQuantity > 1) {
-    //             return sum + ((product.productQuantity - 1) * product.productPrice);
-    //         }
-    //         return sum;
-    //     }, 0);
-
-    //     const totalPrice = totalBasePrice + extraCustomCost;
-
-    //     return { totalPrice, extraCustomCost}
-    // }
-
-
-
 
     useEffect(() => {
         console.log("🔥 useEffect triggered");
 
         const checkedCards: CardDataType[] = dataCardInitial.filter(card => card.isCheckedValue);
 
-        // if (checkedCards.length === 0) {
-        //     setFinalPrice(0)
-        //     return
-        // }
         if (checkedCards.length > 0) {
             setShowDataForm(true);
         } else {
@@ -115,10 +87,8 @@ export function BudgetContainer() {
             productQuantity: 1
         }));
 
-        // setDataCardInitial(resetCards);
         setCustomDataCardInitial(resetCustomProducts)
         setFinalPrice(0);
-        // dataCardInitial.forEach(card => card.isCheckedValue === false)
     }
 
     const navigate = useNavigate();

@@ -1,4 +1,4 @@
-// import {imgage} from "../../public/bw-header.png"
+import headerBanner from "../../public/bw-header.png"
 
 export function Header() {
     return (
@@ -11,7 +11,7 @@ export function Header() {
         items-center
 
         ">
-            <img src="../../public/bw-header.png"
+            <img src={headerBanner}
             className="
             mx-auto
             w-full

@@ -6,7 +6,7 @@ import { BudgetFinderView } from "../views/BudgetFinderView.tsx";
 export const AppRoutes = () => {
     return (
         <Routes>
-            <Route path='/budget-weezard' element={<HomeView />} />
+            <Route path='/' element={<HomeView />} />
             <Route path='/budget-calculator' element={<BudgetView />} />
             <Route path='/my-budgets' element={<BudgetFinderView />} />
             {/* route error -> / y route notfound crear archivos routes.jsx-> * */}

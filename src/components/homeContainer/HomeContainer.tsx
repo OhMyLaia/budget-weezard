@@ -1,5 +1,6 @@
 import { GenericButton } from "../ui/GenericButton";
 import { useNavigate } from "react-router-dom";
+import palandil from "../../../public/palandil01-200px.png"
 
 
 export function HomeContainer() {
@@ -33,7 +34,7 @@ export function HomeContainer() {
             animate-pulse
             m-3
             "
-            src="../../../public//palandil01-200px.png"></img>
+            src={palandil}></img>
             <GenericButton
             text={"Get a budget"}
             width={"60"}

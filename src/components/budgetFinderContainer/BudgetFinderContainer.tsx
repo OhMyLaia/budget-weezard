@@ -1,7 +1,7 @@
 import { UserBudgetCard } from "./userBudgetCard/UserBudgetCard";
 import { UserBudgetContext } from "../../context/UserBudgetContext";
 import { useContext } from "react";
-import { CustomDataType, UserBudgetType } from "../../types/types";
+import { UserBudgetType } from "../../types/types";
 import { useEffect } from "react";
 import { GenericButton } from "../ui/GenericButton";
 import { useNavigate } from "react-router-dom";
