@@ -11,7 +11,7 @@
   },
   "homepage": "https://github.com/OhMyLaia/budget-weezard",
   "dependencies": {
-    "@tailwindcss/vite": "^4.0.16",
+    "@tailwindcss/vite": "^4.1.18",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.55.0",
